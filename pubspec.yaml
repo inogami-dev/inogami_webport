@@ -14,6 +14,26 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-
+  
 flutter:
   uses-material-design: true
+  assets:
+    - assets/fonts/quicksand/
+  fonts:
+    - family: Quicksand
+      fonts:
+        - asset: assets\fonts\quicksand\Quicksand-Light.ttf
+          style: normal
+          weight: 300
+        - asset: assets\fonts\quicksand\Quicksand-Regular.ttf
+          style: normal
+          weight: 400
+        - asset: assets\fonts\quicksand\Quicksand-Medium.ttf
+          style: normal
+          weight: 500
+        - asset: assets\fonts\quicksand\Quicksand-SemiBold.ttf
+          style: normal
+          weight: 600
+        - asset: assets\fonts\quicksand\Quicksand-Bold.ttf
+          style: normal
+          weight: 700

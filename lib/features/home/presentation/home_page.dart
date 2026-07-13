@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/features/home/presentation/sections/header/header.dart';
 
 class MyHomePage extends StatefulWidget {
   final double screenHeight;
@@ -11,27 +12,21 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final myColorScheme = Theme.of(context).colorScheme;
+    double headerHeight = 56;
+
     return Container(
       height: double.infinity,
-      color: Colors.amber,
+      // color: Colors.amber,
+      color: myColorScheme.surface,
       child: SingleChildScrollView(
         child: Column(
           children: [
             // Header
-            SizedBox(
-              height: 56,
-              child: Row(
-                children: [
-                  Expanded(child: Placeholder()),
-                  Spacer(),
-                  Expanded(child: Placeholder()),
-                  Expanded(child: Placeholder()),
-                ],
-              ),
-            ),
+            MyHeader(headerHeight: headerHeight, myColorScheme: myColorScheme),
             // Hero Section
             SizedBox(
-              height: widget.screenHeight - 56,
+              height: widget.screenHeight - headerHeight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
