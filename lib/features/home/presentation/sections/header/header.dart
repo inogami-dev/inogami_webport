@@ -2,8 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/presentation/sections/header/widgets/buttons.dart';
 
-class MyHeader extends StatelessWidget {
+class MyHeader extends StatefulWidget {
   const MyHeader({
     super.key,
     required this.headerHeight,
@@ -14,14 +15,22 @@ class MyHeader extends StatelessWidget {
   final ColorScheme myColorScheme;
 
   @override
+  State<MyHeader> createState() => _MyHeaderState();
+}
+
+class _MyHeaderState extends State<MyHeader> {
+  late ColorScheme myColorScheme;
+  @override
   Widget build(BuildContext context) {
+    myColorScheme = Theme.of(context).colorScheme;
     return Container(
-      height: headerHeight,
+      height: widget.headerHeight,
       padding: EdgeInsets.only(left: 16, right: 16),
       decoration: BoxDecoration(
+        color: widget.myColorScheme.surface,
         boxShadow: [
           BoxShadow(
-            color: myColorScheme.surfaceContainerHighest,
+            color: widget.myColorScheme.surfaceContainerHighest,
             offset: Offset(0, 2),
           ),
         ],
@@ -65,24 +74,9 @@ class MyHeader extends StatelessWidget {
     );
   }
 
-  Widget headerButton({required String text, VoidCallback? onTap}) {
+  Widget headerButton({required String text, required VoidCallback onTap}) {
     return Expanded(
-      child: MouseRegion(
-        cursor: SystemMouseCursors.cell,
-        onHover: (event) {
-          log("MOUSE HOVER on ${event.position}");
-        },
-        child: Container(
-          // color: Colors.blueGrey,
-          margin: EdgeInsets.only(right: 2),
-          alignment: Alignment.center,
-          child: GestureDetector(
-            onTap: onTap,
-
-            child: MyText(text: text),
-          ),
-        ),
-      ),
+      child: MyHeaderButton(text: text, onTap: onTap),
     );
   }
 }
