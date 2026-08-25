@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/theme/theme.dart';
-import 'package:my_portfolio/features/home/presentation/home_page.dart';
+import 'package:my_portfolio/features/home/presentation/whole_page.dart';
 
 void main() {
   runApp(const MainApp());

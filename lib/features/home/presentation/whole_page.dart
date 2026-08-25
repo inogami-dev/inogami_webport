@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/header/header.dart';
+import 'package:my_portfolio/features/home/presentation/sections/hero/hero.dart';
 
 class MyHomePage extends StatefulWidget {
   final double screenHeight;
@@ -25,14 +27,23 @@ class _MyHomePageState extends State<MyHomePage> {
             // Header
             MyHeader(headerHeight: headerHeight, myColorScheme: myColorScheme),
             // Hero Section
+            MyHeroSection(
+              headerHeight: headerHeight,
+              screenHeight: widget.screenHeight,
+            ),
+            // Additional Section
             SizedBox(
-              height: widget.screenHeight - headerHeight,
+              height: widget.screenHeight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     children: [
-                      Expanded(child: Placeholder()),
+                      Expanded(
+                        child: Placeholder(
+                          child: MyText(text: "Placeholder 2"),
+                        ),
+                      ),
                       Expanded(child: Placeholder()),
                     ],
                   ),
@@ -48,7 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Column(
                     children: [
-                      Expanded(child: Placeholder()),
+                      Expanded(
+                        child: Placeholder(
+                          child: MyText(text: "Placeholder 3"),
+                        ),
+                      ),
                       Expanded(child: Placeholder()),
                     ],
                   ),
