@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/navbar.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/above_the_fold.dart';
@@ -15,64 +16,89 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final myColorScheme = Theme.of(context).colorScheme;
-    double headerHeight = 56;
+    double navBarHeight = 45;
+    final width = MyDimensions.width(context);
+    final height = MyDimensions.height(context);
 
-    return Container(
-      height: double.infinity,
-      // color: Colors.amber,
-      color: myColorScheme.surface,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Header
-            MyHeader(headerHeight: headerHeight, myColorScheme: myColorScheme),
-            // Hero Section
-            MyHeroSection(
-              headerHeight: headerHeight,
-              screenHeight: widget.screenHeight,
-            ),
-            // Additional Section
-            SizedBox(
-              height: widget.screenHeight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Expanded(
-                        child: Placeholder(
-                          child: MyText(text: "Placeholder 2"),
-                        ),
+    return SizedBox(
+      width: width,
+      height: height,
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          Positioned(
+            top: 0,
+            child: Container(
+              width: width,
+              height: height,
+              color: myColorScheme.surface,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // Hero Section
+                    MyHeroSection(
+                      navBarHeight: navBarHeight,
+                      screenHeight: widget.screenHeight,
+                    ),
+                    // Additional Section
+                    SizedBox(
+                      height: widget.screenHeight,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Expanded(
+                                child: Placeholder(
+                                  child: MyText(text: "Placeholder 2"),
+                                ),
+                              ),
+                              Expanded(child: Placeholder()),
+                            ],
+                          ),
+                          Expanded(child: Placeholder()),
+                        ],
                       ),
-                      Expanded(child: Placeholder()),
-                    ],
-                  ),
-                  Expanded(child: Placeholder()),
-                ],
+                    ),
+                    // Additional Section
+                    SizedBox(
+                      height: widget.screenHeight,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Expanded(
+                                child: Placeholder(
+                                  child: MyText(text: "Placeholder 3"),
+                                ),
+                              ),
+                              Expanded(child: Placeholder()),
+                            ],
+                          ),
+                          Expanded(child: Placeholder()),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            // Additional Section
-            SizedBox(
-              height: widget.screenHeight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Expanded(
-                        child: Placeholder(
-                          child: MyText(text: "Placeholder 3"),
-                        ),
-                      ),
-                      Expanded(child: Placeholder()),
-                    ],
-                  ),
-                  Expanded(child: Placeholder()),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+          // Navbar
+          Positioned(
+            top: 8,
+            left: 16,
+            right: 16,
+            child:
+                // Header
+                MyHeader(
+                  width: width,
+                  navBarHeight: navBarHeight,
+                  myColorScheme: myColorScheme,
+                ),
+          ),
+        ],
       ),
     );
   }

@@ -3,11 +3,11 @@ import 'package:my_portfolio/core/widgets/text.dart';
 
 class MyHeroSection extends StatefulWidget {
   final double screenHeight;
-  final double headerHeight;
+  final double navBarHeight;
   const MyHeroSection({
     super.key,
     required this.screenHeight,
-    required this.headerHeight,
+    required this.navBarHeight,
   });
 
   @override
@@ -20,7 +20,7 @@ class _MyHeroSectionState extends State<MyHeroSection> {
     final double screenWidth = MediaQuery.of(context).size.width;
     final myColorScheme = Theme.of(context).colorScheme;
     return SizedBox(
-      height: widget.screenHeight - widget.headerHeight,
+      height: widget.screenHeight - widget.navBarHeight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

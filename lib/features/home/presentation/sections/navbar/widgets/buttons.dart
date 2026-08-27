@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 
-class MyHeaderButton extends StatefulWidget {
+class MyNavbarButton extends StatefulWidget {
   final String text;
   final VoidCallback onTap;
-  const MyHeaderButton({super.key, required this.text, required this.onTap});
+  const MyNavbarButton({super.key, required this.text, required this.onTap});
 
   @override
-  State<MyHeaderButton> createState() => _MyHeaderButtonState();
+  State<MyNavbarButton> createState() => _MyNavbarButtonState();
 }
 
-class _MyHeaderButtonState extends State<MyHeaderButton> {
+class _MyNavbarButtonState extends State<MyNavbarButton> {
   bool isHovered = false;
   @override
   Widget build(BuildContext context) {
     final myColorScheme = Theme.of(context).colorScheme;
+
     return GestureDetector(
       onTap: widget.onTap,
       child: MouseRegion(
@@ -33,16 +34,17 @@ class _MyHeaderButtonState extends State<MyHeaderButton> {
           decoration: BoxDecoration(
             color: (isHovered)
                 ? myColorScheme.surfaceContainerLow.withAlpha(56)
-                : myColorScheme.surface,
-            boxShadow: isHovered
-                ? [
-                    BoxShadow(
-                      color: Colors.blueAccent.withAlpha(56),
-                      blurRadius: 12,
-                      offset: const Offset(0, 0),
-                    ),
-                  ]
-                : [], // Remove shadow when not hovered
+                // : myColorScheme.surface,
+                : Colors.transparent,
+            // boxShadow: isHovered
+            //     ? [
+            //         BoxShadow(
+            //           color: Colors.blueAccent.withAlpha(56),
+            //           blurRadius: 4,
+            //           offset: const Offset(0, 0),
+            //         ),
+            //       ]
+            //     : [], // Remove shadow when not hovered
           ),
           child: MyText(
             text: widget.text,
