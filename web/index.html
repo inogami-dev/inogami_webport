@@ -83,36 +83,37 @@
       100% { transform: rotate(360deg); }
     }
   </style>
-  <!-- 3. The Initialization Script -->
-  <script>
-    // @ts-nocheck
-    window.addEventListener('load', function(ev) {
-      // Inject Flutter's required configuration variables
-      {{flutter_js}}
-      {{flutter_build_config}}
-      
-      // Use the new .load() method instead of the deprecated .loadEntrypoint()
-      _flutter.loader.load({
-        serviceWorker: {
-          // Use the new template token for the service worker version
-          serviceWorkerVersion: {{flutter_service_worker_version}},
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            // Start the Flutter app
-            return appRunner.runApp();
-          }).then(function() {
-            // Smoothly fade out the loading screen once the app is running
-            let loader = document.querySelector('#loading-indicator');
-            if (loader) {
-              loader.style.opacity = '0';
-              setTimeout(() => loader.remove(), 600); // Remove from DOM after fade
-            }
-          });
-        }
+  
+    <!-- 3. The Initialization Script -->
+    <script>
+      // @ts-nocheck
+      window.addEventListener('load', function(ev) {
+        // Inject Flutter's required configuration variables
+        {{flutter_js}}
+        {{flutter_build_config}}
+        
+        // Use the new .load() method instead of the deprecated .loadEntrypoint()
+        _flutter.loader.load({
+          serviceWorker: {
+            // Use the new template token for the service worker version
+            serviceWorkerVersion: {{flutter_service_worker_version}},
+          },
+          onEntrypointLoaded: function(engineInitializer) {
+            engineInitializer.initializeEngine().then(function(appRunner) {
+              // Start the Flutter app
+              return appRunner.runApp();
+            }).then(function() {
+              // Smoothly fade out the loading screen once the app is running
+              let loader = document.querySelector('#loading-indicator');
+              if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 600); // Remove from DOM after fade
+              }
+            });
+          }
+        });
       });
-    });
-  </script>
-  <!-- <script src="flutter_bootstrap.js" async></script> -->
+    </script>
+    <!-- <script src="flutter_bootstrap.js" async></script> -->
 </body>
 </html>

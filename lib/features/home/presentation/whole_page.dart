@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
-import 'package:my_portfolio/features/home/presentation/sections/header/header.dart';
-import 'package:my_portfolio/features/home/presentation/sections/hero/hero.dart';
+import 'package:my_portfolio/features/home/presentation/sections/navbar/navbar.dart';
+import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/above_the_fold.dart';
 
 class MyHomePage extends StatefulWidget {
   final double screenHeight;

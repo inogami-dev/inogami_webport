@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
-import 'package:my_portfolio/features/home/presentation/sections/header/widgets/buttons.dart';
+import 'package:my_portfolio/features/home/presentation/sections/navbar/widgets/buttons.dart';
 
 class MyHeader extends StatefulWidget {
   const MyHeader({
@@ -38,11 +38,11 @@ class _MyHeaderState extends State<MyHeader> {
       child: Flex(
         direction: Axis.horizontal,
         children: [
-          MyText(
-            text: "INOGAMI",
-            fontWeight: FontWeight.bold,
-            fontSize: kDefaultFontSize + 8,
-          ),
+          // MyText(
+          //   text: "INOGAMI",
+          //   fontWeight: FontWeight.bold,
+          //   fontSize: kDefaultFontSize + 8,
+          // ),
           Spacer(flex: 6),
           headerButton(
             onTap: () {
