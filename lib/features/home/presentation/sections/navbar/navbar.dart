@@ -96,26 +96,26 @@ class _MyHeaderState extends State<MyHeader> {
               fontFamily: "Poppins",
             ),
             Spacer(flex: 6),
-            navbarButton(
+            MyNavbarButton(
               onTap: () {
                 log("PROJECTS");
               },
               text: "PROJECTS",
             ),
-            navbarButton(
+            MyNavbarButton(
               onTap: () {
                 log("ABOUT");
               },
               text: "ABOUT",
             ),
-            navbarButton(
+            MyNavbarButton(
               onTap: () {
                 log("EXPERTISE");
               },
               text: "EXPERTISE",
             ),
             SizedBox(width: 16),
-            navbarButton(
+            MyNavbarButton(
               onTap: () {
                 log("CONTACT ME");
               },
@@ -127,9 +127,9 @@ class _MyHeaderState extends State<MyHeader> {
     );
   }
 
-  Widget navbarButton({required String text, required VoidCallback onTap}) {
-    return Expanded(
-      child: MyNavbarButton(text: text, onTap: onTap),
-    );
-  }
+  // Widget navbarButton({required String text, required VoidCallback onTap}) {
+  //   return Expanded(
+  //     child: MyNavbarButton(text: text, onTap: onTap),
+  //   );
+  // }
 }
