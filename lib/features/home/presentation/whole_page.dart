@@ -13,6 +13,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey aboveTheFoldSectionKey = GlobalKey();
+  final GlobalKey projectSectionKey = GlobalKey();
+  final List<GlobalKey> sectionKeys = [];
+
+  @override
+  void initState() {
+    super.initState();
+    sectionKeys.addAll([aboveTheFoldSectionKey, projectSectionKey]);
+  }
+
   @override
   Widget build(BuildContext context) {
     final myColorScheme = Theme.of(context).colorScheme;
@@ -37,11 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     // Hero Section
                     MyHeroSection(
+                      key: aboveTheFoldSectionKey,
                       navBarHeight: navBarHeight,
                       screenHeight: widget.screenHeight,
                     ),
                     // Additional Section
                     SizedBox(
+                      key: projectSectionKey,
                       height: widget.screenHeight,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -93,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child:
                 // Header
                 MyHeader(
+                  sectionKeys: sectionKeys,
                   width: width,
                   navBarHeight: navBarHeight,
                   myColorScheme: myColorScheme,

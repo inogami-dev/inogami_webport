@@ -30,48 +30,50 @@ class _MyHeroSectionState extends State<MyHeroSection> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          SizedBox(
-            // color: Colors.amber,
-            width: screenWidth / 2,
-            height: effectiveHeight,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: effectiveHeight * 0.05),
-                Container(
-                  // color: Colors.green,
-                  alignment: Alignment.topLeft,
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  constraints: BoxConstraints(maxWidth: screenWidth * 0.40),
-                  // child: MyText(
-                  //   text: "Mobile App Developer",
-                  //   maxLines: 7,
-                  //   fontWeight: FontWeight.bold,
-                  //   fontFamily: "Poppins",
-                  //   fontSize: 64,
-                  //   lineHeight: 1.1,
-                  //   // fontFamily: "Inter",
-                  // ),
-                  child: MyAnimatedText(
-                    text: "Mobile App Developer",
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Poppins",
-                    fontSize: 64,
-                    lineHeight: 1.1,
+          SingleChildScrollView(
+            child: SizedBox(
+              // color: Colors.amber,
+              width: screenWidth / 2,
+              height: effectiveHeight,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: effectiveHeight * 0.05),
+                  Container(
+                    // color: Colors.green,
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    constraints: BoxConstraints(maxWidth: screenWidth * 0.40),
+                    // child: MyText(
+                    //   text: "Mobile App Developer",
+                    //   maxLines: 7,
+                    //   fontWeight: FontWeight.bold,
+                    //   fontFamily: "Poppins",
+                    //   fontSize: 64,
+                    //   lineHeight: 1.1,
+                    //   // fontFamily: "Inter",
+                    // ),
+                    child: MyAnimatedText(
+                      text: "Mobile App Developer",
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins",
+                      fontSize: 64,
+                      lineHeight: 1.1,
+                    ),
                   ),
-                ),
-                Container(
-                  // color: Colors.pink,
-                  alignment: Alignment.topLeft,
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  constraints: BoxConstraints(maxWidth: screenWidth * 0.40),
-                  child: MyText(
-                    text:
-                        "Placeholder 1 T dsdcjbsk se skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfb ef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef scac jkas skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjfn skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef js aij oief noisda doqw odiwdioq ddkaldn.",
-                    maxLines: 14,
+                  Container(
+                    // color: Colors.pink,
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    constraints: BoxConstraints(maxWidth: screenWidth * 0.40),
+                    child: MyText(
+                      text:
+                          "Placeholder 1 T dsdcjbsk se skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfb ef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef scac jkas skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjfn skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef js aij oief noisda doqw odiwdioq ddkaldn.",
+                      maxLines: 14,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           // My Image

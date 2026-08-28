@@ -3,7 +3,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
-import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/widgets/buttons.dart';
 
 class MyHeader extends StatefulWidget {
@@ -12,11 +11,13 @@ class MyHeader extends StatefulWidget {
     required this.navBarHeight,
     required this.width,
     required this.myColorScheme,
+    required this.sectionKeys,
   });
 
   final double navBarHeight;
   final double width;
   final ColorScheme myColorScheme;
+  final List<GlobalKey> sectionKeys;
 
   @override
   State<MyHeader> createState() => _MyHeaderState();
@@ -96,11 +97,37 @@ class _MyHeaderState extends State<MyHeader> {
             //   fontSize: kDefaultFontSize + 8,
             //   fontFamily: "Poppins",
             // ),
-            MyAnimatedText(text: "INOGAMI", fontSize: kDefaultFontSize + 8),
+            InkWell(
+              onTap: () {
+                log("ABOVE THE FOLD SECTION");
+                if (widget.sectionKeys[0].currentContext != null) {
+                  Scrollable.ensureVisible(
+                    widget.sectionKeys[0].currentContext!,
+                    duration: const Duration(milliseconds: 800),
+                    // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
+                    curve: Curves.easeInOutCubic,
+                  );
+                }
+              },
+              child: IgnorePointer(
+                child: MyAnimatedText(
+                  text: "INOGAMI",
+                  fontSize: kDefaultFontSize + 8,
+                ),
+              ),
+            ),
             Spacer(flex: 6),
             normalNavBarButton(
               onTap: () {
                 log("PROJECTS");
+                if (widget.sectionKeys[1].currentContext != null) {
+                  Scrollable.ensureVisible(
+                    widget.sectionKeys[1].currentContext!,
+                    duration: const Duration(milliseconds: 800),
+                    // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
+                    curve: Curves.easeInOutCubic,
+                  );
+                }
               },
               text: "PROJECTS",
             ),
