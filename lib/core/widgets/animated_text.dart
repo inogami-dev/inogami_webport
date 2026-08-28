@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
-class MyAnimatedText extends StatelessWidget {
+class MyAnimatedText extends StatefulWidget {
   final String text;
   final double? fontSize;
   final FontWeight? fontWeight;
@@ -26,35 +28,65 @@ class MyAnimatedText extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final List<Color> effectiveColor = [];
-    if (colors != null) {
-      effectiveColor.addAll(colors!);
-    } else {
-      effectiveColor.addAll([
-        Colors.white,
-        Colors.blue,
-        Colors.blue.shade200,
-        Colors.white,
-      ]);
-    }
+  State<MyAnimatedText> createState() => _MyAnimatedTextState();
+}
 
-    return AnimatedTextKit(
-      pause: Duration(milliseconds: delayBetweenAnimationsInMillis),
-      repeatForever: repeatForever,
-      animatedTexts: [
-        ColorizeAnimatedText(
-          text,
-          textStyle: TextStyle(
-            fontSize: fontSize,
-            fontFamily: fontFamily,
-            fontWeight: fontWeight,
+class _MyAnimatedTextState extends State<MyAnimatedText> {
+  int _cycle = 0;
+  bool _disposed = false;
+
+  List<Color> get _effectiveColors =>
+      widget.colors ??
+      [Colors.white, Colors.blue.shade200, Colors.blue.shade100, Colors.white];
+
+  void _onFinished() {
+    if (!widget.repeatForever || _disposed) return;
+    if (widget.delayBetweenAnimationsInMillis > 0) {
+      Future.delayed(
+        Duration(milliseconds: widget.delayBetweenAnimationsInMillis),
+        () {
+          if (mounted && !_disposed) setState(() => _cycle++);
+        },
+      );
+    } else {
+      setState(() => _cycle++);
+    }
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      // this dissolve is what replaces the hard restart-jump
+      duration: const Duration(milliseconds: 600),
+      switchInCurve: Curves.easeInCubic,
+      switchOutCurve: Curves.easeInCubic,
+      child: AnimatedTextKit(
+        // a new key each cycle is what tells AnimatedSwitcher to crossfade
+        key: ValueKey(_cycle),
+        pause: Duration.zero,
+        isRepeatingAnimation: false, // exactly one pass; we own the looping
+        totalRepeatCount: 1,
+        onFinished: _onFinished,
+        animatedTexts: [
+          ColorizeAnimatedText(
+            widget.text,
+            textStyle: TextStyle(
+              fontSize: widget.fontSize,
+              fontFamily: widget.fontFamily,
+              fontWeight: widget.fontWeight,
+            ),
+            colors: _effectiveColors,
+            textDirection: widget.textDirection,
+            speed: Duration(milliseconds: widget.animationSpeedInMillis),
           ),
-          colors: effectiveColor,
-          textDirection: textDirection,
-          speed: Duration(milliseconds: animationSpeedInMillis),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
