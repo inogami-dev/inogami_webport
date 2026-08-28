@@ -13,6 +13,7 @@ class MyAnimatedText extends StatefulWidget {
   final int delayBetweenAnimationsInMillis;
   final int animationSpeedInMillis;
   final bool repeatForever;
+  final double? lineHeight;
 
   const MyAnimatedText({
     super.key,
@@ -25,6 +26,7 @@ class MyAnimatedText extends StatefulWidget {
     this.delayBetweenAnimationsInMillis = 0,
     this.animationSpeedInMillis = 1000,
     this.repeatForever = true,
+    this.lineHeight,
   });
 
   @override
@@ -64,8 +66,8 @@ class _MyAnimatedTextState extends State<MyAnimatedText> {
     return AnimatedSwitcher(
       // this dissolve is what replaces the hard restart-jump
       duration: const Duration(milliseconds: 600),
-      switchInCurve: Curves.easeInCubic,
-      switchOutCurve: Curves.easeInCubic,
+      switchInCurve: Curves.easeOut,
+      switchOutCurve: Curves.easeIn,
       child: AnimatedTextKit(
         // a new key each cycle is what tells AnimatedSwitcher to crossfade
         key: ValueKey(_cycle),
@@ -80,6 +82,7 @@ class _MyAnimatedTextState extends State<MyAnimatedText> {
               fontSize: widget.fontSize,
               fontFamily: widget.fontFamily,
               fontWeight: widget.fontWeight,
+              height: widget.lineHeight,
             ),
             colors: _effectiveColors,
             textDirection: widget.textDirection,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/utilities/dimension.dart';
+import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 
 class MyHeroSection extends StatefulWidget {
@@ -17,43 +19,60 @@ class MyHeroSection extends StatefulWidget {
 class _MyHeroSectionState extends State<MyHeroSection> {
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenWidth = MyDimensions.width(context);
+    final double effectiveHeight =
+        widget.screenHeight - (widget.navBarHeight / 4);
     final myColorScheme = Theme.of(context).colorScheme;
+
     return SizedBox(
-      height: widget.screenHeight - (widget.navBarHeight / 4),
+      width: screenWidth,
+      height: effectiveHeight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Column(
-            children: [
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
+          SizedBox(
+            // color: Colors.amber,
+            width: screenWidth / 2,
+            height: effectiveHeight,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: effectiveHeight * 0.05),
+                Container(
+                  // color: Colors.green,
+                  alignment: Alignment.topLeft,
                   padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   constraints: BoxConstraints(maxWidth: screenWidth * 0.40),
-                  child: MyText(
-                    text:
-                        "Placeholder 1 T dsdcjbsk se skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef",
-                    maxLines: 7,
+                  // child: MyText(
+                  //   text: "Mobile App Developer",
+                  //   maxLines: 7,
+                  //   fontWeight: FontWeight.bold,
+                  //   fontFamily: "Poppins",
+                  //   fontSize: 64,
+                  //   lineHeight: 1.1,
+                  //   // fontFamily: "Inter",
+                  // ),
+                  child: MyAnimatedText(
+                    text: "Mobile App Developer",
                     fontWeight: FontWeight.bold,
-                    fontSize: 32,
-                    // fontFamily: "Inter",
+                    fontFamily: "Poppins",
+                    fontSize: 64,
+                    lineHeight: 1.1,
                   ),
                 ),
-              ),
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
+                Container(
+                  // color: Colors.pink,
+                  alignment: Alignment.topLeft,
                   padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   constraints: BoxConstraints(maxWidth: screenWidth * 0.40),
                   child: MyText(
                     text:
-                        "Placeholder 1 T dsdcjbsk se skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef",
-                    maxLines: 7,
+                        "Placeholder 1 T dsdcjbsk se skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfb ef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef scac jkas skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjfn skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef js aij oief noisda doqw odiwdioq ddkaldn.",
+                    maxLines: 14,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           // My Image
           Expanded(
