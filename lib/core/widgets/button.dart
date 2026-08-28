@@ -34,7 +34,7 @@ class MyButton extends StatefulWidget {
     this.borderWidth = 1.5,
     this.borderColor = const Color.fromARGB(254, 209, 232, 253),
     this.buttonTextColor,
-    this.buttonTextSpacing = 1.7,
+    this.buttonTextSpacing = 1.2,
     this.buttonTextFontFamily = "Poppins",
     required this.onTap,
     this.enableShadow = true,

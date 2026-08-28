@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/widgets/buttons.dart';
 
@@ -29,7 +30,7 @@ class _MyHeaderState extends State<MyHeader> {
     return Container(
       width: widget.width,
       height: widget.navBarHeight,
-      padding: EdgeInsets.only(left: 24, right: 24),
+      padding: EdgeInsets.only(left: 24, right: 8),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: widget.myColorScheme.surface.withAlpha(180),
@@ -89,37 +90,47 @@ class _MyHeaderState extends State<MyHeader> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MyText(
-              text: "INOGAMI",
-              fontWeight: FontWeight.bold,
-              fontSize: kDefaultFontSize + 8,
-              fontFamily: "Poppins",
-            ),
+            // MyText(
+            //   text: "INOGAMI",
+            //   fontWeight: FontWeight.bold,
+            //   fontSize: kDefaultFontSize + 8,
+            //   fontFamily: "Poppins",
+            // ),
+            MyAnimatedText(text: "INOGAMI", fontSize: kDefaultFontSize + 8),
             Spacer(flex: 6),
-            MyNavbarButton(
+            normalNavBarButton(
               onTap: () {
                 log("PROJECTS");
               },
               text: "PROJECTS",
             ),
-            MyNavbarButton(
+            normalNavBarButton(
               onTap: () {
                 log("ABOUT");
               },
               text: "ABOUT",
             ),
-            MyNavbarButton(
+            normalNavBarButton(
               onTap: () {
                 log("EXPERTISE");
               },
               text: "EXPERTISE",
             ),
-            SizedBox(width: 16),
+            SizedBox(width: 8),
+            // MyButton(
+            //   buttonText: "CONTACT ME",
+            //   widthPercentage: 0.11,
+            //   height: widget.navBarHeight - 10,
+            //   onTap: () {
+            //     log("CONTACT ME");
+            //   },
+            // ),
             MyNavbarButton(
+              text: "CONTACT ME",
+              isUsedAsCTAButton: true,
               onTap: () {
                 log("CONTACT ME");
               },
-              text: "CONTACT ME",
             ),
           ],
         ),
@@ -127,9 +138,14 @@ class _MyHeaderState extends State<MyHeader> {
     );
   }
 
-  // Widget navbarButton({required String text, required VoidCallback onTap}) {
-  //   return Expanded(
-  //     child: MyNavbarButton(text: text, onTap: onTap),
-  //   );
-  // }
+  Widget normalNavBarButton({
+    required String text,
+    required VoidCallback onTap,
+  }) {
+    return
+    // Expanded(
+    //   child:
+    MyNavbarButton(text: text, onTap: onTap, width: widget.width * 0.09);
+    // );
+  }
 }

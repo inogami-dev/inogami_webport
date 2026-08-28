@@ -20,7 +20,7 @@ class _MyHeroSectionState extends State<MyHeroSection> {
     final double screenWidth = MediaQuery.of(context).size.width;
     final myColorScheme = Theme.of(context).colorScheme;
     return SizedBox(
-      height: widget.screenHeight - widget.navBarHeight,
+      height: widget.screenHeight - (widget.navBarHeight / 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

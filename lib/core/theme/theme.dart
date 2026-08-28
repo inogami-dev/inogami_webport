@@ -9,8 +9,10 @@ class MyTheme {
       colorScheme:
           ColorScheme.fromSeed(
             seedColor: Colors.blue,
+            // primary: Colors.blue,
             brightness: Brightness.light,
           ).copyWith(
+            primary: Color.fromARGB(255, 12, 91, 170),
             // onPrimary: const Color.fromARGB(255, 231, 231, 231),
             // primaryFixed: Colors.blue.shade300,
           ),
@@ -24,8 +26,10 @@ class MyTheme {
       colorScheme:
           ColorScheme.fromSeed(
             seedColor: Colors.blue,
+            // primary: Colors.blue,
             brightness: Brightness.dark,
           ).copyWith(
+            primary: Color.fromARGB(255, 12, 91, 170),
             // onPrimary: const Color.fromARGB(255, 231, 231, 231),
             // primaryFixed: Colors.blue.shade300,
           ),
