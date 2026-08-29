@@ -15,12 +15,19 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey aboveTheFoldSectionKey = GlobalKey();
   final GlobalKey projectSectionKey = GlobalKey();
+  final GlobalKey aboutMeSectionKey = GlobalKey();
+  final GlobalKey certificationsSectionKey = GlobalKey();
   final List<GlobalKey> sectionKeys = [];
 
   @override
   void initState() {
     super.initState();
-    sectionKeys.addAll([aboveTheFoldSectionKey, projectSectionKey]);
+    sectionKeys.addAll([
+      aboveTheFoldSectionKey,
+      projectSectionKey,
+      aboutMeSectionKey,
+      certificationsSectionKey,
+    ]);
   }
 
   @override
@@ -62,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: [
                               Expanded(
                                 child: Placeholder(
-                                  child: MyText(text: "Placeholder 2"),
+                                  child: MyText(text: "PROJECTS"),
                                 ),
                               ),
                               Expanded(child: Placeholder()),
@@ -74,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     // Additional Section
                     SizedBox(
+                      key: aboutMeSectionKey,
                       height: widget.screenHeight,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -82,7 +90,27 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: [
                               Expanded(
                                 child: Placeholder(
-                                  child: MyText(text: "Placeholder 3"),
+                                  child: MyText(text: "ABOUT ME"),
+                                ),
+                              ),
+                              Expanded(child: Placeholder()),
+                            ],
+                          ),
+                          Expanded(child: Placeholder()),
+                        ],
+                      ),
+                    ), // Additional Section
+                    SizedBox(
+                      key: certificationsSectionKey,
+                      height: widget.screenHeight,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Expanded(
+                                child: Placeholder(
+                                  child: MyText(text: "CERTIFICATIONS"),
                                 ),
                               ),
                               Expanded(child: Placeholder()),
@@ -104,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
             right: 16,
             child:
                 // Header
-                MyHeader(
+                MyNavBar(
                   sectionKeys: sectionKeys,
                   width: width,
                   navBarHeight: navBarHeight,

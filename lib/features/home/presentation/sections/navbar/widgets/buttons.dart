@@ -88,6 +88,7 @@ class MyNavbarButton extends StatefulWidget {
   final VoidCallback onTap;
   final double? width;
   final bool isUsedAsCTAButton;
+  final bool isSelected;
 
   const MyNavbarButton({
     super.key,
@@ -95,6 +96,7 @@ class MyNavbarButton extends StatefulWidget {
     required this.onTap,
     this.width,
     this.isUsedAsCTAButton = false,
+    this.isSelected = false,
   });
 
   @override
@@ -106,7 +108,7 @@ class _MyNavbarButtonState extends State<MyNavbarButton> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final myColorScheme = Theme.of(context).colorScheme;
 
     final Color textColor = Colors.white;
     // widget.isUsedAsCTAButton
@@ -114,8 +116,10 @@ class _MyNavbarButtonState extends State<MyNavbarButton> {
     //     : (isHovered ? colorScheme.primary : colorScheme.onSurface);
 
     final Color bgColor = widget.isUsedAsCTAButton
-        ? (isHovered ? colorScheme.primary.withAlpha(200) : colorScheme.primary)
-        : (isHovered ? colorScheme.primaryContainer : Colors.transparent);
+        ? (isHovered
+              ? myColorScheme.primary.withAlpha(200)
+              : myColorScheme.primary)
+        : (isHovered ? myColorScheme.primaryContainer : Colors.transparent);
 
     final FontWeight textWeight = widget.isUsedAsCTAButton
         ? FontWeight.w600
@@ -146,6 +150,14 @@ class _MyNavbarButtonState extends State<MyNavbarButton> {
             decoration: BoxDecoration(
               color: bgColor,
               borderRadius: BorderRadius.circular(50),
+              border: Border(
+                bottom: BorderSide(
+                  width: 1,
+                  color: (widget.isSelected)
+                      ? myColorScheme.primary
+                      : Colors.transparent,
+                ),
+              ),
             ),
             child: MyText(
               text: widget.text,

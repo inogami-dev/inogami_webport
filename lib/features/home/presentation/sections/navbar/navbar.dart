@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/widgets/buttons.dart';
 
-class MyHeader extends StatefulWidget {
-  const MyHeader({
+class MyNavBar extends StatefulWidget {
+  const MyNavBar({
     super.key,
     required this.navBarHeight,
     required this.width,
@@ -20,11 +20,24 @@ class MyHeader extends StatefulWidget {
   final List<GlobalKey> sectionKeys;
 
   @override
-  State<MyHeader> createState() => _MyHeaderState();
+  State<MyNavBar> createState() => _MyNavBarState();
 }
 
-class _MyHeaderState extends State<MyHeader> {
+class _MyNavBarState extends State<MyNavBar> {
+  late GlobalKey currentSection;
   late ColorScheme myColorScheme;
+  static const int aboveTheFoldSectionID = 0;
+  static const int projectsSection = 1;
+  static const int aboutMeSectionID = 2;
+  static const int certificationsSectionID = 3;
+  // static const int footerSectionID = 4;
+
+  @override
+  void initState() {
+    super.initState();
+    currentSection = widget.sectionKeys[aboveTheFoldSectionID];
+  }
+
   @override
   Widget build(BuildContext context) {
     myColorScheme = Theme.of(context).colorScheme;
@@ -100,11 +113,13 @@ class _MyHeaderState extends State<MyHeader> {
             InkWell(
               onTap: () {
                 log("ABOVE THE FOLD SECTION");
-                if (widget.sectionKeys[0].currentContext != null) {
+                GlobalKey sectionKey =
+                    widget.sectionKeys[aboveTheFoldSectionID];
+                setState(() => currentSection = sectionKey);
+                if (sectionKey.currentContext != null) {
                   Scrollable.ensureVisible(
-                    widget.sectionKeys[0].currentContext!,
+                    sectionKey.currentContext!,
                     duration: const Duration(milliseconds: 800),
-                    // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
                     curve: Curves.easeInOutCubic,
                   );
                 }
@@ -120,28 +135,60 @@ class _MyHeaderState extends State<MyHeader> {
             normalNavBarButton(
               onTap: () {
                 log("PROJECTS");
-                if (widget.sectionKeys[1].currentContext != null) {
+
+                GlobalKey sectionKey = widget.sectionKeys[projectsSection];
+                setState(() => currentSection = sectionKey);
+
+                if (sectionKey.currentContext != null) {
                   Scrollable.ensureVisible(
-                    widget.sectionKeys[1].currentContext!,
+                    sectionKey.currentContext!,
                     duration: const Duration(milliseconds: 800),
                     // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
                     curve: Curves.easeInOutCubic,
                   );
                 }
               },
+              section: 1,
               text: "PROJECTS",
             ),
             normalNavBarButton(
               onTap: () {
                 log("ABOUT");
+
+                GlobalKey sectionKey = widget.sectionKeys[aboutMeSectionID];
+                setState(() => currentSection = sectionKey);
+
+                if (sectionKey.currentContext != null) {
+                  Scrollable.ensureVisible(
+                    sectionKey.currentContext!,
+                    duration: const Duration(milliseconds: 800),
+                    // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
+                    curve: Curves.easeInOutCubic,
+                  );
+                }
               },
+              section: 2,
               text: "ABOUT",
             ),
             normalNavBarButton(
               onTap: () {
-                log("EXPERTISE");
+                log("CERTIIFCATIONS");
+                GlobalKey sectionKey =
+                    widget.sectionKeys[certificationsSectionID];
+                setState(() => currentSection = sectionKey);
+
+                if (sectionKey.currentContext != null) {
+                  Scrollable.ensureVisible(
+                    sectionKey.currentContext!,
+                    duration: const Duration(milliseconds: 800),
+                    // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
+                    curve: Curves.easeInOutCubic,
+                  );
+                }
               },
-              text: "EXPERTISE",
+              section: 3,
+              text: "CERTIIFCATES",
+              widthPercentage: .11,
             ),
             SizedBox(width: 8),
             // MyButton(
@@ -168,11 +215,29 @@ class _MyHeaderState extends State<MyHeader> {
   Widget normalNavBarButton({
     required String text,
     required VoidCallback onTap,
+    required int section,
+    double widthPercentage = 0.09,
   }) {
     return
     // Expanded(
     //   child:
-    MyNavbarButton(text: text, onTap: onTap, width: widget.width * 0.09);
+    MyNavbarButton(
+      text: text,
+      onTap: onTap,
+      width: widget.width * widthPercentage,
+      isSelected: currentSectionDeterminer(section),
+    );
     // );
+  }
+
+  bool currentSectionDeterminer(int section) {
+    if (section > widget.sectionKeys.length) return false;
+
+    if (currentSection == widget.sectionKeys[section]) {
+      log("TRUEEEEEEEEEE");
+      return true;
+    }
+
+    return false;
   }
 }
