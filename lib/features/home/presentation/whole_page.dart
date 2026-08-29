@@ -19,6 +19,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey certificationsSectionKey = GlobalKey();
   final List<GlobalKey> sectionKeys = [];
 
+  final ScrollController scrollController = ScrollController();
+  final ValueNotifier<int> activeSectionNotifier = ValueNotifier<int>(0);
+
   @override
   void initState() {
     super.initState();
@@ -28,6 +31,14 @@ class _MyHomePageState extends State<MyHomePage> {
       aboutMeSectionKey,
       certificationsSectionKey,
     ]);
+    scrollController.addListener(_checkVisibleSection);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+    activeSectionNotifier.dispose();
   }
 
   @override
@@ -50,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: height,
               color: myColorScheme.surface,
               child: SingleChildScrollView(
+                controller: scrollController,
                 child: Column(
                   children: [
                     // Hero Section
@@ -137,10 +149,48 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: width,
                   navBarHeight: navBarHeight,
                   myColorScheme: myColorScheme,
+                  activeSectionNotifier: activeSectionNotifier,
                 ),
           ),
         ],
       ),
     );
+  }
+
+  void _checkVisibleSection() {
+    // The invisible line on the screen that triggers the change (e.g., 100px from the top)
+    const double detectionLine = 250.0;
+
+    // Map your sections to their respective keys
+    final Map<int, GlobalKey> sections = {
+      0: aboveTheFoldSectionKey,
+      1: projectSectionKey,
+      2: aboutMeSectionKey,
+      3: certificationsSectionKey,
+      // 4:
+    };
+
+    for (var entry in sections.entries) {
+      final key = entry.value;
+
+      if (key.currentContext != null) {
+        final RenderBox box =
+            key.currentContext!.findRenderObject() as RenderBox;
+
+        // Find the Y position of the section relative to the top of the viewport
+        final Offset position = box.localToGlobal(Offset.zero);
+        final double topY = position.dy;
+        final double bottomY = topY + box.size.height;
+
+        // If the detection line is inside this section's boundaries
+        if (topY <= detectionLine && bottomY > detectionLine) {
+          // Only update if it actually changed to avoid unnecessary work
+          if (activeSectionNotifier.value != entry.key) {
+            activeSectionNotifier.value = entry.key;
+          }
+          break; // Stop checking once we find the visible section
+        }
+      }
+    }
   }
 }
