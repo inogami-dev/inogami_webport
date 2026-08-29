@@ -27,60 +27,117 @@ class _MyHeroSectionState extends State<MyHeroSection> {
     return SizedBox(
       width: screenWidth,
       height: effectiveHeight,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Stack(
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        alignment: Alignment.centerLeft,
         children: [
-          SingleChildScrollView(
-            child: SizedBox(
-              // color: Colors.amber,
-              width: screenWidth / 2,
+          // My Image
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Container(
+              width: screenWidth,
               height: effectiveHeight,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: effectiveHeight * 0.05),
-                  Container(
+              color: myColorScheme.surfaceBright,
+              // child: Container(
+              //   width: 100,
+              //   color: myColorScheme.primary.withAlpha(10),
+              // ),
+            ),
+          ),
+          Positioned(
+            left: 0,
+            top: 0,
+            // bottom: 0,
+            child: SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: effectiveHeight),
+                child: Container(
+                  width: screenWidth * 0.6,
+                  // height: effectiveHeight,
+                  decoration: BoxDecoration(
                     // color: Colors.green,
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                    constraints: BoxConstraints(maxWidth: screenWidth * 0.40),
-                    // child: MyText(
-                    //   text: "Mobile App Developer",
-                    //   maxLines: 7,
-                    //   fontWeight: FontWeight.bold,
-                    //   fontFamily: "Poppins",
-                    //   fontSize: 64,
-                    //   lineHeight: 1.1,
-                    //   // fontFamily: "Inter",
-                    // ),
-                    child: MyAnimatedText(
-                      text: "Mobile App Developer",
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Poppins",
-                      fontSize: 64,
-                      lineHeight: 1.1,
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        myColorScheme.surface,
+                        myColorScheme.surfaceBright,
+                      ],
                     ),
                   ),
-                  Container(
-                    // color: Colors.pink,
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                    constraints: BoxConstraints(maxWidth: screenWidth * 0.40),
-                    child: MyText(
-                      text:
-                          "Placeholder 1 T dsdcjbsk se skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfb ef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef scac jkas skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjfn skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef js aij oief noisda doqw odiwdioq ddkaldn.",
-                      maxLines: 14,
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: effectiveHeight * 0.05),
+                      Container(
+                        // color: Colors.green,
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 16,
+                        ),
+                        constraints: BoxConstraints(
+                          maxWidth: screenWidth * 0.40,
+                        ),
+                        // child: MyText(
+                        //   text: "Mobile App Developer",
+                        //   maxLines: 7,
+                        //   fontWeight: FontWeight.bold,
+                        //   fontFamily: "Poppins",
+                        //   fontSize: 64,
+                        //   lineHeight: 1.1,
+                        //   // fontFamily: "Inter",
+                        // ),
+                        child: MyAnimatedText(
+                          text: "Mobile App Developer",
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Poppins",
+                          fontSize: 64,
+                          lineHeight: 1.1,
+                        ),
+                      ),
+                      Container(
+                        // color: Colors.pink,
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 16,
+                        ),
+                        constraints: BoxConstraints(
+                          maxWidth: screenWidth * 0.40,
+                        ),
+                        child: MyText(
+                          text:
+                              "Placeholder 1 T dsdcjbsk se skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfb ef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef scac jkas skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjfn skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef js aij oief noisda doqw odiwdioq ddkaldn.",
+                          maxLines: 14,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
-          // My Image
-          Expanded(
+
+          Positioned(
+            right: 0,
+            top: 0,
+            // bottom: 0,
             child: Container(
-              width: 100,
-              color: myColorScheme.primary.withAlpha(10),
+              width: screenWidth * 0.25,
+              height: effectiveHeight,
+              decoration: BoxDecoration(
+                // color: Colors.green,
+                gradient: LinearGradient(
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
+                  colors: [
+                    myColorScheme.surfaceContainerHigh,
+                    myColorScheme.surfaceBright,
+                  ],
+                ),
+              ),
             ),
           ),
         ],
