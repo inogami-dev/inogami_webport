@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/mobile_phone_frame.dart';
 
 class MyHeroSection extends StatefulWidget {
   final double screenHeight;
@@ -31,20 +32,16 @@ class _MyHeroSectionState extends State<MyHeroSection> {
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         alignment: Alignment.centerLeft,
         children: [
-          // My Image
-          Positioned(
-            top: 0,
-            right: 0,
+          //Background
+          Positioned.fill(
             child: Container(
               width: screenWidth,
               height: effectiveHeight,
               color: myColorScheme.surfaceBright,
-              // child: Container(
-              //   width: 100,
-              //   color: myColorScheme.primary.withAlpha(10),
-              // ),
+              // color: Colors.amber,
             ),
           ),
+
           Positioned(
             left: 0,
             top: 0,
@@ -80,15 +77,6 @@ class _MyHeroSectionState extends State<MyHeroSection> {
                         constraints: BoxConstraints(
                           maxWidth: screenWidth * 0.40,
                         ),
-                        // child: MyText(
-                        //   text: "Mobile App Developer",
-                        //   maxLines: 7,
-                        //   fontWeight: FontWeight.bold,
-                        //   fontFamily: "Poppins",
-                        //   fontSize: 64,
-                        //   lineHeight: 1.1,
-                        //   // fontFamily: "Inter",
-                        // ),
                         child: MyAnimatedText(
                           text: "Mobile App Developer",
                           fontWeight: FontWeight.bold,
@@ -120,6 +108,7 @@ class _MyHeroSectionState extends State<MyHeroSection> {
             ),
           ),
 
+          // Right side gradient
           Positioned(
             right: 0,
             top: 0,
@@ -138,6 +127,22 @@ class _MyHeroSectionState extends State<MyHeroSection> {
                   ],
                 ),
               ),
+            ),
+          ),
+
+          // My Image
+          Positioned(
+            top: 0,
+            // bottom: 0,
+            right: 0,
+            child: Container(
+              width: screenWidth * 0.4,
+              height: effectiveHeight,
+              // color: myColorScheme.surfaceBright,
+              // color: Colors.amber,
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 16),
+              child: MyMobilePhoneFrame(),
             ),
           ),
         ],
