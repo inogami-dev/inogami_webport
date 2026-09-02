@@ -2,55 +2,71 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/mobile_phone_screen.dart';
 
-class MyMobilePhoneFrame extends StatefulWidget {
+class MyMobilePhoneFrame extends StatelessWidget {
   const MyMobilePhoneFrame({super.key});
 
   @override
-  State<MyMobilePhoneFrame> createState() => _MyMobilePhoneFrameState();
-}
-
-class _MyMobilePhoneFrameState extends State<MyMobilePhoneFrame> {
-  @override
   Widget build(BuildContext context) {
-    ColorScheme myColorScheme = Theme.of(context).colorScheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    const double bezelWidth = 3.5;
+    const double outerRadius = 28.0;
+    const double innerRadius = outerRadius - bezelWidth;
 
-    // We only need the screen height now. The width calculates itself.
-    double height = MyDimensions.height(context);
+    final double screenHeight = MyDimensions.height(context);
 
     return Container(
-      // Limit the height to 70% of the screen (providing natural padding around it)
-      height: height * 0.7,
+      height: screenHeight * 0.72,
       alignment: Alignment.centerLeft,
-      // color: Colors.amber,
-      padding: EdgeInsets.only(left: 16),
-      margin: EdgeInsets.only(top: 32),
+      padding: const EdgeInsets.only(left: 16),
+      margin: const EdgeInsets.only(top: 32),
       child: Row(
-        // Wrap the row tightly so it doesn't stretch across the parent
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Lock the aspect ratio of the phone body ONLY
+          // Phone Body with Realistic Bezel & Shadow
           AspectRatio(
-            aspectRatio: 9 / 20, // Infinix GT 30 Pro ratio (1224x2720)
+            aspectRatio:
+                9 /
+                20, // Modern tall phone ratio (Infinix GT 30 Pro / flagship ratio)
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                border: Border.all(width: 2.5, color: Colors.grey.shade900),
-                borderRadius: BorderRadius.circular(24),
+                color: const Color(0xFF0D0E12), // Sleek matte chassis
+                borderRadius: BorderRadius.circular(outerRadius),
+                border: Border.all(
+                  width: bezelWidth,
+                  color: const Color(0xFF16181F), // Uniform thin outer bezel
+                ),
+                boxShadow: [
+                  // Phone ambient drop shadow
+                  BoxShadow(
+                    color: Colors.black.withAlpha(90),
+                    blurRadius: 24,
+                    offset: const Offset(4, 12),
+                  ),
+                  // Subtle chassis rim highlight
+                  BoxShadow(
+                    color: Colors.white.withAlpha(20),
+                    blurRadius: 1,
+                    spreadRadius: 0.5,
+                  ),
+                ],
               ),
-              clipBehavior: Clip.hardEdge,
-              child: MyMobilePhoneScreen(height: height, borderRadius: 24 - 2),
+              child: const MyMobilePhoneScreen(borderRadius: innerRadius),
             ),
           ),
-          // Side buttons attached immediately to the right
+
+          // Physical Hardware Side Buttons
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              sideButton(height: 24, colorScheme: myColorScheme),
-              const SizedBox(height: 2),
-              sideButton(height: 24, colorScheme: myColorScheme),
-              const SizedBox(height: 16),
-              sideButton(height: 32, colorScheme: myColorScheme),
-              const SizedBox(height: 180), // Pushes buttons slightly higher
+              _sideButton(
+                height: 36,
+                colorScheme: colorScheme,
+              ), // Volume rocker
+              const SizedBox(height: 12),
+              _sideButton(height: 28, colorScheme: colorScheme), // Power button
+              const SizedBox(
+                height: 120,
+              ), // Positions buttons naturally along top-right edge
             ],
           ),
         ],
@@ -58,25 +74,21 @@ class _MyMobilePhoneFrameState extends State<MyMobilePhoneFrame> {
     );
   }
 
-  Container sideButton({
+  Widget _sideButton({
     required double height,
     required ColorScheme colorScheme,
   }) {
     return Container(
-      width: 2,
+      width: 2.5,
       height: height,
       decoration: BoxDecoration(
-        color: Colors.grey.shade900,
+        color: const Color(0xFF1C1E26),
         borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(4),
-          bottomRight: Radius.circular(4),
+          topRight: Radius.circular(3),
+          bottomRight: Radius.circular(3),
         ),
         border: Border(
-          right: BorderSide(
-            width: 0.2,
-            color: Colors.grey,
-            // color: Colors.white,
-          ),
+          right: BorderSide(width: 0.5, color: Colors.white.withAlpha(35)),
         ),
       ),
     );
