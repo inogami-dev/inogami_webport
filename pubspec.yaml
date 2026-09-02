@@ -7,9 +7,9 @@ environment:
   sdk: ^3.10.0
 
 dependencies:
-  animated_text_kit: ^4.3.0
   flutter:
     sdk: flutter
+  flutter_animate: ^4.5.2
   hugeicons: ^1.1.7
   image_picker: ^1.2.3
 

@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
+import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/widgets/buttons.dart';
 
 class MyNavBar extends StatefulWidget {
@@ -31,7 +32,7 @@ class _MyNavBarState extends State<MyNavBar> {
   static const int projectsSectionID = 1;
   static const int aboutMeSectionID = 2;
   static const int certificationsSectionID = 3;
-  // static const int footerSectionID = 4;
+  static const int footerSectionID = 4;
 
   @override
   void initState() {
@@ -158,10 +159,17 @@ class _MyNavBarState extends State<MyNavBar> {
                       }
                     },
                     child: IgnorePointer(
-                      child: MyAnimatedText(
-                        text: "INOGAMI",
-                        fontSize: kDefaultFontSize + 8,
-                      ),
+                      child: (aboveTheFoldSectionID == activeSectionID)
+                          ? MyAnimatedText(
+                              text: "INOGAMI",
+                              fontSize: kDefaultFontSize + 8,
+                            )
+                          : MyText(
+                              text: "INOGAMI",
+                              fontFamily: "Poppins",
+                              fontSize: kDefaultFontSize + 8,
+                              fontWeight: FontWeight.bold,
+                            ),
                     ),
                   ),
                   Spacer(flex: 6),
@@ -174,13 +182,11 @@ class _MyNavBarState extends State<MyNavBar> {
 
                       GlobalKey sectionKey =
                           widget.sectionKeys[projectsSectionID];
-                      // setState(() => currentSection = sectionKey);
 
                       if (sectionKey.currentContext != null) {
                         Scrollable.ensureVisible(
                           sectionKey.currentContext!,
                           duration: const Duration(milliseconds: 800),
-                          // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
                           curve: Curves.easeInOutCubic,
                         );
                       }
@@ -195,13 +201,11 @@ class _MyNavBarState extends State<MyNavBar> {
 
                       GlobalKey sectionKey =
                           widget.sectionKeys[aboutMeSectionID];
-                      // setState(() => currentSection = sectionKey);
 
                       if (sectionKey.currentContext != null) {
                         Scrollable.ensureVisible(
                           sectionKey.currentContext!,
                           duration: const Duration(milliseconds: 800),
-                          // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
                           curve: Curves.easeInOutCubic,
                         );
                       }
@@ -216,13 +220,11 @@ class _MyNavBarState extends State<MyNavBar> {
                       log("CERTIFCATES");
                       GlobalKey sectionKey =
                           widget.sectionKeys[certificationsSectionID];
-                      // setState(() => currentSection = sectionKey);
 
                       if (sectionKey.currentContext != null) {
                         Scrollable.ensureVisible(
                           sectionKey.currentContext!,
                           duration: const Duration(milliseconds: 800),
-                          // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
                           curve: Curves.easeInOutCubic,
                         );
                       }
@@ -240,8 +242,19 @@ class _MyNavBarState extends State<MyNavBar> {
                   MyNavbarButton(
                     text: "CONTACT ME",
                     isUsedAsCTAButton: true,
+                    isSelected: footerSectionID == activeSectionID,
                     onTap: () {
                       log("CONTACT ME");
+                      GlobalKey sectionKey =
+                          widget.sectionKeys[footerSectionID];
+
+                      if (sectionKey.currentContext != null) {
+                        Scrollable.ensureVisible(
+                          sectionKey.currentContext!,
+                          duration: const Duration(milliseconds: 800),
+                          curve: Curves.easeInOutCubic,
+                        );
+                      }
                     },
                   ),
                 ],

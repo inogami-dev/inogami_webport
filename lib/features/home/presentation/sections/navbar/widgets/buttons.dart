@@ -110,6 +110,12 @@ class _MyNavbarButtonState extends State<MyNavbarButton> {
   Widget build(BuildContext context) {
     final myColorScheme = Theme.of(context).colorScheme;
 
+    Color buttonHighlightColor = (widget.isSelected)
+        ? (widget.isUsedAsCTAButton)
+              ? myColorScheme.onSurface
+              : myColorScheme.primary
+        : Colors.transparent;
+
     final Color textColor = widget.isUsedAsCTAButton
         ? Colors.white
         : myColorScheme.onSurface;
@@ -153,12 +159,7 @@ class _MyNavbarButtonState extends State<MyNavbarButton> {
               color: bgColor,
               borderRadius: BorderRadius.circular(50),
               border: Border(
-                bottom: BorderSide(
-                  width: 1,
-                  color: (widget.isSelected)
-                      ? myColorScheme.primary
-                      : Colors.transparent,
-                ),
+                bottom: BorderSide(width: 1, color: buttonHighlightColor),
               ),
             ),
             child: MyText(

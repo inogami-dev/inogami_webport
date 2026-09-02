@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
+import 'package:my_portfolio/core/widgets/animate.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/mobile_phone_frame.dart';
@@ -52,13 +53,19 @@ class _MyHeroSectionState extends State<MyHeroSection> {
                 child: Container(
                   width: screenWidth * 0.6,
                   // height: effectiveHeight,
+                  alignment: Alignment.centerRight,
+                  padding: EdgeInsets.only(right: 32),
                   decoration: BoxDecoration(
                     // color: Colors.green,
                     gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
-                        myColorScheme.surface,
+                        // myColorScheme.surface,
+                        myColorScheme.surfaceContainer,
+                        myColorScheme.surfaceContainerHigh,
+                        myColorScheme.surfaceContainerHighest,
+                        // myColorScheme.surfaceContainerHighest,
                         myColorScheme.surfaceBright,
                       ],
                     ),
@@ -130,7 +137,7 @@ class _MyHeroSectionState extends State<MyHeroSection> {
             ),
           ),
 
-          // My Image
+          // Phone Mockup
           Positioned(
             top: 0,
             // bottom: 0,
@@ -142,7 +149,7 @@ class _MyHeroSectionState extends State<MyHeroSection> {
               // color: Colors.amber,
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: 16),
-              child: MyMobilePhoneFrame(),
+              child: MyAnimation(child: MyMobilePhoneFrame()),
             ),
           ),
         ],
