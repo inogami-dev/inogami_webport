@@ -59,13 +59,13 @@ class MyMobilePhoneFrame extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _sideButton(
-                height: 36,
+                height: 50,
                 colorScheme: colorScheme,
               ), // Volume rocker
               const SizedBox(height: 12),
-              _sideButton(height: 28, colorScheme: colorScheme), // Power button
+              _sideButton(height: 32, colorScheme: colorScheme), // Power button
               const SizedBox(
-                height: 120,
+                height: 160,
               ), // Positions buttons naturally along top-right edge
             ],
           ),
