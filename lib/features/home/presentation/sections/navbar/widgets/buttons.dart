@@ -110,7 +110,9 @@ class _MyNavbarButtonState extends State<MyNavbarButton> {
   Widget build(BuildContext context) {
     final myColorScheme = Theme.of(context).colorScheme;
 
-    final Color textColor = Colors.white;
+    final Color textColor = widget.isUsedAsCTAButton
+        ? Colors.white
+        : myColorScheme.onSurface;
     // widget.isUsedAsCTAButton
     //     ? Colors.white
     //     : (isHovered ? colorScheme.primary : colorScheme.onSurface);

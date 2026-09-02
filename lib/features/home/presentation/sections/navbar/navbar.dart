@@ -27,7 +27,6 @@ class MyNavBar extends StatefulWidget {
 
 class _MyNavBarState extends State<MyNavBar> {
   late GlobalKey currentSection;
-  late ColorScheme myColorScheme;
   static const int aboveTheFoldSectionID = 0;
   static const int projectsSectionID = 1;
   static const int aboutMeSectionID = 2;
@@ -60,7 +59,6 @@ class _MyNavBarState extends State<MyNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    myColorScheme = Theme.of(context).colorScheme;
     return ValueListenableBuilder<int>(
       valueListenable: widget.activeSectionNotifier,
       builder: (context, activeSectionID, child) {
@@ -118,126 +116,137 @@ class _MyNavBarState extends State<MyNavBar> {
               //   offset: Offset(0, 0),
               //   blurRadius: 4,
               // ),
+
+              // This shadow is for the light theme, to give a subtle glow effect
+              if (Theme.of(context).brightness == Brightness.light)
+                BoxShadow(
+                  color: widget.myColorScheme.primaryContainer,
+                  // color: Colors.yellow,
+                  // color: Colors.white.withAlpha(4),
+                  blurStyle: BlurStyle.outer,
+                  offset: Offset(0, 1.2),
+                ),
             ],
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(50),
-            // child: BackdropFilter(
-            //   // filter: ImageFilter.blur(sigmaX: 4, sigmaY: 8),
-            //   filter: ImageFilter.blur(sigmaX: 6, sigmaY: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // MyText(
-                //   text: "INOGAMI",
-                //   fontWeight: FontWeight.bold,
-                //   fontSize: kDefaultFontSize + 8,
-                //   fontFamily: "Poppins",
-                // ),
-                InkWell(
-                  onTap: () {
-                    log("ABOVE THE FOLD SECTION");
-                    GlobalKey sectionKey =
-                        widget.sectionKeys[aboveTheFoldSectionID];
-                    // setState(() => currentSection = sectionKey);
-                    if (sectionKey.currentContext != null) {
-                      Scrollable.ensureVisible(
-                        sectionKey.currentContext!,
-                        duration: const Duration(milliseconds: 800),
-                        curve: Curves.easeInOutCubic,
-                      );
-                    }
-                  },
-                  child: IgnorePointer(
-                    child: MyAnimatedText(
-                      text: "INOGAMI",
-                      fontSize: kDefaultFontSize + 8,
+            child: BackdropFilter(
+              // filter: ImageFilter.blur(sigmaX: 4, sigmaY: 8),
+              filter: ImageFilter.blur(sigmaX: 6, sigmaY: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // MyText(
+                  //   text: "INOGAMI",
+                  //   fontWeight: FontWeight.bold,
+                  //   fontSize: kDefaultFontSize + 8,
+                  //   fontFamily: "Poppins",
+                  // ),
+                  InkWell(
+                    onTap: () {
+                      log("ABOVE THE FOLD SECTION");
+                      GlobalKey sectionKey =
+                          widget.sectionKeys[aboveTheFoldSectionID];
+                      // setState(() => currentSection = sectionKey);
+                      if (sectionKey.currentContext != null) {
+                        Scrollable.ensureVisible(
+                          sectionKey.currentContext!,
+                          duration: const Duration(milliseconds: 800),
+                          curve: Curves.easeInOutCubic,
+                        );
+                      }
+                    },
+                    child: IgnorePointer(
+                      child: MyAnimatedText(
+                        text: "INOGAMI",
+                        fontSize: kDefaultFontSize + 8,
+                      ),
                     ),
                   ),
-                ),
-                Spacer(flex: 6),
-                normalNavBarButton(
-                  text: "PROJECTS",
-                  section: projectsSectionID,
-                  activeSection: activeSectionID,
-                  onTap: () {
-                    log("PROJECTS");
+                  Spacer(flex: 6),
+                  normalNavBarButton(
+                    text: "PROJECTS",
+                    section: projectsSectionID,
+                    activeSection: activeSectionID,
+                    onTap: () {
+                      log("PROJECTS");
 
-                    GlobalKey sectionKey =
-                        widget.sectionKeys[projectsSectionID];
-                    // setState(() => currentSection = sectionKey);
+                      GlobalKey sectionKey =
+                          widget.sectionKeys[projectsSectionID];
+                      // setState(() => currentSection = sectionKey);
 
-                    if (sectionKey.currentContext != null) {
-                      Scrollable.ensureVisible(
-                        sectionKey.currentContext!,
-                        duration: const Duration(milliseconds: 800),
-                        // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
-                        curve: Curves.easeInOutCubic,
-                      );
-                    }
-                  },
-                ),
-                normalNavBarButton(
-                  text: "ABOUT",
-                  section: aboutMeSectionID,
-                  activeSection: activeSectionID,
-                  onTap: () {
-                    log("ABOUT");
+                      if (sectionKey.currentContext != null) {
+                        Scrollable.ensureVisible(
+                          sectionKey.currentContext!,
+                          duration: const Duration(milliseconds: 800),
+                          // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
+                          curve: Curves.easeInOutCubic,
+                        );
+                      }
+                    },
+                  ),
+                  normalNavBarButton(
+                    text: "ABOUT",
+                    section: aboutMeSectionID,
+                    activeSection: activeSectionID,
+                    onTap: () {
+                      log("ABOUT");
 
-                    GlobalKey sectionKey = widget.sectionKeys[aboutMeSectionID];
-                    // setState(() => currentSection = sectionKey);
+                      GlobalKey sectionKey =
+                          widget.sectionKeys[aboutMeSectionID];
+                      // setState(() => currentSection = sectionKey);
 
-                    if (sectionKey.currentContext != null) {
-                      Scrollable.ensureVisible(
-                        sectionKey.currentContext!,
-                        duration: const Duration(milliseconds: 800),
-                        // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
-                        curve: Curves.easeInOutCubic,
-                      );
-                    }
-                  },
-                ),
-                normalNavBarButton(
-                  text: "CERTIFCATES",
-                  section: 3,
-                  activeSection: activeSectionID,
-                  widthPercentage: .108,
-                  onTap: () {
-                    log("CERTIFCATES");
-                    GlobalKey sectionKey =
-                        widget.sectionKeys[certificationsSectionID];
-                    // setState(() => currentSection = sectionKey);
+                      if (sectionKey.currentContext != null) {
+                        Scrollable.ensureVisible(
+                          sectionKey.currentContext!,
+                          duration: const Duration(milliseconds: 800),
+                          // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
+                          curve: Curves.easeInOutCubic,
+                        );
+                      }
+                    },
+                  ),
+                  normalNavBarButton(
+                    text: "CERTIFCATES",
+                    section: 3,
+                    activeSection: activeSectionID,
+                    widthPercentage: .108,
+                    onTap: () {
+                      log("CERTIFCATES");
+                      GlobalKey sectionKey =
+                          widget.sectionKeys[certificationsSectionID];
+                      // setState(() => currentSection = sectionKey);
 
-                    if (sectionKey.currentContext != null) {
-                      Scrollable.ensureVisible(
-                        sectionKey.currentContext!,
-                        duration: const Duration(milliseconds: 800),
-                        // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
-                        curve: Curves.easeInOutCubic,
-                      );
-                    }
-                  },
-                ),
-                SizedBox(width: 8),
-                // MyButton(
-                //   buttonText: "CONTACT ME",
-                //   widthPercentage: 0.11,
-                //   height: widget.navBarHeight - 10,
-                //   onTap: () {
-                //     log("CONTACT ME");
-                //   },
-                // ),
-                MyNavbarButton(
-                  text: "CONTACT ME",
-                  isUsedAsCTAButton: true,
-                  onTap: () {
-                    log("CONTACT ME");
-                  },
-                ),
-              ],
+                      if (sectionKey.currentContext != null) {
+                        Scrollable.ensureVisible(
+                          sectionKey.currentContext!,
+                          duration: const Duration(milliseconds: 800),
+                          // 2. Curve dictates the style of the motion (easeInOut starts slow, speeds up, then slows down to stop)
+                          curve: Curves.easeInOutCubic,
+                        );
+                      }
+                    },
+                  ),
+                  SizedBox(width: 8),
+                  // MyButton(
+                  //   buttonText: "CONTACT ME",
+                  //   widthPercentage: 0.11,
+                  //   height: widget.navBarHeight - 10,
+                  //   onTap: () {
+                  //     log("CONTACT ME");
+                  //   },
+                  // ),
+                  MyNavbarButton(
+                    text: "CONTACT ME",
+                    isUsedAsCTAButton: true,
+                    onTap: () {
+                      log("CONTACT ME");
+                    },
+                  ),
+                ],
+              ),
             ),
-            // ),
           ),
         );
       },

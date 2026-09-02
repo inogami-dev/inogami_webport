@@ -17,6 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey projectSectionKey = GlobalKey();
   final GlobalKey aboutMeSectionKey = GlobalKey();
   final GlobalKey certificationsSectionKey = GlobalKey();
+  final GlobalKey contactSectionKey = GlobalKey();
   final List<GlobalKey> sectionKeys = [];
 
   final ScrollController scrollController = ScrollController();
@@ -30,6 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
       projectSectionKey,
       aboutMeSectionKey,
       certificationsSectionKey,
+      contactSectionKey,
     ]);
     scrollController.addListener(_checkVisibleSection);
   }
@@ -132,6 +134,28 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
+
+                    // Footer
+                    SizedBox(
+                      key: contactSectionKey,
+                      height: widget.screenHeight,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Expanded(
+                                child: Placeholder(
+                                  child: MyText(text: "Footer"),
+                                ),
+                              ),
+                              Expanded(child: Placeholder()),
+                            ],
+                          ),
+                          Expanded(child: Placeholder()),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -169,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
       1: projectSectionKey,
       2: aboutMeSectionKey,
       3: certificationsSectionKey,
-      // 4:
+      4: contactSectionKey,
     };
 
     for (var entry in sections.entries) {

@@ -39,12 +39,22 @@ class _MyAnimatedTextState extends State<MyAnimatedText>
 
   List<Color> get _effectiveColors {
     if (widget.colors != null) return widget.colors!;
-    return [
-      Colors.white,
-      Colors.blue.shade200,
-      Colors.blue.shade100,
-      Colors.white,
-    ];
+
+    if (Theme.of(context).brightness == Brightness.light) {
+      return [
+        Colors.grey.shade800,
+        Colors.blue.shade200,
+        Colors.blue.shade100,
+        Colors.grey.shade800,
+      ];
+    } else {
+      return [
+        Colors.white,
+        Colors.blue.shade200,
+        Colors.blue.shade100,
+        Colors.white,
+      ];
+    }
   }
 
   List<double> get _effectiveStops {
