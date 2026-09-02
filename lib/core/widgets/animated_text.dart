@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 class MyAnimatedText extends StatefulWidget {
@@ -9,6 +7,7 @@ class MyAnimatedText extends StatefulWidget {
   final FontWeight? fontWeight;
   final String? fontFamily;
   final List<Color>? colors;
+  final List<double>? stops;
   final TextDirection textDirection;
   final int delayBetweenAnimationsInMillis;
   final int animationSpeedInMillis;
@@ -19,12 +18,13 @@ class MyAnimatedText extends StatefulWidget {
     super.key,
     required this.text,
     this.fontFamily = "Poppins",
-    this.fontSize = kDefaultFontSize,
+    this.fontSize = 14,
     this.fontWeight = FontWeight.bold,
     this.colors,
+    this.stops,
     this.textDirection = TextDirection.ltr,
-    this.delayBetweenAnimationsInMillis = 0,
-    this.animationSpeedInMillis = 1000,
+    this.delayBetweenAnimationsInMillis = 400,
+    this.animationSpeedInMillis = 3000,
     this.repeatForever = true,
     this.lineHeight,
   });
@@ -33,62 +33,119 @@ class MyAnimatedText extends StatefulWidget {
   State<MyAnimatedText> createState() => _MyAnimatedTextState();
 }
 
-class _MyAnimatedTextState extends State<MyAnimatedText> {
-  int _cycle = 0;
-  bool _disposed = false;
+class _MyAnimatedTextState extends State<MyAnimatedText>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
 
-  List<Color> get _effectiveColors =>
-      widget.colors ??
-      [Colors.white, Colors.blue.shade200, Colors.blue.shade100, Colors.white];
+  List<Color> get _effectiveColors {
+    if (widget.colors != null) return widget.colors!;
+    return [
+      Colors.white,
+      Colors.blue.shade200,
+      Colors.blue.shade100,
+      Colors.white,
+    ];
+  }
 
-  void _onFinished() {
-    if (!widget.repeatForever || _disposed) return;
-    if (widget.delayBetweenAnimationsInMillis > 0) {
-      Future.delayed(
-        Duration(milliseconds: widget.delayBetweenAnimationsInMillis),
-        () {
-          if (mounted && !_disposed) setState(() => _cycle++);
-        },
+  List<double> get _effectiveStops {
+    if (widget.stops != null) return widget.stops!;
+    final int count = _effectiveColors.length;
+    if (count <= 1) return [0.0];
+    return List.generate(count, (i) => i / (count - 1));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: widget.animationSpeedInMillis),
+    );
+
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        if (!widget.repeatForever) return;
+        if (widget.delayBetweenAnimationsInMillis > 0) {
+          Future.delayed(
+            Duration(milliseconds: widget.delayBetweenAnimationsInMillis),
+            () {
+              if (mounted) {
+                _controller.forward(from: 0.0);
+              }
+            },
+          );
+        } else {
+          _controller.forward(from: 0.0);
+        }
+      }
+    });
+
+    _controller.forward();
+  }
+
+  @override
+  void didUpdateWidget(MyAnimatedText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.animationSpeedInMillis != widget.animationSpeedInMillis) {
+      _controller.duration = Duration(
+        milliseconds: widget.animationSpeedInMillis,
       );
-    } else {
-      setState(() => _cycle++);
     }
   }
 
   @override
   void dispose() {
-    _disposed = true;
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      // this dissolve is what replaces the hard restart-jump
-      duration: const Duration(milliseconds: 600),
-      switchInCurve: Curves.easeOut,
-      switchOutCurve: Curves.easeIn,
-      child: AnimatedTextKit(
-        // a new key each cycle is what tells AnimatedSwitcher to crossfade
-        key: ValueKey(_cycle),
-        pause: Duration.zero,
-        isRepeatingAnimation: false, // exactly one pass; we own the looping
-        totalRepeatCount: 1,
-        onFinished: _onFinished,
-        animatedTexts: [
-          ColorizeAnimatedText(
+    final double fontSize = widget.fontSize ?? 14.0;
+
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: _controller,
+        // The Text widget is wrapped with vertical padding so ShaderMask's bounds
+        // completely cover font glyph descenders (e.g. 'p', 'g', 'y', 'j', 'q')
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: fontSize * 0.15),
+          child: Text(
             widget.text,
-            textStyle: TextStyle(
+            textDirection: widget.textDirection,
+            style: TextStyle(
               fontSize: widget.fontSize,
               fontFamily: widget.fontFamily,
               fontWeight: widget.fontWeight,
               height: widget.lineHeight,
+              leadingDistribution: TextLeadingDistribution.even,
+              color: Colors.white, // Solid canvas base for ShaderMask
             ),
-            colors: _effectiveColors,
-            textDirection: widget.textDirection,
-            speed: Duration(milliseconds: widget.animationSpeedInMillis),
           ),
-        ],
+        ),
+        builder: (context, child) {
+          final double value = _controller.value;
+          final bool isRtl = widget.textDirection == TextDirection.rtl;
+
+          // Full travel from completely outside the left boundary to completely outside the right boundary
+          final double progress = isRtl ? (1.0 - value) : value;
+          const double halfSpan = 1.5;
+          final double offset =
+              (-1.0 - halfSpan) + ((2.0 + 2.0 * halfSpan) * progress);
+
+          return ShaderMask(
+            blendMode: BlendMode.srcIn,
+            shaderCallback: (bounds) {
+              return LinearGradient(
+                begin: Alignment(offset - halfSpan, 0.0),
+                end: Alignment(offset + halfSpan, 0.0),
+                colors: _effectiveColors,
+                stops: _effectiveStops,
+              ).createShader(bounds);
+            },
+            child: child,
+          );
+        },
       ),
     );
   }

@@ -144,12 +144,14 @@ class _MyHomePageState extends State<MyHomePage> {
             right: 16,
             child:
                 // Header
-                MyNavBar(
-                  sectionKeys: sectionKeys,
-                  width: width,
-                  navBarHeight: navBarHeight,
-                  myColorScheme: myColorScheme,
-                  activeSectionNotifier: activeSectionNotifier,
+                RepaintBoundary(
+                  child: MyNavBar(
+                    sectionKeys: sectionKeys,
+                    width: width,
+                    navBarHeight: navBarHeight,
+                    myColorScheme: myColorScheme,
+                    activeSectionNotifier: activeSectionNotifier,
+                  ),
                 ),
           ),
         ],

@@ -120,9 +120,11 @@ class _MyNavBarState extends State<MyNavBar> {
               // ),
             ],
           ),
-          child: BackdropFilter(
-            // filter: ImageFilter.blur(sigmaX: 4, sigmaY: 8),
-            filter: ImageFilter.blur(sigmaX: 6, sigmaY: 8),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            // child: BackdropFilter(
+            //   // filter: ImageFilter.blur(sigmaX: 4, sigmaY: 8),
+            //   filter: ImageFilter.blur(sigmaX: 6, sigmaY: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -235,6 +237,7 @@ class _MyNavBarState extends State<MyNavBar> {
                 ),
               ],
             ),
+            // ),
           ),
         );
       },
