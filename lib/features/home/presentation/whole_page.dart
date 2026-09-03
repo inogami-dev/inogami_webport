@@ -82,7 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       topPadding: navBarHeight + 24,
                       color: Colors.green,
                       child: MyProjectsSection(
-                        widget: widget,
                         screenHeight: widget.screenHeight,
                         sectionTitle: "PROJECTS",
                       ),
