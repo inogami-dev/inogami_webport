@@ -135,136 +135,131 @@ class _MyNavBarState extends State<MyNavBar> {
                 ),
             ],
           ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: BackdropFilter(
-              // filter: ImageFilter.blur(sigmaX: 4, sigmaY: 8),
-              filter: ImageFilter.blur(sigmaX: 6, sigmaY: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // MyText(
-                  //   text: "INOGAMI",
-                  //   fontWeight: FontWeight.bold,
-                  //   fontSize: kDefaultFontSize + 8,
-                  //   fontFamily: "Poppins",
-                  // ),
-                  InkWell(
-                    onTap: () {
-                      log("ABOVE THE FOLD SECTION");
-                      GlobalKey sectionKey =
-                          widget.sectionKeys[aboveTheFoldSectionID];
-                      // setState(() => currentSection = sectionKey);
-                      if (sectionKey.currentContext != null) {
-                        Scrollable.ensureVisible(
-                          sectionKey.currentContext!,
-                          duration: const Duration(milliseconds: 800),
-                          curve: Curves.easeInOutCubic,
-                        );
-                      }
-                    },
-                    child: IgnorePointer(
-                      child: (aboveTheFoldSectionID == activeSectionID)
-                          ? MyAnimatedText(
-                              text: "INOGAMI",
-                              fontSize: kDefaultFontSize + 8,
-                            )
-                          : MyText(
-                              text: "INOGAMI",
-                              fontFamily: "Poppins",
-                              fontSize: kDefaultFontSize + 8,
-                              fontWeight: FontWeight.bold,
-                            ),
-                    ),
+          child: BackdropFilter(
+            // filter: ImageFilter.blur(sigmaX: 4, sigmaY: 8),
+            filter: ImageFilter.blur(sigmaX: 6, sigmaY: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // MyText(
+                //   text: "INOGAMI",
+                //   fontWeight: FontWeight.bold,
+                //   fontSize: kDefaultFontSize + 8,
+                //   fontFamily: "Poppins",
+                // ),
+                InkWell(
+                  onTap: () {
+                    log("ABOVE THE FOLD SECTION");
+                    GlobalKey sectionKey =
+                        widget.sectionKeys[aboveTheFoldSectionID];
+                    // setState(() => currentSection = sectionKey);
+                    if (sectionKey.currentContext != null) {
+                      Scrollable.ensureVisible(
+                        sectionKey.currentContext!,
+                        duration: const Duration(milliseconds: 800),
+                        curve: Curves.easeInOutCubic,
+                      );
+                    }
+                  },
+                  child: IgnorePointer(
+                    child: (aboveTheFoldSectionID == activeSectionID)
+                        ? MyAnimatedText(
+                            text: "INOGAMI",
+                            fontSize: kDefaultFontSize + 8,
+                          )
+                        : MyText(
+                            text: "INOGAMI",
+                            fontFamily: "Poppins",
+                            fontSize: kDefaultFontSize + 8,
+                            fontWeight: FontWeight.bold,
+                          ),
                   ),
-                  Spacer(flex: 6),
-                  normalNavBarButton(
-                    text: "PROJECTS",
-                    section: projectsSectionID,
-                    activeSection: activeSectionID,
-                    onTap: () {
-                      log("PROJECTS");
+                ),
+                Spacer(flex: 6),
+                normalNavBarButton(
+                  text: "PROJECTS",
+                  section: projectsSectionID,
+                  activeSection: activeSectionID,
+                  onTap: () {
+                    log("PROJECTS");
 
-                      GlobalKey sectionKey =
-                          widget.sectionKeys[projectsSectionID];
+                    GlobalKey sectionKey =
+                        widget.sectionKeys[projectsSectionID];
 
-                      if (sectionKey.currentContext != null) {
-                        Scrollable.ensureVisible(
-                          sectionKey.currentContext!,
-                          duration: const Duration(milliseconds: 800),
-                          curve: Curves.easeInOutCubic,
-                        );
-                      }
-                    },
-                  ),
-                  normalNavBarButton(
-                    text: "ABOUT",
-                    section: aboutMeSectionID,
-                    activeSection: activeSectionID,
-                    onTap: () {
-                      log("ABOUT");
+                    if (sectionKey.currentContext != null) {
+                      Scrollable.ensureVisible(
+                        sectionKey.currentContext!,
+                        duration: const Duration(milliseconds: 800),
+                        curve: Curves.easeInOutCubic,
+                      );
+                    }
+                  },
+                ),
+                normalNavBarButton(
+                  text: "ABOUT",
+                  section: aboutMeSectionID,
+                  activeSection: activeSectionID,
+                  onTap: () {
+                    log("ABOUT");
 
-                      GlobalKey sectionKey =
-                          widget.sectionKeys[aboutMeSectionID];
+                    GlobalKey sectionKey = widget.sectionKeys[aboutMeSectionID];
 
-                      if (sectionKey.currentContext != null) {
-                        Scrollable.ensureVisible(
-                          sectionKey.currentContext!,
-                          duration: const Duration(milliseconds: 800),
-                          curve: Curves.easeInOutCubic,
-                        );
-                      }
-                    },
-                  ),
-                  normalNavBarButton(
-                    text: "CERTIFCATES",
-                    section: 3,
-                    activeSection: activeSectionID,
-                    widthPercentage: .108,
-                    onTap: () {
-                      log("CERTIFCATES");
-                      GlobalKey sectionKey =
-                          widget.sectionKeys[certificationsSectionID];
+                    if (sectionKey.currentContext != null) {
+                      Scrollable.ensureVisible(
+                        sectionKey.currentContext!,
+                        duration: const Duration(milliseconds: 800),
+                        curve: Curves.easeInOutCubic,
+                      );
+                    }
+                  },
+                ),
+                normalNavBarButton(
+                  text: "CERTIFCATES",
+                  section: 3,
+                  activeSection: activeSectionID,
+                  widthPercentage: .108,
+                  onTap: () {
+                    log("CERTIFCATES");
+                    GlobalKey sectionKey =
+                        widget.sectionKeys[certificationsSectionID];
 
-                      if (sectionKey.currentContext != null) {
-                        Scrollable.ensureVisible(
-                          sectionKey.currentContext!,
-                          duration: const Duration(milliseconds: 800),
-                          curve: Curves.easeInOutCubic,
-                        );
-                      }
-                    },
-                  ),
-                  SizedBox(width: 8),
-                  // MyButton(
-                  //   buttonText: "CONTACT ME",
-                  //   widthPercentage: 0.11,
-                  //   height: widget.navBarHeight - 10,
-                  //   onTap: () {
-                  //     log("CONTACT ME");
-                  //   },
-                  // ),
-                  MyNavbarButton(
-                    text: "CONTACT ME",
-                    isUsedAsCTAButton: true,
-                    isSelected: footerSectionID == activeSectionID,
-                    onTap: () {
-                      log("CONTACT ME");
-                      GlobalKey sectionKey =
-                          widget.sectionKeys[footerSectionID];
+                    if (sectionKey.currentContext != null) {
+                      Scrollable.ensureVisible(
+                        sectionKey.currentContext!,
+                        duration: const Duration(milliseconds: 800),
+                        curve: Curves.easeInOutCubic,
+                      );
+                    }
+                  },
+                ),
+                SizedBox(width: 8),
+                // MyButton(
+                //   buttonText: "CONTACT ME",
+                //   widthPercentage: 0.11,
+                //   height: widget.navBarHeight - 10,
+                //   onTap: () {
+                //     log("CONTACT ME");
+                //   },
+                // ),
+                MyNavbarButton(
+                  text: "CONTACT ME",
+                  isUsedAsCTAButton: true,
+                  isSelected: footerSectionID == activeSectionID,
+                  onTap: () {
+                    log("CONTACT ME");
+                    GlobalKey sectionKey = widget.sectionKeys[footerSectionID];
 
-                      if (sectionKey.currentContext != null) {
-                        Scrollable.ensureVisible(
-                          sectionKey.currentContext!,
-                          duration: const Duration(milliseconds: 800),
-                          curve: Curves.easeInOutCubic,
-                        );
-                      }
-                    },
-                  ),
-                ],
-              ),
+                    if (sectionKey.currentContext != null) {
+                      Scrollable.ensureVisible(
+                        sectionKey.currentContext!,
+                        duration: const Duration(milliseconds: 800),
+                        curve: Curves.easeInOutCubic,
+                      );
+                    }
+                  },
+                ),
+              ],
             ),
           ),
         );

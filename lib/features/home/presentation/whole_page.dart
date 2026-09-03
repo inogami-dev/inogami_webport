@@ -3,6 +3,8 @@ import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/navbar.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/above_the_fold.dart';
+import 'package:my_portfolio/features/home/presentation/sections/projects/projects.dart';
+import 'package:my_portfolio/features/home/presentation/sections/projects/section_padding.dart';
 
 class MyHomePage extends StatefulWidget {
   final double screenHeight;
@@ -72,27 +74,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       navBarHeight: navBarHeight,
                       screenHeight: widget.screenHeight,
                     ),
-                    // Additional Section
-                    SizedBox(
+                    // Project Section
+                    MySectionPadding(
                       key: projectSectionKey,
+                      width: width,
                       height: widget.screenHeight,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
-                            children: [
-                              Expanded(
-                                child: Placeholder(
-                                  child: MyText(text: "PROJECTS"),
-                                ),
-                              ),
-                              Expanded(child: Placeholder()),
-                            ],
-                          ),
-                          Expanded(child: Placeholder()),
-                        ],
+                      topPadding: navBarHeight + 24,
+                      color: Colors.green,
+                      child: MyProjectsSection(
+                        widget: widget,
+                        screenHeight: widget.screenHeight,
+                        sectionTitle: "PROJECTS",
                       ),
                     ),
+
                     // Additional Section
                     SizedBox(
                       key: aboutMeSectionKey,
