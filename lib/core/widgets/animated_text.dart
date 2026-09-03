@@ -43,8 +43,8 @@ class _MyAnimatedTextState extends State<MyAnimatedText>
     if (Theme.of(context).brightness == Brightness.light) {
       return [
         Colors.grey.shade800,
-        Colors.blue.shade200,
-        Colors.blue.shade100,
+        Colors.blue.shade900,
+        Colors.blue.shade700,
         Colors.grey.shade800,
       ];
     } else {

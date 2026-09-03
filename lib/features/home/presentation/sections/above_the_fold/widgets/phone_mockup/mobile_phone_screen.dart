@@ -15,10 +15,6 @@ class MyMobilePhoneScreen extends StatelessWidget {
         alignment: Alignment.topCenter,
         children: [
           // Wallpaper / Screen Content (Fills 100% of the screen area without gaps)
-          // Image.asset('assets/images/me.webp', fit: BoxFit.cover),
-          // InkWell(
-          //   mouseCursor: SystemMouseCursors.grab,
-          //   child:
           MyImageGallery(
             images: ['assets/images/me.webp', 'assets/images/me2.webp'],
           ),

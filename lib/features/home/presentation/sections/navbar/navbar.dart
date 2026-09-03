@@ -73,8 +73,14 @@ class _MyNavBarState extends State<MyNavBar> {
             // color: widget.myColorScheme.surface,
             borderRadius: BorderRadius.circular(50),
             // border: Border(
-            //   top: BorderSide(width: 1, color: Colors.white),
-            //   bottom: BorderSide(width: 1, color: Colors.white),
+            //   top: BorderSide(
+            //     width: 0.4,
+            //     color: widget.myColorScheme.onSurface.withAlpha(56),
+            //   ),
+            //   bottom: BorderSide(
+            //     width: 0.4,
+            //     color: widget.myColorScheme.onSurface.withAlpha(56),
+            //   ),
             // ),
             boxShadow: [
               // BoxShadow(

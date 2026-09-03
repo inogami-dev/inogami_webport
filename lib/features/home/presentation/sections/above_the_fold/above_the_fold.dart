@@ -3,7 +3,7 @@ import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/animate.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
-import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/mobile_phone_frame.dart';
+import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/phone_mockup/mobile_phone_frame.dart';
 
 class MyHeroSection extends StatefulWidget {
   final double screenHeight;

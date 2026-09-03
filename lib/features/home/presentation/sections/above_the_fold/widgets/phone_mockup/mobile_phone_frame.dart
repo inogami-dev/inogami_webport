@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
-import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/mobile_phone_screen.dart';
+import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/phone_mockup/mobile_phone_screen.dart';
 
 class MyMobilePhoneFrame extends StatelessWidget {
   const MyMobilePhoneFrame({super.key});
