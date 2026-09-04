@@ -3,7 +3,8 @@ import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/phone_mockup/mobile_phone_screen.dart';
 
 class MyMobilePhoneFrame extends StatelessWidget {
-  const MyMobilePhoneFrame({super.key});
+  final Alignment alignment;
+  const MyMobilePhoneFrame({super.key, this.alignment = Alignment.centerLeft});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class MyMobilePhoneFrame extends StatelessWidget {
 
     return Container(
       height: screenHeight * 0.72,
-      alignment: Alignment.centerLeft,
+      alignment: alignment,
       padding: const EdgeInsets.only(left: 16),
       margin: const EdgeInsets.only(top: 32),
       child: Row(

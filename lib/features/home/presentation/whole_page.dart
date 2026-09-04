@@ -74,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       navBarHeight: navBarHeight,
                       screenHeight: widget.screenHeight,
                     ),
+
                     // Project Section
                     MySectionPadding(
                       key: projectSectionKey,
