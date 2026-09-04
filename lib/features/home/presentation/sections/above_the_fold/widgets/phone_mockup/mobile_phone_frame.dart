@@ -4,19 +4,31 @@ import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/
 
 class MyMobilePhoneFrame extends StatelessWidget {
   final Alignment alignment;
-  const MyMobilePhoneFrame({super.key, this.alignment = Alignment.centerLeft});
+  final double heightPercentage;
+
+  const MyMobilePhoneFrame({
+    super.key,
+    this.alignment = Alignment.centerLeft,
+    this.heightPercentage = 0.70,
+  });
 
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    const double bezelWidth = 3.5;
-    const double outerRadius = 28.0;
-    const double innerRadius = outerRadius - bezelWidth;
 
     final double screenHeight = MyDimensions.height(context);
+    final double sideButtonHeightPercentage = screenHeight * heightPercentage;
+    final double sideButtonWidthPercentage =
+        sideButtonHeightPercentage * 0.0056;
+    final double bezelWidth =
+        sideButtonHeightPercentage * 0.01; // 3.5 old value
+    final double outerRadius =
+        sideButtonHeightPercentage *
+        0.056; // 28.0 old value // 0.014 for square phone
+    final double innerRadius = outerRadius - bezelWidth;
 
     return Container(
-      height: screenHeight * 0.72,
+      height: screenHeight * heightPercentage,
       alignment: alignment,
       padding: const EdgeInsets.only(left: 16),
       margin: const EdgeInsets.only(top: 32),
@@ -51,7 +63,7 @@ class MyMobilePhoneFrame extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const MyMobilePhoneScreen(borderRadius: innerRadius),
+              child: MyMobilePhoneScreen(borderRadius: innerRadius),
             ),
           ),
 
@@ -59,14 +71,25 @@ class MyMobilePhoneFrame extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Volume rocker
               _sideButton(
-                height: 50,
+                // height: (screenHeight * .72 > 210) ? 50 : 32,
+                height: (sideButtonHeightPercentage * 0.12).clamp(12, 50),
                 colorScheme: colorScheme,
-              ), // Volume rocker
-              const SizedBox(height: 12),
-              _sideButton(height: 32, colorScheme: colorScheme), // Power button
-              const SizedBox(
-                height: 160,
+                sideButtonWidthPercentage: sideButtonWidthPercentage,
+              ),
+              SizedBox(
+                height: (sideButtonHeightPercentage * 0.02).clamp(4, 16),
+              ),
+              _sideButton(
+                // height: (screenHeight * .72 > 210) ? 32 : 20,
+                height: (sideButtonHeightPercentage * 0.08).clamp(8, 40),
+                colorScheme: colorScheme,
+                sideButtonWidthPercentage: sideButtonWidthPercentage,
+              ), // Power button
+              SizedBox(
+                // height: (screenHeight * .72 > 210) ? 160 : 80,
+                height: (sideButtonHeightPercentage * 0.18).clamp(80, 185),
               ), // Positions buttons naturally along top-right edge
             ],
           ),
@@ -78,9 +101,10 @@ class MyMobilePhoneFrame extends StatelessWidget {
   Widget _sideButton({
     required double height,
     required ColorScheme colorScheme,
+    double sideButtonWidthPercentage = 0.2,
   }) {
     return Container(
-      width: 2.5,
+      width: sideButtonWidthPercentage,
       height: height,
       decoration: BoxDecoration(
         color: const Color(0xFF1C1E26),

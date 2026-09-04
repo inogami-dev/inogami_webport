@@ -69,7 +69,10 @@ class MyProjectsSection extends StatelessWidget {
             height: screenHeight * 0.56,
             color: Colors.red,
             alignment: Alignment.center,
-            child: MyMobilePhoneFrame(alignment: Alignment.center),
+            child: MyMobilePhoneFrame(
+              alignment: Alignment.center,
+              heightPercentage: 0.4,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 24, bottom: 8),

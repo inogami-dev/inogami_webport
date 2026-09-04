@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       home: Scaffold(
         body: Builder(
           builder: (context) {
@@ -29,18 +29,18 @@ class MainApp extends StatelessWidget {
               builder: (context, constraints) {
                 if (constraints.maxWidth >= standardDesktopWidth) {
                   log(
-                    "The screen is DESKTOP size.  width: ${constraints.maxWidth}",
+                    "The screen is DESKTOP size.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",
                   );
                   // return Placeholder();
                   return MyHomePage(screenHeight: constraints.maxHeight);
                 } else if (constraints.maxWidth >= standardTabletWidth) {
                   log(
-                    "The screen is TABLET size.  width: ${constraints.maxWidth}",
+                    "The screen is TABLET size.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",
                   );
                   return Placeholder();
                 } else {
                   log(
-                    "The screen is PHONE SIZE, smaller than 360.  width: ${constraints.maxWidth}",
+                    "The screen is PHONE SIZE, smaller than 360.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",
                   );
                   return Placeholder(
                     child: Container(
