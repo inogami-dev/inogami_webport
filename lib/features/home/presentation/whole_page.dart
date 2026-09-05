@@ -58,12 +58,14 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
+          // Main Body
           Positioned(
             top: 0,
             child: Container(
               width: width,
               height: height,
               color: myColorScheme.surface,
+              constraints: BoxConstraints(minHeight: widget.screenHeight * 0.5),
               child: SingleChildScrollView(
                 controller: scrollController,
                 child: Column(
