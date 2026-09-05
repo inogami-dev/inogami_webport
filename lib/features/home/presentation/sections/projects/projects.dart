@@ -17,10 +17,13 @@ class MyProjectsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MyDimensions.width(context);
     final double widthPerProject = width / 3;
+    final ColorScheme myColorScheme = Theme.of(context).colorScheme;
+
     return Container(
       width: width,
       height: screenHeight,
       color: Colors.orange,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -30,6 +33,7 @@ class MyProjectsSection extends StatelessWidget {
               description:
                   "Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight. Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight. Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight.",
               widthPerProject: widthPerProject,
+              myColorScheme: myColorScheme,
             ),
           ),
           Expanded(
@@ -55,18 +59,30 @@ class MyProjectsSection extends StatelessWidget {
     required double widthPerProject,
     required String title,
     required String description,
+    required ColorScheme myColorScheme,
   }) {
     return Container(
       width: widthPerProject,
       height: screenHeight,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      color: Colors.grey,
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: myColorScheme.shadow.withAlpha(56),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: widthPerProject,
-            height: screenHeight * 0.56,
+            // height: screenHeight * 0.56,
             color: Colors.red,
             alignment: Alignment.center,
             child: MyMobilePhoneFrame(
@@ -95,26 +111,4 @@ class MyProjectsSection extends StatelessWidget {
       ),
     );
   }
-
-  //// For later exploration
-  // void calculateScreenPixel() {
-  //   if (key != null) {
-  //       final RenderBox box =
-  //           key.currentContext!.findRenderObject() as RenderBox;
-  //
-  //       // Find the Y position of the section relative to the top of the viewport
-  //       final Offset position = box.localToGlobal(Offset.zero);
-  //       final double topY = position.dy;
-  //       final double bottomY = topY + box.size.height;
-  //
-  //       // If the detection line is inside this section's boundaries
-  //       if (topY <= detectionLine && bottomY > detectionLine) {
-  //         // Only update if it actually changed to avoid unnecessary work
-  //         if (activeSectionNotifier.value != entry.key) {
-  //           activeSectionNotifier.value = entry.key;
-  //         }
-  //         break; // Stop checking once we find the visible section
-  //       }
-  //     }
-  // }
 }
