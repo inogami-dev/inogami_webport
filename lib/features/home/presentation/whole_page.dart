@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     double navBarHeight = 45;
     final width = MyDimensions.width(context);
     final height = MyDimensions.height(context);
+    const double minHeight = 400.0;
 
     return SizedBox(
       width: width,
@@ -65,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
               width: width,
               height: height,
               color: myColorScheme.surface,
-              constraints: BoxConstraints(minHeight: widget.screenHeight * 0.5),
               child: SingleChildScrollView(
                 controller: scrollController,
                 child: Column(
@@ -74,18 +74,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     MyHeroSection(
                       key: aboveTheFoldSectionKey,
                       navBarHeight: navBarHeight,
-                      screenHeight: widget.screenHeight,
+                      screenHeight: widget.screenHeight.clamp(
+                        minHeight,
+                        double.infinity,
+                      ),
                     ),
 
                     // Project Section
                     MySectionPadding(
                       key: projectSectionKey,
                       width: width,
-                      height: widget.screenHeight,
+                      height: widget.screenHeight.clamp(
+                        minHeight,
+                        double.infinity,
+                      ),
                       topPadding: navBarHeight + 24,
                       color: Colors.green,
                       child: MyProjectsSection(
-                        screenHeight: widget.screenHeight,
+                        screenHeight: widget.screenHeight.clamp(
+                          minHeight,
+                          double.infinity,
+                        ),
                         sectionTitle: "PROJECTS",
                       ),
                     ),
@@ -93,7 +102,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     // Additional Section
                     SizedBox(
                       key: aboutMeSectionKey,
-                      height: widget.screenHeight,
+                      height: widget.screenHeight.clamp(
+                        minHeight,
+                        double.infinity,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -113,7 +125,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ), // Additional Section
                     SizedBox(
                       key: certificationsSectionKey,
-                      height: widget.screenHeight,
+                      height: widget.screenHeight.clamp(
+                        minHeight,
+                        double.infinity,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -135,7 +150,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     // Footer
                     SizedBox(
                       key: contactSectionKey,
-                      height: widget.screenHeight,
+                      height: widget.screenHeight.clamp(
+                        minHeight,
+                        double.infinity,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

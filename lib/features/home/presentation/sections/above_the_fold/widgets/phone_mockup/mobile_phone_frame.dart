@@ -231,7 +231,7 @@ class MyMobilePhoneFrame extends StatelessWidget {
                     buttonWidth: buttonWidth,
                   ),
                   // Bottom offset spacer scales with phoneHeight
-                  SizedBox(height: (phoneHeight * 0.18).clamp(20.0, 120.0)),
+                  SizedBox(height: (phoneHeight * 0.32).clamp(20.0, 120.0)),
                 ],
               ),
             ],
