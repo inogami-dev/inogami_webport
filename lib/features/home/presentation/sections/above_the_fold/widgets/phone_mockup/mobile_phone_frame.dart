@@ -80,14 +80,14 @@ class MyMobilePhoneFrame extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Volume rocker
-                  sideButton(
+                  PhoneSideButton(
                     height: (phoneHeight * 0.12).clamp(12.0, 60.0),
                     colorScheme: colorScheme,
                     buttonWidth: buttonWidth,
                   ),
                   SizedBox(height: (phoneHeight * 0.02).clamp(2.0, 8.0)),
                   // Power button
-                  sideButton(
+                  PhoneSideButton(
                     height: (phoneHeight * 0.08).clamp(8.0, 36.0),
                     colorScheme: colorScheme,
                     buttonWidth: buttonWidth,
@@ -102,12 +102,22 @@ class MyMobilePhoneFrame extends StatelessWidget {
       },
     );
   }
+}
 
-  Widget sideButton({
-    required double height,
-    required ColorScheme colorScheme,
-    required double buttonWidth,
-  }) {
+class PhoneSideButton extends StatelessWidget {
+  const PhoneSideButton({
+    super.key,
+    required this.height,
+    required this.colorScheme,
+    required this.buttonWidth,
+  });
+
+  final double height;
+  final ColorScheme colorScheme;
+  final double buttonWidth;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: buttonWidth,
       height: height,
