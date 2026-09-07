@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
+import 'package:my_portfolio/core/widgets/alert_dialog.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/phone_mockup/mobile_phone_frame.dart';
 
@@ -82,7 +83,15 @@ class _ProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     ColorScheme myColorScheme = Theme.of(context).colorScheme;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        myAlertDialogue(
+          context: context,
+          alertTitle: "Hello,",
+          alertContent: "World!",
+          isUsedAsInfoDialogOnly: true,
+          onApprovalPressed: () {},
+        );
+      },
       child: Container(
         width: widthPerProject,
         height: screenHeight,
