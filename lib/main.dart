@@ -6,7 +6,7 @@ import 'package:my_portfolio/core/theme/theme.dart';
 import 'package:my_portfolio/features/home/presentation/whole_page.dart';
 
 void main() {
-  debugRepaintRainbowEnabled = true;
+  // debugRepaintRainbowEnabled = true;
   runApp(const MainApp());
 }
 
@@ -38,6 +38,9 @@ class MainApp extends StatelessWidget {
                     "The screen is TABLET size.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",
                   );
                   return Placeholder();
+                  // return MyHomePage(
+                  //   screenHeight: constraints.maxHeight,
+                  // ); // Not yet final (Placeholder for now)
                 } else {
                   log(
                     "The screen is PHONE SIZE, smaller than 360.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",

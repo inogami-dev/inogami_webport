@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/core/widgets/image_gallery.dart';
+import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/phone_mockup/image_gallery.dart';
 
 class MyMobilePhoneScreen extends StatelessWidget {
   final double borderRadius;

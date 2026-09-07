@@ -22,52 +22,73 @@ class MyProjectsSection extends StatelessWidget {
     return Container(
       width: width,
       height: screenHeight,
-      color: Colors.orange,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      // color: Colors.orange,
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: projectCard(
+            child: _ProjectCard(
+              screenHeight: screenHeight,
+              widthPerProject: widthPerProject,
               title: "Project 1",
               description:
                   "Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight. Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight. Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight.",
-              widthPerProject: widthPerProject,
               myColorScheme: myColorScheme,
             ),
           ),
           Expanded(
-            child: Container(
-              height: screenHeight,
-              color: Colors.purple,
-              child: MyMobilePhoneFrame(),
+            child: _ProjectCard(
+              screenHeight: screenHeight,
+              widthPerProject: widthPerProject,
+              title: "Project 2",
+              description:
+                  "Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight. Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight. Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight.",
+              myColorScheme: myColorScheme,
             ),
           ),
           Expanded(
-            child: Container(
-              height: screenHeight,
-              color: Colors.blue,
-              child: MyMobilePhoneFrame(),
+            child: _ProjectCard(
+              screenHeight: screenHeight,
+              widthPerProject: widthPerProject,
+              title: "Project 3",
+              description:
+                  "Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight. Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight. Description for Project 1 goes here. It can be a brief summary of the project, its features, and any other relevant information that you want to highlight.",
+              myColorScheme: myColorScheme,
             ),
           ),
         ],
       ),
     );
   }
+}
 
-  Container projectCard({
-    required double widthPerProject,
-    required String title,
-    required String description,
-    required ColorScheme myColorScheme,
-  }) {
+class _ProjectCard extends StatelessWidget {
+  const _ProjectCard({
+    required this.screenHeight,
+    required this.widthPerProject,
+    required this.title,
+    required this.description,
+    required this.myColorScheme,
+  });
+
+  final double screenHeight;
+  final double widthPerProject;
+  final String title;
+  final String description;
+  final ColorScheme myColorScheme;
+
+  @override
+  Widget build(BuildContext context) {
+    ColorScheme myColorScheme = Theme.of(context).colorScheme;
     return Container(
       width: widthPerProject,
       height: screenHeight,
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Colors.grey,
+        // color: Colors.grey,
+        color: myColorScheme.outlineVariant.withAlpha(156),
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -83,7 +104,7 @@ class MyProjectsSection extends StatelessWidget {
           Container(
             width: widthPerProject,
             // height: screenHeight * 0.56,
-            color: Colors.red,
+            // color: Colors.red,
             alignment: Alignment.center,
             child: MyMobilePhoneFrame(
               alignment: Alignment.center,
