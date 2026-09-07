@@ -149,6 +149,7 @@ class _MyHeroSectionState extends State<MyHeroSection> {
               // color: Colors.amber,
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: 16),
+              margin: EdgeInsets.only(top: widget.navBarHeight / 2),
               child: MyAnimation(child: MyMobilePhoneFrame()),
             ),
           ),
