@@ -36,6 +36,7 @@ class MyAnimatedText extends StatefulWidget {
 class _MyAnimatedTextState extends State<MyAnimatedText>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
+  Timer? _loopTimer;
 
   List<Color> get _effectiveColors {
     if (widget.colors != null) return widget.colors!;
@@ -76,7 +77,8 @@ class _MyAnimatedTextState extends State<MyAnimatedText>
       if (status == AnimationStatus.completed) {
         if (!widget.repeatForever) return;
         if (widget.delayBetweenAnimationsInMillis > 0) {
-          Future.delayed(
+          _loopTimer?.cancel();
+          _loopTimer = Timer(
             Duration(milliseconds: widget.delayBetweenAnimationsInMillis),
             () {
               if (mounted) {
@@ -105,6 +107,7 @@ class _MyAnimatedTextState extends State<MyAnimatedText>
 
   @override
   void dispose() {
+    _loopTimer?.cancel();
     _controller.dispose();
     super.dispose();
   }

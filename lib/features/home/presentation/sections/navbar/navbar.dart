@@ -40,24 +40,6 @@ class _MyNavBarState extends State<MyNavBar> {
     currentSection = widget.sectionKeys[aboveTheFoldSectionID];
   }
 
-  //   // Inside your Navbar widget, listen to the notifier
-  //  ValueListenableBuilder<String>(
-  //   valueListenable: activeSectionNotifier, // Pass the notifier into your Navbar
-  //   builder: (context, activeSection, child) {
-
-  //     // Check if this specific button is the active one
-  //     final bool isActive = activeSection == 'Projects';
-
-  //     return TextButton(
-  //       onPressed: () { /* Your existing scroll code */ },
-  //       style: TextButton.styleFrom(
-  //         // Change color based on visibility!
-  //         foregroundColor: isActive ? Colors.blue : Colors.grey,
-  //       ),
-  //       child: const Text('Projects'),
-  //     );
-  //   },
-
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<int>(
@@ -83,46 +65,21 @@ class _MyNavBarState extends State<MyNavBar> {
             //   ),
             // ),
             boxShadow: [
-              // BoxShadow(
-              //   color: widget.myColorScheme.surfaceContainerHighest.withAlpha(56),
-              //   // color: Colors.white10,
-              //   blurStyle: BlurStyle.inner,
-              //   offset: Offset(0, -1),
-              // ),
-              // BoxShadow(
-              //   color: widget.myColorScheme.surfaceContainerHighest.withAlpha(56),
-              //   // color: Colors.white10,
-              //   blurStyle: BlurStyle.inner,
-              //   offset: Offset(0, 1),
-              // ),
               // Outers
               BoxShadow(
                 color: widget.myColorScheme.surfaceContainerHighest,
                 // color: Colors.white.withAlpha(4),
                 blurStyle: BlurStyle.outer,
+                // blurRadius: 0.5,
                 offset: Offset(-0.5, -1.2),
               ),
               BoxShadow(
                 color: widget.myColorScheme.surfaceContainerHighest,
                 // color: Colors.white.withAlpha(4),
+                // blurRadius: 0.5,
                 blurStyle: BlurStyle.outer,
                 offset: Offset(0.5, 1.2),
               ),
-              // BoxShadow(
-              //   color: widget.myColorScheme.surfaceContainerHighest,
-              //   // color: widget.myColorScheme.surfaceContainerHighest.withAlpha(56),
-              //   // color: Colors.white.withAlpha(4),
-              //   blurStyle: BlurStyle.outer,
-              //   offset: Offset(0, 0),
-              //   blurRadius: 4,
-              // ),
-              // BoxShadow(
-              //   color: widget.myColorScheme.surfaceContainerHighest,
-              //   // color: Colors.white.withAlpha(4),
-              //   blurStyle: BlurStyle.outer,
-              //   offset: Offset(0, 0),
-              //   blurRadius: 4,
-              // ),
 
               // This shadow is for the light theme, to give a subtle glow effect
               if (Theme.of(context).brightness == Brightness.light)
@@ -130,6 +87,7 @@ class _MyNavBarState extends State<MyNavBar> {
                   color: widget.myColorScheme.primaryContainer,
                   // color: Colors.yellow,
                   // color: Colors.white.withAlpha(4),
+                  // blurRadius: 0.5,
                   blurStyle: BlurStyle.outer,
                   offset: Offset(0, 1.2),
                 ),

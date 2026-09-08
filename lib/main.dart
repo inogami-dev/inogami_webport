@@ -6,7 +6,7 @@ import 'package:my_portfolio/core/theme/theme.dart';
 import 'package:my_portfolio/features/home/presentation/whole_page.dart';
 
 void main() {
-  // debugRepaintRainbowEnabled = true;
+  debugRepaintRainbowEnabled = true;
   runApp(const MainApp());
 }
 
