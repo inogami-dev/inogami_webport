@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_detail_dialog.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
@@ -24,6 +26,11 @@ class MyProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorScheme myColorScheme = Theme.of(context).colorScheme;
+    bool isScreenLowerThanMinHeight = screenHeight < 420;
+    log(
+      "Project Card heigh: $screenHeight, isScreenLowerThanMinHeight: $isScreenLowerThanMinHeight",
+    );
+
     return InkWell(
       onTap: () {
         // myAlertDialogue(
@@ -64,16 +71,21 @@ class MyProjectCard extends StatelessWidget {
           children: [
             Container(
               width: widthPerProject,
-              // height: screenHeight * 0.56,
-              // color: Colors.red,
+              padding: EdgeInsets.only(
+                top: (isScreenLowerThanMinHeight) ? 0 : 4,
+              ),
               alignment: Alignment.center,
               child: MyMobilePhoneFrame(
                 alignment: Alignment.center,
                 heightPercentage: 0.4,
               ),
             ),
+
             Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 8),
+              padding: EdgeInsets.only(
+                top: 16,
+                bottom: (isScreenLowerThanMinHeight) ? 0 : 8,
+              ),
               child: MyText(
                 text: title,
                 fontSize: kDefaultFontSize + 4,
@@ -82,13 +94,15 @@ class MyProjectCard extends StatelessWidget {
                 maxLines: 3,
               ),
             ),
-            Expanded(
-              child: MyText(
-                text: description,
-                maxLines: 6,
-                textOverFlow: TextOverflow.ellipsis,
+
+            if (!isScreenLowerThanMinHeight)
+              Expanded(
+                child: MyText(
+                  text: description,
+                  maxLines: 6,
+                  textOverFlow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
           ],
         ),
       ),

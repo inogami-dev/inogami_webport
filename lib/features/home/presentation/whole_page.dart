@@ -28,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController scrollController = ScrollController();
   final ValueNotifier<int> activeSectionNotifier = ValueNotifier<int>(0);
 
+  /// For the snap-scrolling feature variables: [_snapDebounceTimer], [_isSnapping]
   Timer? _snapDebounceTimer;
   bool _isSnapping = false;
 
@@ -75,8 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
               color: myColorScheme.surface,
               child: NotificationListener<ScrollNotification>(
                 onNotification: (notification) {
-                  // ScrollEndNotification triggers the instant the mouse wheel / momentum finishes
-                  if (notification is ScrollEndNotification) {
+                  // Listens to real scroll movements (mouse wheel, trackpad, drag)
+                  if (notification is ScrollUpdateNotification) {
                     // Only snap if we aren't already animating from a navbar button click
                     if (!_isSnapping) {
                       _onUserScrolled();
@@ -295,7 +296,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // The invisible line on the screen that triggers the change (e.g., 100px from the top)
     const double detectionLine = 250.0;
 
-    // Map your sections to their respective keys
     final Map<int, GlobalKey> sections = {
       0: aboveTheFoldSectionKey,
       1: projectSectionKey,
