@@ -90,6 +90,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       topPadding: navBarHeight + 24,
                       // color: Colors.green,
+                      linkToExtraContent: TextButton(
+                        onPressed: () {},
+                        child: MyText(
+                          text:
+                              "Explore more of my open-source experiments and repositories on GitHub.",
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
                       child: MyProjectsSection(
                         screenHeight: widget.screenHeight.clamp(
                           minHeight,

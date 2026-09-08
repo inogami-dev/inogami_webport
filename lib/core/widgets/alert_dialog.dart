@@ -33,9 +33,9 @@ void myAlertDialogue({
         title: Text(alertTitle, style: TextStyle(fontFamily: "Quicksand")),
         content: Column(
           children: [
-            Text(alertContent, style: TextStyle(fontFamily: "Quicksand")),
             if (contentWidget != null) SizedBox(height: 8),
             ?contentWidget,
+            Text(alertContent, style: TextStyle(fontFamily: "Quicksand")),
           ],
         ),
 

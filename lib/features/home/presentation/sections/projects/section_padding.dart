@@ -7,6 +7,9 @@ class MySectionPadding extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final double? topPadding;
   final Color? color;
+  final Widget? linkToExtraContent;
+  final CrossAxisAlignment contentAlignment;
+
   const MySectionPadding({
     super.key,
     required this.child,
@@ -15,6 +18,8 @@ class MySectionPadding extends StatelessWidget {
     this.padding,
     this.topPadding,
     this.color,
+    this.linkToExtraContent,
+    this.contentAlignment = CrossAxisAlignment.start,
   });
 
   @override
@@ -31,7 +36,16 @@ class MySectionPadding extends StatelessWidget {
       height: height,
       color: color,
       padding: padding ?? EdgeInsets.only(top: topPadding ?? 0),
-      child: child,
+      child: Column(
+        crossAxisAlignment: contentAlignment,
+        children: [
+          Expanded(child: child),
+          Padding(
+            padding: EdgeInsets.only(left: 32),
+            child: linkToExtraContent,
+          ),
+        ],
+      ),
     );
   }
 }

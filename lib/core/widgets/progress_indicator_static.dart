@@ -5,6 +5,6 @@ class MyProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CircularProgressIndicator.adaptive();
+    return RepaintBoundary(child: const CircularProgressIndicator.adaptive());
   }
 }

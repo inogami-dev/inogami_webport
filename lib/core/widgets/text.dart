@@ -10,6 +10,7 @@ class MyText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final double? lineHeight;
+  final FontStyle fontStyle;
 
   const MyText({
     super.key,
@@ -22,6 +23,7 @@ class MyText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.lineHeight,
+    this.fontStyle = FontStyle.normal,
   });
 
   @override
@@ -43,6 +45,7 @@ class MyText extends StatelessWidget {
             ? TextOverflow.ellipsis
             : textOverFlow, // to be observed pa
         color: color ?? myColorScheme.onSurface,
+        fontStyle: fontStyle,
         letterSpacing: letterSpacing,
       ),
     );
