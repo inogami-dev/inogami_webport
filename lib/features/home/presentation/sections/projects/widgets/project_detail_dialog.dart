@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
@@ -10,6 +9,7 @@ void showMyProjectDetailModal({
   Widget? contentWidget,
   double? width,
   double? height,
+  bool isFullScreen = false,
 }) {
   final ColorScheme colorScheme = Theme.of(context).colorScheme;
   final double screenWidth = width ?? MyDimensions.width(context);
@@ -22,7 +22,9 @@ void showMyProjectDetailModal({
     builder: (context) {
       return Center(
         child: Dialog(
-          backgroundColor: Colors.transparent, // Allows custom decoration
+          // backgroundColor: Theme.of(
+          //   context,
+          // ).colorScheme.inverseSurface, // Allows custom decoration
           insetPadding: const EdgeInsets.symmetric(
             horizontal: 24,
             vertical: 32,
@@ -30,10 +32,13 @@ void showMyProjectDetailModal({
           child: ConstrainedBox(
             constraints: BoxConstraints(
               // Responsive width: Up to 800px on desktop, but fits comfortably on smaller screens
-              maxWidth: screenWidth * 0.85, // 850
+              maxWidth: screenWidth * ((isFullScreen) ? 1 : 0.85), // 850
               minWidth: 320.0,
               maxHeight:
-                  screenHeight * 0.85, // Never overflows the browser viewport
+                  screenHeight *
+                  ((isFullScreen)
+                      ? 1
+                      : 0.85), // Never overflows the browser viewport
             ),
             child: Container(
               decoration: BoxDecoration(
@@ -50,7 +55,7 @@ void showMyProjectDetailModal({
                   ),
                 ],
               ),
-              padding: const EdgeInsets.all(28),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,14 +65,18 @@ void showMyProjectDetailModal({
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Poppins",
-                            color: colorScheme.onSurface,
-                          ),
+                        // child: Text(
+                        //   title,
+                        //   style: TextStyle(
+                        //     fontSize: 24,
+                        //     fontWeight: FontWeight.bold,
+                        //     fontFamily: "Poppins",
+                        //     color: colorScheme.onSurface,
+                        //   ),
+                        // ),
+                        child: MyText(
+                          text: title,
+                          fontSize: kDefaultFontSize + 8,
                         ),
                       ),
                       IconButton(
