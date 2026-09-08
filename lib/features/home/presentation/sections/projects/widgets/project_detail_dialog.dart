@@ -77,6 +77,7 @@ void showMyProjectDetailModal({
                         child: MyText(
                           text: title,
                           fontSize: kDefaultFontSize + 8,
+                          fontFamily: "Poppins",
                         ),
                       ),
                       IconButton(
@@ -107,7 +108,7 @@ void showMyProjectDetailModal({
                           //     fontFamily: "Quicksand",
                           //   ),
                           // ),
-                          MyText(text: fullDescription),
+                          MyText(text: fullDescription, maxLines: 24),
                         ],
                       ),
                     ),
