@@ -7,11 +7,13 @@ class MyMobilePhoneFrame extends StatelessWidget {
   final double heightPercentage;
   final double? explicitHeight; // Optional override
   final List<String>? images;
+  final double leftPadding;
 
   const MyMobilePhoneFrame({
     super.key,
     this.alignment = Alignment.centerLeft,
     this.heightPercentage = 0.70,
+    this.leftPadding = 16,
     this.explicitHeight,
     this.images,
   });
@@ -45,7 +47,7 @@ class MyMobilePhoneFrame extends StatelessWidget {
           return Container(
             height: phoneHeight, // Uses the clamped, guaranteed height
             alignment: alignment,
-            padding: const EdgeInsets.only(left: 16),
+            padding: EdgeInsets.only(left: leftPadding),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

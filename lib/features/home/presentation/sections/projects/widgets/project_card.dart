@@ -50,6 +50,7 @@ class MyProjectCard extends StatelessWidget {
           contentWidget: MyMobilePhoneFrame(
             images: images,
             heightPercentage: 1,
+            leftPadding: 0,
           ),
         );
       },
