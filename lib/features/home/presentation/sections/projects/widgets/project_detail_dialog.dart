@@ -97,6 +97,9 @@ void showMyProjectDetailModal({
                         child: MyProjectContentSide(
                           height: effectiveDialogHeight,
                           fullDescription: fullDescription,
+                          logoImages: [
+                            "assets/images/placeholder_app_icon.png",
+                          ],
                         ),
                       ),
                     ],
