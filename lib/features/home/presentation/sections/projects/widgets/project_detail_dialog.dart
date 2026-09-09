@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_content_side.dart';
 
 void showMyProjectDetailModal({
   required BuildContext context,
@@ -93,8 +94,9 @@ void showMyProjectDetailModal({
                       SizedBox(width: screenWidth * 0.20, child: contentWidget),
 
                       Expanded(
-                        child: SingleChildScrollView(
-                          child: MyText(text: fullDescription, maxLines: 32),
+                        child: MyProjectContentSide(
+                          height: effectiveDialogHeight,
+                          fullDescription: fullDescription,
                         ),
                       ),
                     ],
@@ -107,7 +109,12 @@ void showMyProjectDetailModal({
       );
 
       if (calculatedDialogHeight < minimumDialogHeight) {
-        return Center(child: SingleChildScrollView(child: dialog));
+        return Center(
+          child: SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(),
+            child: dialog,
+          ),
+        );
       } else {
         return Center(child: dialog);
       }
