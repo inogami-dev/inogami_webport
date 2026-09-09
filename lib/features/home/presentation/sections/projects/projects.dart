@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
-import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/data/model/project_model.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_card.dart';
 
@@ -18,7 +17,7 @@ class MyProjectsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MyDimensions.width(context);
     final double widthPerProject = width / 3;
-    final ColorScheme myColorScheme = Theme.of(context).colorScheme;
+    // final ColorScheme myColorScheme = Theme.of(context).colorScheme;
 
     return Container(
       width: width,
@@ -35,31 +34,13 @@ class MyProjectsSection extends StatelessWidget {
               title: project.title,
               description: project.shortDescription,
               fullDescription: project.fullDescription,
-              contentWidget: null,
+              images: project.images,
             ),
           );
         }).toList(),
       ),
     );
   }
-
-  // final Map<String, Map<String, String>> _myProjects = const {
-  //   "WanderHuman": {
-  //     "Short":
-  //         "An app that helps caregivers of individuals with dementia track the location of the WanderHuman Device (the device the patient with dementia will wear). A highly function and intuitive app which features in danger notifications, alerts, task tracking, geofence configuration, and so on.",
-  //     "Full": "",
-  //   },
-  //   "Mobile POS System": {
-  //     "Short":
-  //         "Many small or starting store still rely on writing down to track sales as they cannot afford to buy desktop computers, or point of sale machineries, but they have mobile phones where this app shines.",
-  //     "Full": "",
-  //   },
-  //   "Aquation": {
-  //     "Short":
-  //         "Aquation is an AI powered mobile app that aims to help those individuals who wanted to start and those who already have started Crayfish farming, to reduce the mortality rate of crayfish as they are very fragile.",
-  //     "Full": "",
-  //   },
-  // };
 
   final List<MyProjectModel> _myProjects = const [
     MyProjectModel(
@@ -68,6 +49,11 @@ class MyProjectsSection extends StatelessWidget {
           "A specialized companion app designed to support caregivers of individuals with dementia by providing real-time location tracking and customizable safety alerts through a paired wearable device.",
       fullDescription:
           "WanderHuman is a comprehensive, highly intuitive mobile application engineered to provide peace of mind for caregivers of individuals living with dementia. Paired seamlessly with a dedicated wearable device, the app delivers robust real-time location tracking, customizable geofence boundaries, and instant danger notifications if a patient wanders outside of designated safe zones. Beyond its core tracking capabilities, WanderHuman integrates daily task management and automated care alerts. By prioritizing both patient safety and caregiver support, the application transforms a highly stressful responsibility into a manageable, data-supported routine.",
+      images: [
+        "assets/images/wanderhuman_project/alert_wide_view.jpe",
+        "assets/images/wanderhuman_project/alert_notification.jpe",
+        "assets/images/wanderhuman_project/alert.jpe",
+      ],
     ),
     MyProjectModel(
       title: "Mobile POS System",

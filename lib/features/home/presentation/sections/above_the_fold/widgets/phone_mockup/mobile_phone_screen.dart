@@ -3,8 +3,13 @@ import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/
 
 class MyMobilePhoneScreen extends StatelessWidget {
   final double borderRadius;
+  final List<String>? images;
 
-  const MyMobilePhoneScreen({super.key, required this.borderRadius});
+  const MyMobilePhoneScreen({
+    super.key,
+    required this.borderRadius,
+    this.images,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +29,10 @@ class MyMobilePhoneScreen extends StatelessWidget {
             alignment: Alignment.topCenter,
             children: [
               // 1. Wallpaper / Screen Content with Gallery
-              const MyImageGallery(
-                images: ['assets/images/me.webp', 'assets/images/me2.webp'],
+              MyImageGallery(
+                images:
+                    images ??
+                    ['assets/images/me.webp', 'assets/images/me2.webp'],
               ),
 
               // 2. Subtle glass glare reflection overlay

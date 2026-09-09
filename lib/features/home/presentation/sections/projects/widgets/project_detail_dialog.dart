@@ -25,22 +25,21 @@ void showMyProjectDetailModal({
           // backgroundColor: Theme.of(
           //   context,
           // ).colorScheme.inverseSurface, // Allows custom decoration
-          insetPadding: const EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 32,
-          ),
+
+          // insetPadding: const EdgeInsets.symmetric(
+          //   horizontal: 24,
+          //   vertical: 32,
+          // ),
           child: ConstrainedBox(
             constraints: BoxConstraints(
               // Responsive width: Up to 800px on desktop, but fits comfortably on smaller screens
               maxWidth: screenWidth * ((isFullScreen) ? 1 : 0.85), // 850
               minWidth: 320.0,
-              maxHeight:
-                  screenHeight *
-                  ((isFullScreen)
-                      ? 1
-                      : 0.85), // Never overflows the browser viewport
+              maxHeight: screenHeight * ((isFullScreen) ? 1 : 0.85),
             ),
             child: Container(
+              width: screenWidth,
+              height: screenHeight,
               decoration: BoxDecoration(
                 color: colorScheme.surface,
                 borderRadius: BorderRadius.circular(16),
@@ -65,19 +64,12 @@ void showMyProjectDetailModal({
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        // child: Text(
-                        //   title,
-                        //   style: TextStyle(
-                        //     fontSize: 24,
-                        //     fontWeight: FontWeight.bold,
-                        //     fontFamily: "Poppins",
-                        //     color: colorScheme.onSurface,
-                        //   ),
-                        // ),
                         child: MyText(
                           text: title,
                           fontSize: kDefaultFontSize + 8,
                           fontFamily: "Poppins",
+                          fontWeight: FontWeight.w600,
+                          textOverFlow: TextOverflow.ellipsis,
                         ),
                       ),
                       IconButton(
@@ -91,26 +83,22 @@ void showMyProjectDetailModal({
 
                   // Scrollable Content Area (Descriptions, Previews, Mockups)
                   Flexible(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (contentWidget != null) ...[
-                            contentWidget,
-                            const SizedBox(height: 16),
-                          ],
-                          // Text(
-                          //   fullDescription,
-                          //   style: TextStyle(
-                          //     fontSize: 16,
-                          //     height: 1.6,
-                          //     color: colorScheme.onSurface.withAlpha(200),
-                          //     fontFamily: "Quicksand",
-                          //   ),
-                          // ),
-                          MyText(text: fullDescription, maxLines: 24),
-                        ],
-                      ),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: screenHeight * 0.5,
+                          child: contentWidget,
+                        ),
+                        // if (contentWidget != null) ...[
+                        //   contentWidget,
+                        //   // const SizedBox(height: 16),
+                        // ],
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: MyText(text: fullDescription, maxLines: 32),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

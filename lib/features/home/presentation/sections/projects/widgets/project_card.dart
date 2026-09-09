@@ -11,7 +11,7 @@ class MyProjectCard extends StatelessWidget {
   final String title;
   final String description;
   final String fullDescription;
-  final Widget? contentWidget;
+  final List<String>? images;
 
   const MyProjectCard({
     super.key,
@@ -20,7 +20,7 @@ class MyProjectCard extends StatelessWidget {
     required this.title,
     required this.description,
     required this.fullDescription,
-    this.contentWidget,
+    this.images,
   });
 
   @override
@@ -46,7 +46,11 @@ class MyProjectCard extends StatelessWidget {
           context: context,
           title: title,
           fullDescription: fullDescription,
-          contentWidget: contentWidget,
+          isFullScreen: true,
+          contentWidget: MyMobilePhoneFrame(
+            images: images,
+            heightPercentage: 1,
+          ),
         );
       },
       child: Container(
@@ -78,6 +82,7 @@ class MyProjectCard extends StatelessWidget {
               child: MyMobilePhoneFrame(
                 alignment: Alignment.center,
                 heightPercentage: 0.4,
+                images: images,
               ),
             ),
 

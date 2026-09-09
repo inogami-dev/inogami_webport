@@ -6,12 +6,14 @@ class MyMobilePhoneFrame extends StatelessWidget {
   final Alignment alignment;
   final double heightPercentage;
   final double? explicitHeight; // Optional override
+  final List<String>? images;
 
   const MyMobilePhoneFrame({
     super.key,
     this.alignment = Alignment.centerLeft,
     this.heightPercentage = 0.70,
     this.explicitHeight,
+    this.images,
   });
 
   @override
@@ -72,7 +74,10 @@ class MyMobilePhoneFrame extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: MyMobilePhoneScreen(borderRadius: innerRadius),
+                    child: MyMobilePhoneScreen(
+                      borderRadius: innerRadius,
+                      images: images,
+                    ),
                   ),
                 ),
 
