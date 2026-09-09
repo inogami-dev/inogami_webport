@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class MyImageGallery extends StatefulWidget {
   final List<String> images;
+
   const MyImageGallery({super.key, required this.images});
 
   @override

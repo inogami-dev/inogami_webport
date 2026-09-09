@@ -28,14 +28,14 @@ class MyMobilePhoneScreen extends StatelessWidget {
             fit: StackFit.expand,
             alignment: Alignment.topCenter,
             children: [
-              // 1. Wallpaper / Screen Content with Gallery
+              // Wallpaper / Screen Content with Gallery
               MyImageGallery(
                 images:
                     images ??
                     ['assets/images/me.webp', 'assets/images/me2.webp'],
               ),
 
-              // 2. Subtle glass glare reflection overlay
+              // Subtle glass glare reflection overlay
               Positioned.fill(
                 child: IgnorePointer(
                   child: DecoratedBox(
