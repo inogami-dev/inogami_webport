@@ -111,12 +111,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         // color: Colors.green,
                         linkToExtraContent: TextButton(
                           onPressed: () {
-                            showMyProjectDetailModal(
-                              context: context,
-                              title: "More Projects?",
-                              fullDescription: "kjandk akjdkad wajndkaw",
-                              isFullScreen: true,
-                            );
+                            // showMyProjectDetailModal(
+                            //   context: context,
+                            //   // title: "More Projects?",
+                            //   // fullDescription: "kjandk akjdkad wajndkaw",
+                            //   isFullScreen: true,
+                            // );
                           },
                           child: MyText(
                             text:

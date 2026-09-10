@@ -3,17 +3,19 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/data/model/project_model.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_content_side.dart';
 
 void showMyProjectDetailModal({
   required BuildContext context,
-  required String title,
-  required String fullDescription,
+  // required String title,
+  // required String fullDescription,
+  // List<String>? techStackImages,
+  required MyProjectModel project,
   Widget? contentWidget,
   double? width,
   double? height,
   bool isFullScreen = false,
-  List<String>? techStackImages,
 }) {
   final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
@@ -71,7 +73,7 @@ void showMyProjectDetailModal({
                   children: [
                     Expanded(
                       child: MyText(
-                        text: title,
+                        text: project.title,
                         fontSize: kDefaultFontSize + 8,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w600,
@@ -97,8 +99,9 @@ void showMyProjectDetailModal({
                       Expanded(
                         child: MyProjectContentSide(
                           height: effectiveDialogHeight,
-                          fullDescription: fullDescription,
-                          techStackImages: techStackImages,
+                          // fullDescription: project.fullDescription,
+                          // techStackImages: project.techStackImages,
+                          project: project,
                         ),
                       ),
                     ],

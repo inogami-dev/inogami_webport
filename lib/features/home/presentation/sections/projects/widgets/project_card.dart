@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/features/home/data/model/project_model.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_detail_dialog.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/phone_mockup/mobile_phone_frame.dart';
@@ -8,21 +9,23 @@ import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/
 class MyProjectCard extends StatelessWidget {
   final double screenHeight;
   final double widthPerProject;
-  final String title;
-  final String description;
-  final String fullDescription;
-  final List<String>? images;
-  final List<String>? techStackImages;
+  // final String title;
+  // final String description;
+  // final String fullDescription;
+  // final List<String>? images;
+  // final List<String>? techStackImages;
+  final MyProjectModel project;
 
   const MyProjectCard({
     super.key,
     required this.screenHeight,
     required this.widthPerProject,
-    required this.title,
-    required this.description,
-    required this.fullDescription,
-    this.images,
-    this.techStackImages,
+    required this.project,
+    // required this.title,
+    // required this.description,
+    // required this.fullDescription,
+    // this.images,
+    // this.techStackImages,
   });
 
   @override
@@ -46,15 +49,16 @@ class MyProjectCard extends StatelessWidget {
         // );
         showMyProjectDetailModal(
           context: context,
-          title: title,
-          fullDescription: fullDescription,
+          // title: project.title,
+          // fullDescription: project.fullDescription,
+          // techStackImages: project.techStackImages,
+          project: project,
           isFullScreen: true,
           contentWidget: MyMobilePhoneFrame(
-            images: images,
+            images: project.images,
             heightPercentage: 1,
             leftPadding: 0,
           ),
-          techStackImages: techStackImages,
         );
       },
       child: Container(
@@ -87,7 +91,7 @@ class MyProjectCard extends StatelessWidget {
               child: MyMobilePhoneFrame(
                 alignment: Alignment.center,
                 heightPercentage: 0.4,
-                images: images,
+                images: project.images,
               ),
             ),
 
@@ -97,7 +101,7 @@ class MyProjectCard extends StatelessWidget {
                 bottom: (isScreenLowerThanMinHeight) ? 0 : 8,
               ),
               child: MyText(
-                text: title,
+                text: project.title,
                 fontSize: kDefaultFontSize + 4,
                 fontWeight: FontWeight.bold,
                 fontFamily: "Poppins",
@@ -108,7 +112,7 @@ class MyProjectCard extends StatelessWidget {
             if (!isScreenLowerThanMinHeight)
               Expanded(
                 child: MyText(
-                  text: description,
+                  text: project.shortDescription,
                   maxLines: 6,
                   textOverFlow: TextOverflow.ellipsis,
                 ),

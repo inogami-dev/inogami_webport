@@ -31,11 +31,7 @@ class MyProjectsSection extends StatelessWidget {
             child: MyProjectCard(
               screenHeight: screenHeight,
               widthPerProject: widthPerProject,
-              title: project.title,
-              description: project.shortDescription,
-              fullDescription: project.fullDescription,
-              images: project.images,
-              techStackImages: project.techStackImages,
+              project: project,
             ),
           );
         }).toList(),
@@ -50,6 +46,12 @@ class MyProjectsSection extends StatelessWidget {
           "A specialized companion app designed to support caregivers of individuals with dementia by providing real-time location tracking and customizable safety alerts through a paired wearable device.",
       fullDescription:
           "WanderHuman is a comprehensive, highly intuitive mobile application engineered to provide peace of mind for caregivers of individuals living with dementia. Paired seamlessly with a dedicated wearable device, the app delivers robust real-time location tracking, customizable geofence boundaries, and instant danger notifications if a patient wanders outside of designated safe zones. Beyond its core tracking capabilities, WanderHuman integrates daily task management and automated care alerts. By prioritizing both patient safety and caregiver support, the application transforms a highly stressful responsibility into a manageable, data-supported routine.",
+      notableProblemsEncountered: [
+        "The GPS module used in the WanderHuman device has issues in the accuracy of its coordinates when: near a wall, something is covering above, or in an enclosed space. So it will give false coordinates, making the person wearing the device flickering a bit far from its exact location in the WanderHuman App.",
+      ],
+      notableSolutions: [
+        "Added a custom filtering algorithm that stores N location then calculates where the data provided by the WanderHuman device is false or true position where the patient currently is. The algorithm works by identifying which data seems too far for the patient to move in an amount of time.",
+      ],
       images: [
         "assets/images/wanderhuman_project/into_animation.jpe",
         "assets/images/wanderhuman_project/alert_wide_view.jpe",
