@@ -13,6 +13,7 @@ void showMyProjectDetailModal({
   double? width,
   double? height,
   bool isFullScreen = false,
+  List<String>? techStackImages,
 }) {
   final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
@@ -97,9 +98,7 @@ void showMyProjectDetailModal({
                         child: MyProjectContentSide(
                           height: effectiveDialogHeight,
                           fullDescription: fullDescription,
-                          logoImages: [
-                            "assets/images/placeholder_app_icon.png",
-                          ],
+                          techStackImages: techStackImages,
                         ),
                       ),
                     ],

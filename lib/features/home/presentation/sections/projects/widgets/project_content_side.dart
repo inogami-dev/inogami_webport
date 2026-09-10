@@ -4,13 +4,13 @@ import 'package:my_portfolio/core/widgets/text.dart';
 class MyProjectContentSide extends StatelessWidget {
   final String fullDescription;
   final double height;
-  final List<String>? logoImages;
+  final List<String>? techStackImages;
 
   const MyProjectContentSide({
     super.key,
     required this.fullDescription,
     required this.height,
-    this.logoImages,
+    this.techStackImages,
   });
 
   @override
@@ -37,7 +37,7 @@ class MyProjectContentSide extends StatelessWidget {
               ),
             ),
 
-            if (logoImages != null) ...[
+            if (techStackImages != null) ...[
               Padding(
                 padding: const EdgeInsets.only(top: 12),
                 child: MyText(
@@ -49,12 +49,23 @@ class MyProjectContentSide extends StatelessWidget {
                 // color: Colors.brown,
                 height: height * 0.1,
                 child: ListView.builder(
-                  itemCount: logoImages!.length,
+                  itemCount: techStackImages!.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
+                    final techStackName = techStackImages![index]
+                        .split("/")
+                        .last
+                        .split("_logo.png")
+                        .first
+                        .replaceAll("_", " ");
+
                     return Padding(
                       padding: const EdgeInsets.only(top: 8, right: 16),
-                      child: Image.asset(logoImages![index]),
+                      child: Tooltip(
+                        message: techStackName,
+                        triggerMode: TooltipTriggerMode.tap,
+                        child: Image.asset(techStackImages![index]),
+                      ),
                     );
                   },
                 ),

@@ -35,6 +35,7 @@ class MyProjectsSection extends StatelessWidget {
               description: project.shortDescription,
               fullDescription: project.fullDescription,
               images: project.images,
+              techStackImages: project.techStackImages,
             ),
           );
         }).toList(),
@@ -69,6 +70,15 @@ class MyProjectsSection extends StatelessWidget {
         "assets/images/wanderhuman_project/roles.jpe",
         "assets/images/wanderhuman_project/safezone.jpe",
         "assets/images/wanderhuman_project/tasks_left.jpe",
+      ],
+      techStackImages: [
+        // "assets/images/placeholder_app_icon.png",
+        "assets/images/logo/flutter_logo.png",
+        "assets/images/logo/dart_logo.png",
+        "assets/images/logo/mapbox_logo.png",
+        "assets/images/logo/firebase_logo.png",
+        "assets/images/logo/vscode_logo.png",
+        "assets/images/logo/android_studio_logo.png",
       ],
     ),
     MyProjectModel(

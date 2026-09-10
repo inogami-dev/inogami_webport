@@ -12,6 +12,7 @@ class MyProjectCard extends StatelessWidget {
   final String description;
   final String fullDescription;
   final List<String>? images;
+  final List<String>? techStackImages;
 
   const MyProjectCard({
     super.key,
@@ -21,6 +22,7 @@ class MyProjectCard extends StatelessWidget {
     required this.description,
     required this.fullDescription,
     this.images,
+    this.techStackImages,
   });
 
   @override
@@ -52,6 +54,7 @@ class MyProjectCard extends StatelessWidget {
             heightPercentage: 1,
             leftPadding: 0,
           ),
+          techStackImages: techStackImages,
         );
       },
       child: Container(
@@ -61,7 +64,8 @@ class MyProjectCard extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           // color: Colors.grey,
-          color: myColorScheme.outlineVariant.withAlpha(156),
+          // color: myColorScheme.outlineVariant.withAlpha(156),
+          color: myColorScheme.surfaceContainerHigh,
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(

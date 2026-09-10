@@ -23,6 +23,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/wanderhuman_project/
+    - assets/images/logo/
     - assets/fonts/quicksand/
   fonts:
     - family: Quicksand
