@@ -62,13 +62,16 @@ void showMyProjectDetailModal({
             ),
             // padding: const EdgeInsets.all(24),
             // padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 42),
-            padding: const EdgeInsets.fromLTRB(42, 28, 32, 32),
+            padding: const EdgeInsets.fromLTRB(36, 28, 32, 32),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // The Phone
-                SizedBox(width: screenWidth * 0.20, child: contentWidget),
+                if (contentWidget != null) ...[
+                  contentWidget,
+                  const SizedBox(width: 32),
+                ],
 
                 // Scrollable Content Area (Descriptions, Previews, Mockups)
                 Expanded(
