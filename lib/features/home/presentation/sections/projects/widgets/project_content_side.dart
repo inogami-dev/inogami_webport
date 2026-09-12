@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/widgets/line.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/data/model/project_model.dart';
 
@@ -31,6 +32,7 @@ class MyProjectContentSide extends StatelessWidget {
 
           // Full Description
           MyText(text: project.fullDescription, maxLines: 100),
+          MyLine(),
 
           if (project.features != null) ...[
             Padding(
