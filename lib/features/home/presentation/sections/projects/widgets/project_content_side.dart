@@ -32,11 +32,13 @@ class MyProjectContentSide extends StatelessWidget {
 
           // Full Description
           MyText(text: project.fullDescription, maxLines: 100),
-          MyLine(),
 
           if (project.features != null) ...[
+            SizedBox(height: 16),
+            MyLine(),
+
             Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 8),
+              padding: const EdgeInsets.only(top: 16, bottom: 8),
               child: MyText(
                 text: "Features:",
                 fontSize: kDefaultFontSize - 3,
@@ -83,8 +85,11 @@ class MyProjectContentSide extends StatelessWidget {
 
           // Notable Problems & Solutions
           if (project.notableProblemsEncountered != null) ...[
+            SizedBox(height: 16),
+            MyLine(),
+
             Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 8),
+              padding: const EdgeInsets.only(top: 16, bottom: 8),
               child: MyText(
                 text: "Notable Problems Encountered and The Solutions:",
                 fontSize: kDefaultFontSize - 3,
@@ -133,8 +138,11 @@ class MyProjectContentSide extends StatelessWidget {
 
           // Tech Stack Logos
           if (project.techStackImages != null) ...[
+            // SizedBox(height: 16),
+            MyLine(),
+
             Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 16),
               child: MyText(
                 text: "Tech stack:",
                 fontSize: kDefaultFontSize - 3,

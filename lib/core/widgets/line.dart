@@ -5,8 +5,8 @@ class MyLine extends StatelessWidget {
   final double width;
   final double height;
   final Color color;
-  final double mainPadding;
-  final double crossPadding;
+  final double? mainPadding;
+  final double? crossPadding;
 
   const MyLine({
     super.key,
@@ -14,8 +14,8 @@ class MyLine extends StatelessWidget {
     this.width = 1,
     this.color = const Color.fromARGB(56, 245, 245, 245),
     this.height = double.infinity,
-    this.mainPadding = 16,
-    this.crossPadding = 16,
+    this.mainPadding,
+    this.crossPadding,
   });
 
   @override
@@ -26,10 +26,10 @@ class MyLine extends StatelessWidget {
         height: width,
         color: color,
         margin: EdgeInsets.only(
-          top: mainPadding,
-          bottom: mainPadding,
-          left: crossPadding,
-          right: crossPadding,
+          top: mainPadding ?? 16,
+          bottom: mainPadding ?? 16,
+          left: crossPadding ?? 0,
+          right: crossPadding ?? 0,
         ),
       );
     } else {
@@ -38,10 +38,10 @@ class MyLine extends StatelessWidget {
         height: height,
         color: color,
         margin: EdgeInsets.only(
-          left: mainPadding,
-          right: mainPadding,
-          top: crossPadding,
-          bottom: crossPadding,
+          left: mainPadding ?? 16,
+          right: mainPadding ?? 16,
+          top: crossPadding ?? 0,
+          bottom: crossPadding ?? 0,
         ),
       );
     }
