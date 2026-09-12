@@ -62,46 +62,51 @@ void showMyProjectDetailModal({
             ),
             // padding: const EdgeInsets.all(24),
             // padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 42),
-            padding: const EdgeInsets.fromLTRB(42, 28, 32, 42),
-            child: Column(
+            padding: const EdgeInsets.fromLTRB(42, 28, 32, 32),
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header with Title & Close Button
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: MyText(
-                        text: project.title,
-                        fontSize: kDefaultFontSize + 8,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w600,
-                        textOverFlow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      icon: const Icon(Icons.close_rounded),
-                      tooltip: 'Close',
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
+                // The Phone
+                SizedBox(width: screenWidth * 0.20, child: contentWidget),
 
                 // Scrollable Content Area (Descriptions, Previews, Mockups)
-                Flexible(
-                  child: Row(
+                Expanded(
+                  child: Column(
                     children: [
-                      // The Phone
-                      SizedBox(width: screenWidth * 0.20, child: contentWidget),
-
-                      Expanded(
-                        child: MyProjectContentSide(
-                          height: effectiveDialogHeight,
-                          // fullDescription: project.fullDescription,
-                          // techStackImages: project.techStackImages,
-                          project: project,
+                      // Header with Title & Close Button
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: MyText(
+                              text: project.title,
+                              fontSize: kDefaultFontSize + 8,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w600,
+                              textOverFlow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            icon: const Icon(Icons.close_rounded),
+                            tooltip: 'Close',
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Flexible(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: MyProjectContentSide(
+                                height: effectiveDialogHeight,
+                                // fullDescription: project.fullDescription,
+                                // techStackImages: project.techStackImages,
+                                project: project,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
