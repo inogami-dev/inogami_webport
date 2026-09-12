@@ -32,6 +32,53 @@ class MyProjectContentSide extends StatelessWidget {
           // Full Description
           MyText(text: project.fullDescription, maxLines: 100),
 
+          if (project.features != null) ...[
+            Padding(
+              padding: const EdgeInsets.only(top: 24, bottom: 8),
+              child: MyText(
+                text: "Features:",
+                fontSize: kDefaultFontSize - 3,
+                fontFamily: "Poppins",
+              ),
+            ),
+            // Using a for loop renders all items in full without a nested scrollbar:
+            for (int i = 0; i < project.features!.length; i++)
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                dense: true,
+                title: Row(
+                  spacing: 12,
+                  children: [
+                    Icon(
+                      Icons.star_half_rounded,
+                      color: Colors.blue.shade600.withAlpha(180),
+                    ),
+                    Expanded(
+                      child: MyText(text: project.features![i], maxLines: 32),
+                    ),
+                  ],
+                ),
+                // subtitle: Padding(
+                //   padding: const EdgeInsets.only(top: 8, bottom: 8),
+                //   child: Row(
+                //     spacing: 12,
+                //     children: [
+                //       Icon(
+                //         Icons.check_circle_outline_rounded,
+                //         color: Colors.green.shade400,
+                //       ),
+                //       Expanded(
+                //         child: MyText(
+                //           text: project.notableSolutions![i],
+                //           maxLines: 32,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+              ),
+          ],
+
           // Notable Problems & Solutions
           if (project.notableProblemsEncountered != null) ...[
             Padding(
@@ -42,7 +89,7 @@ class MyProjectContentSide extends StatelessWidget {
                 fontFamily: "Poppins",
               ),
             ),
-            // Using a for loop renders all items in full without a nested scrollbar:
+
             for (int i = 0; i < project.notableProblemsEncountered!.length; i++)
               ListTile(
                 contentPadding: EdgeInsets.zero,
@@ -51,7 +98,7 @@ class MyProjectContentSide extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.warning_amber_rounded,
-                      color: Colors.amber.shade200,
+                      color: Colors.amber.shade600.withAlpha(180),
                     ),
                     Expanded(
                       child: MyText(

@@ -5,6 +5,7 @@ class MyProjectModel {
   final String fullDescription;
   final List<String>? notableProblemsEncountered;
   final List<String>? notableSolutions;
+  final List<String>? features;
   final List<String>? images;
   final List<String>? techStackImages;
 
@@ -12,6 +13,7 @@ class MyProjectModel {
     required this.title,
     required this.shortDescription,
     required this.fullDescription,
+    this.features,
     this.notableProblemsEncountered,
     this.notableSolutions,
     this.images,
