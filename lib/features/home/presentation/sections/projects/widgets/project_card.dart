@@ -103,7 +103,7 @@ class MyProjectCard extends StatelessWidget {
               child: MyText(
                 text: project.title,
                 fontSize: kDefaultFontSize + 4,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
                 fontFamily: "Poppins",
                 maxLines: 3,
               ),

@@ -53,7 +53,7 @@ class MyProjectsSection extends StatelessWidget {
         "Patient/Staff Finder",
         "Notification",
         "Geofence Configuration",
-        "Role Base Authorization",
+        "Role Based Authorization",
         "Currently Supports 4 Roles: Admin, Social Service, Medical Services, Home Life",
       ],
       notableProblemsEncountered: [
@@ -99,6 +99,25 @@ class MyProjectsSection extends StatelessWidget {
           "A lightweight, mobile-first Point of Sale (POS) application designed to empower small businesses by transforming their everyday smartphones into complete sales and inventory management hubs.",
       fullDescription:
           "Recognizing that traditional POS hardware is often cost-prohibitive for emerging businesses, this Mobile POS System bridges the technology gap by leveraging the devices entrepreneurs already own. The application modernizes small retail operations, smoothly transitioning them away from inefficient, error-prone pen-and-paper tracking. It provides a robust digital platform featuring seamless sales processing, digital receipt generation, and real-time transaction logging. Packaged in an accessible, user-friendly interface, it provides startups and micro-businesses with enterprise-level financial tracking without the enterprise-level overhead.",
+      images: [
+        "assets/images/mobile_pos_system_project/inventory.jpe",
+        "assets/images/mobile_pos_system_project/add_product.jpe",
+        "assets/images/mobile_pos_system_project/cashier_edit_quantity.jpe",
+        "assets/images/mobile_pos_system_project/sales_piechart_light_mode.jpe",
+        "assets/images/mobile_pos_system_project/sales_piechart.jpe",
+        "assets/images/mobile_pos_system_project/scanner_scanning.jpe",
+        "assets/images/mobile_pos_system_project/scanner.jpe",
+        "assets/images/mobile_pos_system_project/to_checkout_items.jpe",
+        "assets/images/mobile_pos_system_project/to_counter_items.jpe",
+      ],
+      techStackImages: [
+        "assets/images/logo/flutter_logo.png",
+        "assets/images/logo/dart_logo.png",
+        "assets/images/logo/sqlite_logo.png",
+        "assets/images/logo/riverpod_logo.png",
+        "assets/images/logo/vscode_logo.png",
+        "assets/images/logo/android_studio_logo.png",
+      ],
     ),
     MyProjectModel(
       title: "Aquation",
