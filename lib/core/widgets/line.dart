@@ -4,7 +4,7 @@ class MyLine extends StatelessWidget {
   final bool isHorizontal;
   final double width;
   final double height;
-  final Color color;
+  final Color? color;
   final double? mainPadding;
   final double? crossPadding;
 
@@ -12,7 +12,7 @@ class MyLine extends StatelessWidget {
     super.key,
     this.isHorizontal = true,
     this.width = 1,
-    this.color = const Color.fromARGB(56, 245, 245, 245),
+    this.color,
     this.height = double.infinity,
     this.mainPadding,
     this.crossPadding,
@@ -20,11 +20,13 @@ class MyLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme myColorScheme = Theme.of(context).colorScheme;
+
     if (isHorizontal) {
       return Container(
         width: height,
         height: width,
-        color: color,
+        color: color ?? myColorScheme.outlineVariant,
         margin: EdgeInsets.only(
           top: mainPadding ?? 16,
           bottom: mainPadding ?? 16,
@@ -36,7 +38,7 @@ class MyLine extends StatelessWidget {
       return Container(
         width: width,
         height: height,
-        color: color,
+        color: color ?? myColorScheme.outlineVariant,
         margin: EdgeInsets.only(
           left: mainPadding ?? 16,
           right: mainPadding ?? 16,

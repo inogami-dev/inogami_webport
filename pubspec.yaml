@@ -24,6 +24,7 @@ flutter:
     - assets/images/
     - assets/images/wanderhuman_project/
     - assets/images/mobile_pos_system_project/
+    - assets/images/aquation_project/
     - assets/images/logo/
     - assets/fonts/quicksand/
   fonts:

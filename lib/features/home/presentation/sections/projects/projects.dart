@@ -43,9 +43,9 @@ class MyProjectsSection extends StatelessWidget {
     MyProjectModel(
       title: "WanderHuman",
       shortDescription:
-          "A specialized companion app designed to support caregivers of individuals with dementia by providing real-time location tracking and customizable safety alerts through a paired wearable device.",
+          "An academic capstone project featuring an IoT-enabled mobile application engineered to help caregivers track dementia patients in real time through custom geofencing, proactive alerts, and a paired wearable device called WanderHuman Device and its companion WanderHuman Beacon.",
       fullDescription:
-          "WanderHuman is a comprehensive, highly intuitive mobile application engineered to provide peace of mind for caregivers of individuals living with dementia. Paired seamlessly with a dedicated wearable device, the app delivers robust real-time location tracking, customizable geofence boundaries, and instant danger notifications if a patient wanders outside of designated safe zones. Beyond its core tracking capabilities, WanderHuman integrates daily task management and automated care alerts. By prioritizing both patient safety and caregiver support, the application transforms a highly stressful responsibility into a manageable, data-supported routine.",
+          "Developed as an academic capstone project, WanderHuman is an integrated IoT and mobile solution engineered to provide peace of mind to caregivers of individuals living with dementia. Paired seamlessly with a dedicated wearable hardware device, the application delivers reliable real-time GPS tracking, customizable geofence boundaries, and immediate emergency notifications if a patient wanders outside designated safe zones. Beyond safety tracking, the app incorporates daily routine schedules and automated care alerts. The project demonstrates comprehensive end-to-end system design—bridging hardware telemetry with a polished, accessible mobile interface to solve a critical, real-world healthcare challenge.",
       features: [
         "Real-time Location Tracking",
         "Real-time Alerts",
@@ -96,9 +96,13 @@ class MyProjectsSection extends StatelessWidget {
     MyProjectModel(
       title: "Mobile POS System",
       shortDescription:
-          "A lightweight, mobile-first Point of Sale (POS) application designed to empower small businesses by transforming their everyday smartphones into complete sales and inventory management hubs.",
+          "A client-commissioned mobile Point of Sale (POS) system designed to empower small retail merchants by replacing manual pen-and-paper records with instant, smartphone-driven sales and inventory tracking.",
       fullDescription:
-          "Recognizing that traditional POS hardware is often cost-prohibitive for emerging businesses, this Mobile POS System bridges the technology gap by leveraging the devices entrepreneurs already own. The application modernizes small retail operations, smoothly transitioning them away from inefficient, error-prone pen-and-paper tracking. It provides a robust digital platform featuring seamless sales processing, digital receipt generation, and real-time transaction logging. Packaged in an accessible, user-friendly interface, it provides startups and micro-businesses with enterprise-level financial tracking without the enterprise-level overhead.",
+          "Engineered as a custom client project, this Mobile POS System bridges the digital divide for small and growing retailers who cannot justify the high expense of traditional terminal hardware. Built around the devices entrepreneurs already own, the application transitions business owners away from error-prone pen-and-paper logging into an automated digital workflow. Key features include rapid sales checkout, digital transaction records, and real-time sales logging tailored to the everyday pace of retail operations. Developed to meet strict client requirements, the project emphasizes offline accessibility, minimal operational friction, and production-grade reliability without enterprise overhead.",
+      features: [
+        "Offline-friendly",
+        "Has the capability of traditional POS System but more portable",
+      ],
       images: [
         "assets/images/mobile_pos_system_project/inventory.jpe",
         "assets/images/mobile_pos_system_project/add_product.jpe",
@@ -122,9 +126,28 @@ class MyProjectsSection extends StatelessWidget {
     MyProjectModel(
       title: "Aquation",
       shortDescription:
-          "An AI-driven mobile application dedicated to optimizing crayfish farming, designed to help aquaculturists reduce species mortality rates and maximize yield through smart, data-backed insights.",
+          "An award-winning hackathon build (4th place out of 14 competing teams): an AI-powered aquaculture platform designed to help crayfish farmers monitor environmental conditions and reduce high stock mortality rates.",
       fullDescription:
-          "Aquation is an innovative, AI-powered mobile platform built specifically to address the unique challenges of the crayfish farming industry. Because crayfish are highly sensitive to their environment, the app acts as a digital consultant for both novice and experienced farmers. By leveraging artificial intelligence, Aquation guides users through the complexities of aquaculture—from optimizing water conditions to managing feeding schedules and detecting early signs of distress. This proactive, data-driven approach significantly reduces the fragility-related mortality rates of the stock, lowers the barrier to entry for beginners, and promotes a sustainable, high-yield farming ecosystem.",
+          "Built during the Hackathon Challenge 2026—where it secured 4th place out of 14 competing teams—Aquation is an integrated IoT and AI-powered mobile solution engineered to prevent severe stock loss in crayfish farming. The platform pairs directly with a companion hardware device deployed on-site in the pond or tank, capturing real-time environmental telemetry to fuel an automated analytical engine. Rather than relying on guesswork, farmers receive predictive water condition assessments, species distress warnings, and dynamic feeding schedules backed by live sensor metrics. \nDeveloped under rapid hackathon constraints, Aquation also served as a milestone project in modern development workflows: it was built using AI-assisted development (vibe coding) to accelerate architecture, logic generation, and integration at record speed. The project demonstrates not only cross-disciplinary problem-solving across hardware and mobile software, but also the ability to harness cutting-edge AI engineering workflows to build and validate working prototypes under pressure.",
+      features: ["AI Insights", "With IoT Device"],
+      images: [
+        "assets/images/aquation_project/dashboarad.jpe",
+        "assets/images/aquation_project/insights.jpe",
+        "assets/images/aquation_project/insights_with_response_1.jpe",
+        "assets/images/aquation_project/insights_with_response_2.jpe",
+        "assets/images/aquation_project/history.jpe",
+        "assets/images/aquation_project/profile_page.jpe",
+        "assets/images/aquation_project/login_page.jpe",
+      ],
+      techStackImages: [
+        "assets/images/logo/flutter_logo.png",
+        "assets/images/logo/dart_logo.png",
+        "assets/images/logo/sqlite_logo.png",
+        "assets/images/logo/riverpod_logo.png",
+        "assets/images/logo/mistral_ai_logo.png",
+        "assets/images/logo/vscode_logo.png",
+        "assets/images/logo/android_studio_logo.png",
+      ],
     ),
   ];
 }

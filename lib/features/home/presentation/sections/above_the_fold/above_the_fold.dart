@@ -104,7 +104,7 @@ class _MyHeroSectionState extends State<MyHeroSection> {
                         ),
                         child: MyText(
                           text:
-                              "Placeholder 1 T dsdcjbsk se skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfb ef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef scac jkas skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjfn skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef skjf ksjfb skjebfkj kjsebfjke kjsef kjsbe jksfbef js aij oief noisda doqw odiwdioq ddkaldn.",
+                              "Crafting purposeful, cross-platform mobile experiences with Flutter. Built on a simple principle: every app should be functionally reliable under the hood and effortlessly elegant on the screen.",
                           maxLines: 14,
                         ),
                       ),
