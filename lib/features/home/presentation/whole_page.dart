@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/presentation/sections/about_me/about_me.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/navbar.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/above_the_fold.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/projects.dart';
@@ -134,29 +135,48 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
 
                       // Additional Section
-                      SizedBox(
+                      // SizedBox(
+                      //   key: aboutMeSectionKey,
+                      //   height: widget.screenHeight.clamp(
+                      //     minHeight,
+                      //     double.infinity,
+                      //   ),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //     children: [
+                      //       Column(
+                      //         children: [
+                      //           Expanded(
+                      //             child: Placeholder(
+                      //               child: MyText(text: "ABOUT ME"),
+                      //             ),
+                      //           ),
+                      //           Expanded(child: Placeholder()),
+                      //         ],
+                      //       ),
+                      //       Expanded(child: Placeholder()),
+                      //     ],
+                      //   ),
+                      // ),
+                      // Project Section
+                      MySectionPadding(
                         key: aboutMeSectionKey,
+                        width: width,
                         height: widget.screenHeight.clamp(
                           minHeight,
                           double.infinity,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                Expanded(
-                                  child: Placeholder(
-                                    child: MyText(text: "ABOUT ME"),
-                                  ),
-                                ),
-                                Expanded(child: Placeholder()),
-                              ],
-                            ),
-                            Expanded(child: Placeholder()),
-                          ],
+                        topPadding: navBarHeight + 24,
+                        child: MyAboutMeSection(
+                          width: width,
+                          height: widget.screenHeight.clamp(
+                            minHeight,
+                            double.infinity,
+                          ),
                         ),
-                      ), // Additional Section
+                      ),
+
+                      //// Additional Section
                       SizedBox(
                         key: certificationsSectionKey,
                         height: widget.screenHeight.clamp(
