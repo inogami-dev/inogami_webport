@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/core/widgets/text_rich.dart';
 
@@ -14,9 +15,9 @@ class AboutMeLeftSideContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Widget contents = Container(
       width: leftSideContents,
-      height: height,
+      // height: height,
       padding: EdgeInsets.only(top: 8, right: 16, bottom: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -87,5 +88,11 @@ class AboutMeLeftSideContent extends StatelessWidget {
         ],
       ),
     );
+
+    if (height < MySizeConstants.aboutMeSideContentMinHeight) {
+      return SingleChildScrollView(child: contents);
+    } else {
+      return contents;
+    }
   }
 }
