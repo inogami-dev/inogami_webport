@@ -173,7 +173,7 @@ class _MyNavBarState extends State<MyNavBar> {
                   },
                 ),
                 normalNavBarButton(
-                  text: "CERTIFCATES",
+                  text: "CERTIFICATES",
                   section: 3,
                   activeSection: activeSectionID,
                   widthPercentage: .108,
