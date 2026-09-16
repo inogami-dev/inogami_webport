@@ -55,6 +55,7 @@ class MyAboutMeSection extends StatelessWidget {
                             "\"The only way to do great work is to love what you do\"",
                         maxLines: 56,
                       ),
+
                       MyText(text: "- Steve Jobs"),
                     ],
                   ),

@@ -162,10 +162,12 @@ class _MyNavbarButtonState extends State<MyNavbarButton> {
                 bottom: BorderSide(width: 1, color: buttonHighlightColor),
               ),
             ),
-            child: MyText(
-              text: widget.text,
-              fontWeight: textWeight,
-              color: textColor,
+            child: FittedBox(
+              child: MyText(
+                text: widget.text,
+                fontWeight: textWeight,
+                color: textColor,
+              ),
             ),
           ),
         ),

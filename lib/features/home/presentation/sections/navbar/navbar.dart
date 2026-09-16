@@ -155,11 +155,11 @@ class _MyNavBarState extends State<MyNavBar> {
                   },
                 ),
                 normalNavBarButton(
-                  text: "ABOUT",
+                  text: "ABOUT ME",
                   section: aboutMeSectionID,
                   activeSection: activeSectionID,
                   onTap: () {
-                    log("ABOUT");
+                    log("ABOUT ME");
 
                     GlobalKey sectionKey = widget.sectionKeys[aboutMeSectionID];
 
