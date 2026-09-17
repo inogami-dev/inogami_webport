@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
+import 'package:my_portfolio/core/widgets/image_marquee.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/about_me.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/navbar.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/above_the_fold.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/projects.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/section_padding.dart';
-import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_detail_dialog.dart';
 
 class MyHomePage extends StatefulWidget {
   final double screenHeight;
@@ -100,6 +100,40 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
 
+                      Padding(
+                        // padding: const EdgeInsets.only(top: 156, bottom: 80),
+                        padding: EdgeInsets.zero,
+                        child: Column(
+                          spacing: 16,
+                          children: [
+                            MyText(text: "My Technology Stack"),
+                            MyImageMarquee(
+                              height: 70,
+                              itemWidth: 70,
+                              spacing: 56,
+                              pixelsPerSecond: 8,
+                              enableEdgeFading: true,
+                              fadeWidth: 80,
+                              pauseOnHover: true,
+                              assetPaths: const [
+                                "assets/images/logo/dart_logo.png",
+                                "assets/images/logo/flutter_logo.png",
+                                "assets/images/logo/firebase_logo.png",
+                                "assets/images/logo/android_studio_logo.png",
+                                "assets/images/logo/mapbox_logo.png",
+                                "assets/images/logo/mistral_ai_logo.png",
+                                "assets/images/logo/riverpod_logo.png",
+                                "assets/images/logo/sqlite_logo.png",
+                                "assets/images/logo/vscode_logo.png",
+                              ],
+                              onTap: (index, assetPath) {
+                                debugPrint('Clicked project image: $assetPath');
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+
                       // Project Section
                       MySectionPadding(
                         key: projectSectionKey,
@@ -134,31 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
 
-                      // Additional Section
-                      // SizedBox(
-                      //   key: aboutMeSectionKey,
-                      //   height: widget.screenHeight.clamp(
-                      //     minHeight,
-                      //     double.infinity,
-                      //   ),
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //     children: [
-                      //       Column(
-                      //         children: [
-                      //           Expanded(
-                      //             child: Placeholder(
-                      //               child: MyText(text: "ABOUT ME"),
-                      //             ),
-                      //           ),
-                      //           Expanded(child: Placeholder()),
-                      //         ],
-                      //       ),
-                      //       Expanded(child: Placeholder()),
-                      //     ],
-                      //   ),
-                      // ),
-                      // Project Section
+                      // About Me Section
                       MySectionPadding(
                         key: aboutMeSectionKey,
                         width: width,
@@ -176,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
 
-                      //// Additional Section
+                      //// Certificate Section
                       SizedBox(
                         key: certificationsSectionKey,
                         height: widget.screenHeight.clamp(

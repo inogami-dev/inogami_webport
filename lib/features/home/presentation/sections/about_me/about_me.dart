@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/education_card.dart';
 import 'package:my_portfolio/core/widgets/floating_animation.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/left_side_contents.dart';
@@ -34,6 +35,8 @@ class MyAboutMeSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 16,
               children: [
+                MyText(text: "Education"),
+
                 EducationCard(
                   width: width,
                   height: height,

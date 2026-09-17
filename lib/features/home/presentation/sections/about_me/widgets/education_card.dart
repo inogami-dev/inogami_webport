@@ -55,7 +55,10 @@ class EducationCard extends StatelessWidget {
               //   // fontFamily: "Poppins",
               //   fontWeight: FontWeight.w600,
               // ),
-              child: MyAnimatedText(text: achievement),
+              child: MyAnimatedText(
+                text: achievement,
+                fontWeight: FontWeight.w600,
+              ),
             ),
         ],
       ),

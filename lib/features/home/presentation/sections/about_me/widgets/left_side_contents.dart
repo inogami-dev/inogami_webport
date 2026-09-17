@@ -18,7 +18,7 @@ class AboutMeLeftSideContent extends StatelessWidget {
     Widget contents = Container(
       width: leftSideContents,
       // height: height,
-      padding: EdgeInsets.only(top: 8, right: 16, bottom: 16),
+      padding: EdgeInsets.only(top: 8, right: 32, bottom: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
