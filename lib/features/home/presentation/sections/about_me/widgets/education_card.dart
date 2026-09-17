@@ -4,16 +4,19 @@ import 'package:my_portfolio/core/widgets/text.dart';
 
 class EducationCard extends StatelessWidget {
   final double width;
-  final double height;
+  // final double height;
+  final int cardEntryNumber; // 1 for latest, 2 for previous, etc.
 
   final String course;
   final String school;
   final String year;
   final List<String> achievements;
+
   const EducationCard({
     super.key,
     required this.width,
-    required this.height,
+    // required this.height,
+    this.cardEntryNumber = 1, // Defaults to 1 (full size)
     required this.course,
     required this.school,
     required this.year,
@@ -22,14 +25,30 @@ class EducationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myColorSheme = Theme.of(context).colorScheme;
+    final myColorScheme = Theme.of(context).colorScheme;
+
+    // Calculate scale: each step down scales by 10%
+    final double scale = (1.0 - (cardEntryNumber - 1) * 0.10).clamp(0.75, 1.0);
+    final bool isLatest = cardEntryNumber == 1;
 
     return Container(
-      width: width * 0.3,
-      padding: EdgeInsets.fromLTRB(16, 8, 16, 12),
+      // Proportionally shrink card width
+      width: (width * 0.3) * scale,
+      padding: EdgeInsets.fromLTRB(
+        16 * scale,
+        8 * scale,
+        16 * scale,
+        12 * scale,
+      ),
       decoration: BoxDecoration(
-        color: myColorSheme.surfaceContainerHigh,
-        borderRadius: BorderRadius.circular(8),
+        color: isLatest
+            ? myColorScheme.surfaceContainerHigh
+            : myColorScheme
+                  .surfaceContainer, // Slightly lower contrast for older cards
+        borderRadius: BorderRadius.circular(8 * scale),
+        // border: isLatest
+        //     ? Border.all(color: myColorScheme.primary.withValues(alpha: 0.3))
+        //     : null,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,26 +56,27 @@ class EducationCard extends StatelessWidget {
         children: [
           MyText(
             text: course,
-            fontSize: kDefaultFontSize + 4,
+            fontSize: (kDefaultFontSize + 3) * scale,
             fontWeight: FontWeight.w600,
             fontFamily: "Poppins",
           ),
-          FittedBox(child: MyText(text: school)),
           FittedBox(
-            child: MyText(text: year, fontSize: kDefaultFontSize - 2),
+            child: MyText(
+              text: school,
+              fontSize: (kDefaultFontSize - 1) * scale,
+            ),
           ),
-          SizedBox(height: 8),
+          FittedBox(
+            child: MyText(text: year, fontSize: (kDefaultFontSize - 3) * scale),
+          ),
+          SizedBox(height: 8 * scale),
 
           for (var achievement in achievements)
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              // child: MyText(
-              //   text: achievement,
-              //   // fontFamily: "Poppins",
-              //   fontWeight: FontWeight.w600,
-              // ),
+              padding: EdgeInsets.symmetric(horizontal: 24 * scale),
               child: MyAnimatedText(
                 text: achievement,
+                fontSize: (kDefaultFontSize - 0.8) * scale,
                 fontWeight: FontWeight.w600,
               ),
             ),

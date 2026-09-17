@@ -29,7 +29,8 @@ class MyAboutMeSection extends StatelessWidget {
           ),
 
           // Right Side Contents
-          Expanded(
+          SizedBox(
+            width: width / 3,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +40,7 @@ class MyAboutMeSection extends StatelessWidget {
 
                 EducationCard(
                   width: width,
-                  height: height,
+                  // height: height,
                   course: 'BS Information Technology',
                   school: 'UM Tagum College',
                   year: '2022-2027',
@@ -49,8 +50,9 @@ class MyAboutMeSection extends StatelessWidget {
                   ],
                 ),
                 EducationCard(
+                  cardEntryNumber: 2,
                   width: width,
-                  height: height,
+                  // height: height,
                   course: 'Computer System Servicing (CSS)',
                   school: 'Lorenzo S. Sarmiento Sr. NHS',
                   year: '2020-2022',
@@ -62,6 +64,7 @@ class MyAboutMeSection extends StatelessWidget {
               ],
             ),
           ),
+          Expanded(child: Container(color: Colors.amber)),
         ],
       ),
     );

@@ -57,7 +57,7 @@ class MyProjectsSection extends StatelessWidget {
         "Currently Supports 4 Roles: Admin, Social Service, Medical Services, Home Life",
       ],
       notableProblemsEncountered: [
-        "The GPS module used in the WanderHuman device has issues in the accuracy of its coordinates when: near a wall, something is covering above, or in an enclosed space. So it will give false coordinates, making the person wearing the device flickering a bit far from its exact location in the WanderHuman App.",
+        "The GPS module used in the WanderHuman device has issues in the accuracy of its coordinates when: near a wall, something is covering above, or in an enclosed space. So it will give false coordinates, making the person wearing the device flicker a bit far from its exact location in the WanderHuman App.",
       ],
       notableSolutions: [
         "Added a custom filtering algorithm that stores N location then calculates where the data provided by the WanderHuman device is false or true position where the patient currently is. The algorithm works by identifying which data seems too far for the patient to move in an amount of time.",

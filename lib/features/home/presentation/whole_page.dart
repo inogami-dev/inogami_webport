@@ -101,12 +101,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
 
                       Padding(
-                        // padding: const EdgeInsets.only(top: 156, bottom: 80),
-                        padding: EdgeInsets.zero,
+                        padding: const EdgeInsets.only(top: 32, bottom: 4),
+                        // padding: EdgeInsets.zero,
                         child: Column(
-                          spacing: 16,
+                          spacing: 12,
                           children: [
-                            MyText(text: "My Technology Stack"),
+                            MyText(
+                              text: "My Technology Stack".toUpperCase(),
+                              color: myColorScheme.outlineVariant,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w600,
+                            ),
                             MyImageMarquee(
                               height: 70,
                               itemWidth: 70,
@@ -125,6 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 "assets/images/logo/riverpod_logo.png",
                                 "assets/images/logo/sqlite_logo.png",
                                 "assets/images/logo/vscode_logo.png",
+                                "assets/images/placeholder_app_icon.png",
                               ],
                               onTap: (index, assetPath) {
                                 debugPrint('Clicked project image: $assetPath');
