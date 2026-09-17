@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/education_card.dart';
 
-class MiddleContent extends StatelessWidget {
-  const MiddleContent({super.key, required this.width});
+class AboutMeMiddleContent extends StatelessWidget {
+  const AboutMeMiddleContent({super.key, required this.width});
 
   final double width;
 

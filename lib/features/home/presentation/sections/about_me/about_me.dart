@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/current_endeavor_card.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/left_side_contents.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/middle_content.dart';
 
@@ -27,8 +29,34 @@ class MyAboutMeSection extends StatelessWidget {
           ),
 
           // Middle Contents
-          MiddleContent(width: width),
-          Expanded(child: Container(color: Colors.amber)),
+          AboutMeMiddleContent(width: width),
+          SizedBox(width: 16),
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 16,
+                children: [
+                  MyText(text: "Current Endeavors"),
+                  CurrentEndeavorCard(
+                    width: width,
+                    title: "Temp 1",
+                    description:
+                        "knadkn kwjdbkajd wdkjabdjk wkknadkn kwjdbkajd wdkjabdjk wkakd wdaakd wdknknadkn kwjdbkajd wdkjabdjk wkakd wdaadkn kwjdbkajd wdkjabdjk wkakd wdaknadkn kwjdbkajd wdkjabdjk wkakd wdaa",
+                  ),
+                  CurrentEndeavorCard(
+                    width: width,
+                    cardEntryNumber: 2,
+                    title: "Temp 2",
+                    description:
+                        "mnBDmna d man dmw nkna dkn kwjdbkajd wdkjabdjk wkakd wdakn adkn kwjdbkajd wdkjabdjk wkakd wdadwdand mnwd adn amknadkn kwjdbkajd wdkjabdjk wkakd wdad awmd amndbad",
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

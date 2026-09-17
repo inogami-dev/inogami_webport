@@ -2,25 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 
-class EducationCard extends StatelessWidget {
+class CurrentEndeavorCard extends StatelessWidget {
   final double width;
   // final double height;
   final int cardEntryNumber; // 1 for latest, 2 for previous, etc.
 
-  final String course;
-  final String school;
-  final String year;
-  final List<String> achievements;
+  final String title;
+  final String description;
 
-  const EducationCard({
+  const CurrentEndeavorCard({
     super.key,
     required this.width,
     // required this.height,
     this.cardEntryNumber = 1, // Defaults to 1 (full size)
-    required this.course,
-    required this.school,
-    required this.year,
-    required this.achievements,
+    required this.title,
+    required this.description,
   });
 
   @override
@@ -28,7 +24,7 @@ class EducationCard extends StatelessWidget {
     final myColorScheme = Theme.of(context).colorScheme;
 
     // Calculate scale: each step down scales by 10%
-    final double scale = (1.0 - (cardEntryNumber - 1) * 0.10).clamp(0.75, 1.0);
+    final double scale = (1.0 - (cardEntryNumber - 1) * 0.05).clamp(0.75, 1.0);
     final bool isLatest = cardEntryNumber == 1;
 
     return Container(
@@ -41,6 +37,7 @@ class EducationCard extends StatelessWidget {
         12 * scale,
       ),
       decoration: BoxDecoration(
+        // color: myColorScheme.surfaceContainerHigh,
         color: isLatest
             ? myColorScheme.surfaceContainerHigh
             : myColorScheme
@@ -53,34 +50,19 @@ class EducationCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 8,
         children: [
           MyText(
-            text: course,
+            text: title,
             fontSize: (kDefaultFontSize + 3) * scale,
             fontWeight: FontWeight.w600,
             fontFamily: "Poppins",
-            textOverFlow: TextOverflow.ellipsis,
           ),
-          FittedBox(
-            child: MyText(
-              text: school,
-              fontSize: (kDefaultFontSize - 1) * scale,
-            ),
+          MyText(
+            text: description,
+            fontSize: (kDefaultFontSize - 1) * scale,
+            maxLines: 16,
           ),
-          FittedBox(
-            child: MyText(text: year, fontSize: (kDefaultFontSize - 3) * scale),
-          ),
-          SizedBox(height: 8 * scale),
-
-          for (var achievement in achievements)
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24 * scale),
-              child: MyAnimatedText(
-                text: achievement,
-                fontSize: (kDefaultFontSize - 0.8) * scale,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
         ],
       ),
     );
