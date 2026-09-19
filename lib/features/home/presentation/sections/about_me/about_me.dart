@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/current_endeavor_card.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/left_side_contents.dart';
-import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/middle_content.dart';
+import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/middle_contents.dart';
 
 class MyAboutMeSection extends StatelessWidget {
   final double width;
@@ -18,9 +18,22 @@ class MyAboutMeSection extends StatelessWidget {
     final myColorScheme = Theme.of(context).colorScheme;
     final double leftSideContents = width * 0.32;
 
+    // --- Dynamic Optical Center Top Padding ---
+    final double estimatedContentHeight = width > 1200 ? 430.0 : 470.0;
+    final double availableExtraSpace = height - estimatedContentHeight;
+    final double dynamicTopPadding = (availableExtraSpace * 0.40).clamp(
+      16.0,
+      90.0,
+    );
+
     return Padding(
-      padding: const EdgeInsets.only(left: 48, right: 48),
+      padding: EdgeInsets.only(
+        left: 48,
+        right: 48,
+        top: dynamicTopPadding,
+      ), // add top padding here
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Left Side Contents
           AboutMeLeftSideContent(
@@ -29,13 +42,13 @@ class MyAboutMeSection extends StatelessWidget {
           ),
 
           // Middle Contents
-          AboutMeMiddleContent(width: width),
+          AboutMeMiddleContent(width: width, height: height),
           SizedBox(width: 16),
 
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 16,
                 children: [

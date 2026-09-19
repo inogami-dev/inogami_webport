@@ -6,5 +6,5 @@ class MySizeConstants {
   static const double deskTopScreenMinHeight = 420;
 
   /// value = 530
-  static const double aboutMeSideContentMinHeight = 530;
+  static const double aboutMeSideContentMinHeight = 545;
 }

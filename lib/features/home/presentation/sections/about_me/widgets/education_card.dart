@@ -35,10 +35,10 @@ class EducationCard extends StatelessWidget {
       // Proportionally shrink card width
       width: (width * 0.3) * scale,
       padding: EdgeInsets.fromLTRB(
-        16 * scale,
-        8 * scale,
-        16 * scale,
+        20 * scale,
         12 * scale,
+        20 * scale,
+        16 * scale,
       ),
       decoration: BoxDecoration(
         color: isLatest

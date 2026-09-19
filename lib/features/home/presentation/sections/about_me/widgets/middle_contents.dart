@@ -3,16 +3,21 @@ import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/education_card.dart';
 
 class AboutMeMiddleContent extends StatelessWidget {
-  const AboutMeMiddleContent({super.key, required this.width});
-
   final double width;
+  final double height;
+
+  const AboutMeMiddleContent({
+    super.key,
+    required this.width,
+    required this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    SizedBox sizedBox = SizedBox(
       width: width / 3,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 16,
         children: [
@@ -41,5 +46,11 @@ class AboutMeMiddleContent extends StatelessWidget {
         ],
       ),
     );
+
+    if (height < 425) {
+      return SingleChildScrollView(child: sizedBox);
+    } else {
+      return sizedBox;
+    }
   }
 }
