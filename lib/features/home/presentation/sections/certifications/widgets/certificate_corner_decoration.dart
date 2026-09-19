@@ -20,7 +20,7 @@ class MyCertificateCornerDecoration extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final color = cornerColor ?? theme.colorScheme.primary;
-    const double overHang = -2;
+    const double overHang = -3;
 
     return Stack(
       // 1. Fit loose so the Stack shrink-wraps tightly to the child image

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
+import 'package:my_portfolio/core/widgets/hero.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/certifications/widgets/certificate_corner_decoration.dart';
+import 'package:my_portfolio/features/home/presentation/sections/certifications/widgets/certificate_dialog.dart';
 
 class MyCertificateSection extends StatefulWidget {
   final double width;
@@ -78,7 +80,7 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
           // Header showing range: e.g. "Showing 1-6 of 24"
           MyText(
             text:
-                "Certificates ($startItemNumber-$endItemNumber of ${_allCertificates.length})",
+                "Certificates ( $startItemNumber-$endItemNumber of ${_allCertificates.length} )",
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -86,59 +88,74 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
 
           // Grid showing only the 6 items for this page
           Expanded(
-            child: GridView.builder(
-              itemCount: currentItems.length,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, // 3 columns
-                mainAxisExtent:
-                    widget.height * 0.33, // Exact height of each card in pixels
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-              ),
-              itemBuilder: (context, index) {
-                // return Container(
-                //   decoration: BoxDecoration(
-                //     color: myColorScheme.surfaceContainerHigh,
-                //     borderRadius: BorderRadius.circular(12),
-                //     border: Border.all(
-                //       color: myColorScheme.outlineVariant.withValues(
-                //         alpha: 0.3,
-                //       ),
-                //     ),
-                //   ),
-                //   padding: const EdgeInsets.all(16),
-                //   child: MyCertificateCornerDecoration(
-                //     child: Image.asset(currentItems[index]),
-                //   ),
-                // );
-                return Container(
-                  decoration: BoxDecoration(
-                    color: myColorScheme.surfaceContainerHigh,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: myColorScheme.outlineVariant.withValues(
-                        alpha: 0.3,
-                      ),
-                    ),
-                  ),
-                  padding: const EdgeInsets.all(16),
-                  child: Center(
-                    child: MyCertificateCornerDecoration(
-                      cornerSize: 24,
-                      cornerColor: myColorScheme.primary,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: Image.asset(
-                          currentItems[index],
-                          // Ensures image touches the corners
-                          fit: BoxFit.cover,
+            child: Center(
+              child: GridView.builder(
+                shrinkWrap: true,
+                itemCount: currentItems.length,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3, // 3 columns
+                  mainAxisExtent:
+                      widget.height *
+                      0.33, // Exact height of each card in pixels
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                ),
+                itemBuilder: (context, index) {
+                  // return Container(
+                  //   decoration: BoxDecoration(
+                  //     color: myColorScheme.surfaceContainerHigh,
+                  //     borderRadius: BorderRadius.circular(12),
+                  //     border: Border.all(
+                  //       color: myColorScheme.outlineVariant.withValues(
+                  //         alpha: 0.3,
+                  //       ),
+                  //     ),
+                  //   ),
+                  //   padding: const EdgeInsets.all(16),
+                  //   child: MyCertificateCornerDecoration(
+                  //     child: Image.asset(currentItems[index]),
+                  //   ),
+                  // );
+                  return InkWell(
+                    onTap: () {
+                      showMyCertificateModal(
+                        context: context,
+                        certificateImage: currentItems[index],
+                      );
+                    },
+                    child: MyHero(
+                      tag: currentItems[index],
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: myColorScheme.surfaceContainerHigh,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: myColorScheme.outlineVariant.withValues(
+                              alpha: 0.3,
+                            ),
+                          ),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Center(
+                          child: MyCertificateCornerDecoration(
+                            cornerSize: 24,
+                            cornerColor: myColorScheme.primary,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: Image.asset(
+                                currentItems[index],
+                                // Ensures image touches the corners
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
 
