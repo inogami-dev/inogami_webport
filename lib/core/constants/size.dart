@@ -7,4 +7,7 @@ class MySizeConstants {
 
   /// value = 530
   static const double aboutMeSideContentMinHeight = 545;
+
+  /// value = 48
+  static const double genericHorizontalPadding = 48;
 }

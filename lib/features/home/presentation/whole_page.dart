@@ -184,14 +184,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           double.infinity,
                         ),
                         topPadding: navBarHeight + 24,
-                        child: Container(
-                          color: Colors.green,
-                          child: MyAboutMeSection(
-                            width: width,
-                            height: widget.screenHeight.clamp(
-                              minHeight,
-                              double.infinity,
-                            ),
+                        child: MyAboutMeSection(
+                          width: width,
+                          height: widget.screenHeight.clamp(
+                            minHeight,
+                            double.infinity,
                           ),
                         ),
                       ),

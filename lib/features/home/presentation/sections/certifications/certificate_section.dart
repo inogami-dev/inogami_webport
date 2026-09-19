@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 
 class MyCertificateSection extends StatefulWidget {
@@ -22,6 +23,9 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
 
   // Your full list of items (e.g., 24 items)
   final List<String> _allCertificates = [
+    "assets/images/certificates/Hour of Code - AI Ready ASEAN.png",
+    "assets/images/certificates/Hour of Code - Music Lab.jpg",
+    "assets/images/certificates/Hour of Code - Computer Science.jpg",
     "assets/images/logo/dart_logo.png",
     "assets/images/logo/flutter_logo.png",
     "assets/images/logo/firebase_logo.png",
@@ -64,8 +68,10 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
     return Container(
       width: widget.width,
       height: widget.height,
-      color: Colors.amber,
-      padding: const EdgeInsets.symmetric(horizontal: 48),
+      // color: Colors.amber,
+      padding: const EdgeInsets.symmetric(
+        horizontal: MySizeConstants.genericHorizontalPadding,
+      ),
       child: Column(
         children: [
           // Header showing range: e.g. "Showing 1-6 of 24"

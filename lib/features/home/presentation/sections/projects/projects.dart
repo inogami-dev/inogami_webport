@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/features/home/data/model/project_model.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_card.dart';
@@ -23,7 +24,11 @@ class MyProjectsSection extends StatelessWidget {
       width: width,
       height: screenHeight,
       // color: Colors.orange,
-      padding: const EdgeInsets.only(left: 32, right: 32, bottom: 16),
+      padding: const EdgeInsets.only(
+        left: MySizeConstants.genericHorizontalPadding,
+        right: MySizeConstants.genericHorizontalPadding,
+        bottom: 16,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: _myProjects.map((project) {

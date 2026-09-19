@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/current_endeavor_card.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/left_side_contents.dart';
@@ -28,8 +29,8 @@ class MyAboutMeSection extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(
-        left: 48,
-        right: 48,
+        left: MySizeConstants.genericHorizontalPadding,
+        right: MySizeConstants.genericHorizontalPadding,
         top: dynamicTopPadding,
       ), // add top padding here
       child: Row(
