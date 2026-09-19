@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/presentation/sections/certifications/widgets/certificate_corner_decoration.dart';
 
 class MyCertificateSection extends StatefulWidget {
   final double width;
@@ -96,6 +97,21 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
                 crossAxisSpacing: 16,
               ),
               itemBuilder: (context, index) {
+                // return Container(
+                //   decoration: BoxDecoration(
+                //     color: myColorScheme.surfaceContainerHigh,
+                //     borderRadius: BorderRadius.circular(12),
+                //     border: Border.all(
+                //       color: myColorScheme.outlineVariant.withValues(
+                //         alpha: 0.3,
+                //       ),
+                //     ),
+                //   ),
+                //   padding: const EdgeInsets.all(16),
+                //   child: MyCertificateCornerDecoration(
+                //     child: Image.asset(currentItems[index]),
+                //   ),
+                // );
                 return Container(
                   decoration: BoxDecoration(
                     color: myColorScheme.surfaceContainerHigh,
@@ -107,7 +123,20 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
                     ),
                   ),
                   padding: const EdgeInsets.all(16),
-                  child: Image.asset(currentItems[index]),
+                  child: Center(
+                    child: MyCertificateCornerDecoration(
+                      cornerSize: 24,
+                      cornerColor: myColorScheme.primary,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: Image.asset(
+                          currentItems[index],
+                          // Ensures image touches the corners
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
                 );
               },
             ),
