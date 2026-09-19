@@ -5,6 +5,7 @@ import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/image_marquee.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/about_me.dart';
+import 'package:my_portfolio/features/home/presentation/sections/certifications/certificate_section.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/navbar.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/above_the_fold.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/projects.dart';
@@ -183,37 +184,31 @@ class _MyHomePageState extends State<MyHomePage> {
                           double.infinity,
                         ),
                         topPadding: navBarHeight + 24,
-                        child: MyAboutMeSection(
-                          width: width,
-                          height: widget.screenHeight.clamp(
-                            minHeight,
-                            double.infinity,
+                        child: Container(
+                          color: Colors.green,
+                          child: MyAboutMeSection(
+                            width: width,
+                            height: widget.screenHeight.clamp(
+                              minHeight,
+                              double.infinity,
+                            ),
                           ),
                         ),
                       ),
 
                       //// Certificate Section
-                      SizedBox(
+                      MySectionPadding(
                         key: certificationsSectionKey,
+                        width: width,
                         height: widget.screenHeight.clamp(
                           minHeight,
                           double.infinity,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                Expanded(
-                                  child: Placeholder(
-                                    child: MyText(text: "CERTIFICATIONS"),
-                                  ),
-                                ),
-                                Expanded(child: Placeholder()),
-                              ],
-                            ),
-                            Expanded(child: Placeholder()),
-                          ],
+                        topPadding: navBarHeight + 24,
+                        child: MyCertificateSection(
+                          width: width,
+                          height: (widget.screenHeight - (navBarHeight + 24))
+                              .clamp(minHeight, double.infinity),
                         ),
                       ),
 

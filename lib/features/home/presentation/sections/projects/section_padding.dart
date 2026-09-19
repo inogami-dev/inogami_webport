@@ -40,10 +40,11 @@ class MySectionPadding extends StatelessWidget {
         crossAxisAlignment: contentAlignment,
         children: [
           Expanded(child: child),
-          Padding(
-            padding: EdgeInsets.only(left: 32),
-            child: linkToExtraContent,
-          ),
+          if (linkToExtraContent != null)
+            Padding(
+              padding: EdgeInsets.only(left: 32),
+              child: linkToExtraContent,
+            ),
         ],
       ),
     );

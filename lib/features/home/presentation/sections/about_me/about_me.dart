@@ -15,7 +15,7 @@ class MyAboutMeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myColorScheme = Theme.of(context).colorScheme;
+    // final myColorScheme = Theme.of(context).colorScheme;
     final double leftSideContents = width * 0.32;
 
     // --- Dynamic Optical Center Top Padding ---

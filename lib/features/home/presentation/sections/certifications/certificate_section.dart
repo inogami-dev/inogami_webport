@@ -1,0 +1,205 @@
+import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/widgets/text.dart';
+
+class MyCertificateSection extends StatefulWidget {
+  final double width;
+  final double height;
+
+  const MyCertificateSection({
+    super.key,
+    required this.width,
+    required this.height,
+  });
+
+  @override
+  State<MyCertificateSection> createState() => _MyCertificateSectionState();
+}
+
+class _MyCertificateSectionState extends State<MyCertificateSection> {
+  // 1. Current active page (0-indexed)
+  int _currentPage = 0;
+  static const int _itemsPerPage = 6;
+
+  // Your full list of items (e.g., 24 items)
+  final List<String> _allCertificates = [
+    "assets/images/logo/dart_logo.png",
+    "assets/images/logo/flutter_logo.png",
+    "assets/images/logo/firebase_logo.png",
+    "assets/images/logo/android_studio_logo.png",
+    "assets/images/logo/mapbox_logo.png",
+    "assets/images/logo/mistral_ai_logo.png",
+    "assets/images/logo/riverpod_logo.png",
+    "assets/images/logo/sqlite_logo.png",
+    "assets/images/logo/vscode_logo.png",
+    "assets/images/placeholder_app_icon.png",
+  ];
+
+  // Total pages formula: e.g. (24 / 6).ceil() = 4 pages
+  int get _totalPages => (_allCertificates.length / _itemsPerPage).ceil();
+
+  // 2. Safe slice of items for the active page
+  List<String> get _currentPageItems {
+    final int startIndex = _currentPage * _itemsPerPage;
+    final int endIndex = (startIndex + _itemsPerPage).clamp(
+      0,
+      _allCertificates.length,
+    );
+    return _allCertificates.sublist(startIndex, endIndex);
+  }
+
+  void _goToPage(int pageIndex) {
+    if (pageIndex >= 0 && pageIndex < _totalPages) {
+      setState(() => _currentPage = pageIndex);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final myColorScheme = Theme.of(context).colorScheme;
+    final currentItems = _currentPageItems;
+
+    final int startItemNumber = (_currentPage * _itemsPerPage) + 1;
+    final int endItemNumber = (startItemNumber + currentItems.length - 1);
+
+    return Container(
+      width: widget.width,
+      height: widget.height,
+      color: Colors.amber,
+      padding: const EdgeInsets.symmetric(horizontal: 48),
+      child: Column(
+        children: [
+          // Header showing range: e.g. "Showing 1-6 of 24"
+          MyText(
+            text:
+                "Certificates ($startItemNumber-$endItemNumber of ${_allCertificates.length})",
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+          const SizedBox(height: 16),
+
+          // Grid showing only the 6 items for this page
+          Expanded(
+            child: GridView.builder(
+              itemCount: currentItems.length,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, // 3 columns
+                mainAxisExtent:
+                    widget.height * 0.33, // Exact height of each card in pixels
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+              ),
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: myColorScheme.surfaceContainerHigh,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: myColorScheme.outlineVariant.withValues(
+                        alpha: 0.3,
+                      ),
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  child: Image.asset(currentItems[index]),
+                );
+              },
+            ),
+          ),
+
+          const SizedBox(height: 8),
+
+          // Pagination Controls Bar
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Previous Button
+              IconButton(
+                onPressed: _currentPage > 0
+                    ? () => _goToPage(_currentPage - 1)
+                    : null,
+                icon: const Icon(Icons.chevron_left_rounded),
+              ),
+
+              const SizedBox(width: 8),
+
+              // Page Number Buttons [ 1 ] [ 2 ] [ 3 ] [ 4 ]
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (int i = 0; i < _totalPages; i++)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(8),
+                        onTap: () => _goToPage(i),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            color: i == _currentPage
+                                ? myColorScheme.primary
+                                : myColorScheme.surfaceContainer,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text('${i + 1}'),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+
+              // Row(
+              //   mainAxisSize: MainAxisSize.min,
+              //   children: List.generate(_totalPages, (pageIndex) {
+              //     final bool isSelected = pageIndex == _currentPage;
+              //     return Padding(
+              //       padding: const EdgeInsets.symmetric(horizontal: 4),
+              //       child: InkWell(
+              //         borderRadius: BorderRadius.circular(8),
+              //         onTap: () => _goToPage(pageIndex),
+              //         child: Container(
+              //           padding: const EdgeInsets.symmetric(
+              //             horizontal: 14,
+              //             vertical: 8,
+              //           ),
+              //           decoration: BoxDecoration(
+              //             color: isSelected
+              //                 ? myColorScheme.primary
+              //                 : myColorScheme.surfaceContainer,
+              //             borderRadius: BorderRadius.circular(8),
+              //           ),
+              //           child: Text(
+              //             '${pageIndex + 1}',
+              //             style: TextStyle(
+              //               fontWeight: FontWeight.bold,
+              //               color: isSelected
+              //                   ? myColorScheme.onPrimary
+              //                   : myColorScheme.onSurface,
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     );
+              //   }),
+              // ),
+              const SizedBox(width: 8),
+
+              // Next Button
+              IconButton(
+                onPressed: _currentPage < _totalPages - 1
+                    ? () => _goToPage(_currentPage + 1)
+                    : null,
+                icon: const Icon(Icons.chevron_right_rounded),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 24),
+        ],
+      ),
+    );
+  }
+}
