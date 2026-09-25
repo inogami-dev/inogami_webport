@@ -31,6 +31,7 @@ class MyProjectsSection extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 16,
         children: _myProjects.map((project) {
           return Expanded(
             child: MyProjectCard(

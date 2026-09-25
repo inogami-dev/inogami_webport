@@ -51,16 +51,29 @@ class AboutMeLeftSideContent extends StatelessWidget {
             maxLines: 56,
           ),
 
+          // MyTextRich(
+          //   children: [
+          //     TextSpan(
+          //       text: "Driven by a simple philosophy: ",
+          //       style: TextStyle(fontWeight: FontWeight.w600),
+          //     ),
+
+          //     TextSpan(
+          //       text:
+          //           "intuitive functionality paired with clean, elegant UI and fluid interactions.",
+          //     ),
+          //   ],
+          // ),
           MyTextRich(
             children: [
               TextSpan(
-                text: "Driven by a simple philosophy: ",
+                text: "Driven by philosophy: ",
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
 
               TextSpan(
-                text:
-                    "intuitive functionality paired with clean, elegant UI and fluid interactions.",
+                text: " Simple yet Elegant.",
+                style: TextStyle(fontStyle: FontStyle.italic),
               ),
             ],
           ),

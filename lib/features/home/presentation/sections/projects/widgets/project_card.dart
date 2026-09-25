@@ -38,20 +38,8 @@ class MyProjectCard extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        // myAlertDialogue(
-        //   context: context,
-        //   alertTitle: title,
-        //   alertContent: fullDescription,
-        //   isUsedAsInfoDialogOnly: true,
-        //   contentWidget: contentWidget,
-        //   barrierColor: myColorScheme.outlineVariant,
-        //   onApprovalPressed: () {},
-        // );
         showMyProjectDetailModal(
           context: context,
-          // title: project.title,
-          // fullDescription: project.fullDescription,
-          // techStackImages: project.techStackImages,
           project: project,
           isFullScreen: true,
           contentWidget: MyMobilePhoneFrame(
@@ -66,9 +54,8 @@ class MyProjectCard extends StatelessWidget {
         height: screenHeight,
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.all(8),
+        alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
-          // color: Colors.grey,
-          // color: myColorScheme.outlineVariant.withAlpha(156),
           color: myColorScheme.surfaceContainerHigh,
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
@@ -81,11 +68,12 @@ class MyProjectCard extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               width: widthPerProject,
               padding: EdgeInsets.only(
-                top: (isScreenLowerThanMinHeight) ? 0 : 4,
+                top: (isScreenLowerThanMinHeight) ? 0 : 16,
               ),
               alignment: Alignment.center,
               child: MyMobilePhoneFrame(
