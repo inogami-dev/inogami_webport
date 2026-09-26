@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
@@ -183,6 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: widget.screenHeight.clamp(
                           minHeight,
                           double.infinity,
+                          // height - navBarHeight - 24,
                         ),
                         topPadding: navBarHeight + 24,
                         child: MyAboutMeSection(

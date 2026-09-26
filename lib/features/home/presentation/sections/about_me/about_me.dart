@@ -41,6 +41,7 @@ class MyAboutMeSection extends StatelessWidget {
             leftSideContents: leftSideContents,
             height: height,
           ),
+          SizedBox(width: 16),
 
           // Middle Contents
           AboutMeMiddleContent(width: width, height: height),
