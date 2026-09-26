@@ -124,7 +124,7 @@ class MyProjectsSection extends StatelessWidget {
         "assets/images/logo/flutter_logo.png",
         "assets/images/logo/dart_logo.png",
         "assets/images/logo/sqlite_logo.png",
-        "assets/images/logo/riverpod_logo.png",
+        // "assets/images/logo/riverpod_logo.png",
         "assets/images/logo/vscode_logo.png",
         "assets/images/logo/android_studio_logo.png",
       ],

@@ -26,9 +26,22 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
 
   // Your full list of items (e.g., 24 items)
   final List<String> _allCertificates = [
-    "assets/images/certificates/Hour of Code - AI Ready ASEAN.png",
-    "assets/images/certificates/Hour of Code - Music Lab.jpg",
-    "assets/images/certificates/Hour of Code - Computer Science.jpg",
+    "assets/images/certificates/Startup Appearance During The Tagum Startup Week 2026.png",
+    "assets/images/certificates/Tagum Startup Week 2026 Day 2.png",
+    "assets/images/certificates/Hackathon Challenge 2026.jpg",
+    "assets/images/certificates/Information Technology Specialist - Database Certification Exam.png",
+    "assets/images/certificates/Academic Award - Dean's Lister.png",
+    "assets/images/certificates/Innovation Connect 2026.jpg",
+    "assets/images/certificates/Design Thinking and Mobile App Wireframing.png",
+    "assets/images/certificates/Cebu Educational Tour 2025.jpg",
+    "assets/images/certificates/CODES Officers Team Building and Evaluation 2025.jpg",
+    "assets/images/certificates/DCE Academic and Sports Festival.jpg",
+    "assets/images/certificates/Web 3 Seminar.jpg",
+    "assets/images/certificates/UI and UX Design.png",
+    "assets/images/certificates/Understanding MVC Architecture.png",
+    "assets/images/certificates/Software Development and Design Thinking.png",
+    "assets/images/certificates/Startup 100 Introduction to Startups.png",
+    "assets/images/certificates/Officer Service Appreciation.png",
     // "assets/images/logo/dart_logo.png",
     // "assets/images/logo/flutter_logo.png",
     // "assets/images/logo/firebase_logo.png",
@@ -39,6 +52,9 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
     // "assets/images/logo/sqlite_logo.png",
     // "assets/images/logo/vscode_logo.png",
     // "assets/images/placeholder_app_icon.png",
+    "assets/images/certificates/Hour of Code - AI Ready ASEAN.png",
+    "assets/images/certificates/Hour of Code - Music Lab.jpg",
+    "assets/images/certificates/Hour of Code - Computer Science.jpg",
     "assets/images/certificates/AI for Beginners.png",
     "assets/images/certificates/Amplify Your Impact.png",
     "assets/images/certificates/Blockchain for Digital Workforce.png",
@@ -46,7 +62,6 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
     "assets/images/certificates/Canva EskweLive.png",
     "assets/images/certificates/Cybercrime & Cybersecurity Awareness.png",
     "assets/images/certificates/Cybersecurity Basics.png",
-    "assets/images/certificates/Design Thinking and Mobile App Wireframing.png",
     "assets/images/certificates/Digital Citizenship Training.png",
     "assets/images/certificates/Empowering Freelancers Leveraging AI for Success.png",
     "assets/images/certificates/From Code to Intelligence.png",
@@ -56,15 +71,7 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
     "assets/images/certificates/Internet of Things in Smart Citites.png",
     "assets/images/certificates/IoT & LoRaWAN Workshop Series.png",
     "assets/images/certificates/Revolutionizing Teaching and Learning Efficiency with AI-Powered Tools.png",
-    "assets/images/certificates/Software Development and Design Thinking.png",
-    "assets/images/certificates/Startup 100 Introduction to Startups.png",
-    "assets/images/certificates/UI and UX Design.png",
-    "assets/images/certificates/Understanding MVC Architecture.png",
-    // "",
-    // "",
-    // "",
   ];
-
   // Total pages formula: e.g. (24 / 6).ceil() = 4 pages
   int get _totalPages => (_allCertificates.length / _itemsPerPage).ceil();
 
@@ -101,6 +108,8 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
       ),
       child: Column(
         children: [
+          const SizedBox(height: 12),
+
           // Header showing range: e.g. "Showing 1-6 of 24"
           MyText(
             text:
@@ -108,7 +117,7 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
 
           // Grid showing only the 6 items for this page
           Expanded(
@@ -126,21 +135,6 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
                   crossAxisSpacing: 16,
                 ),
                 itemBuilder: (context, index) {
-                  // return Container(
-                  //   decoration: BoxDecoration(
-                  //     color: myColorScheme.surfaceContainerHigh,
-                  //     borderRadius: BorderRadius.circular(12),
-                  //     border: Border.all(
-                  //       color: myColorScheme.outlineVariant.withValues(
-                  //         alpha: 0.3,
-                  //       ),
-                  //     ),
-                  //   ),
-                  //   padding: const EdgeInsets.all(16),
-                  //   child: MyCertificateCornerDecoration(
-                  //     child: Image.asset(currentItems[index]),
-                  //   ),
-                  // );
                   return InkWell(
                     onTap: () {
                       showMyCertificateModal(
