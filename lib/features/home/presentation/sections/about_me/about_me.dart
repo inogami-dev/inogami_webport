@@ -22,9 +22,9 @@ class MyAboutMeSection extends StatelessWidget {
     // --- Dynamic Optical Center Top Padding ---
     final double estimatedContentHeight = width > 1200 ? 430.0 : 470.0;
     final double availableExtraSpace = height - estimatedContentHeight;
-    final double dynamicTopPadding = (availableExtraSpace * 0.40).clamp(
+    final double dynamicTopPadding = (availableExtraSpace * 0.50).clamp(
       16.0,
-      90.0,
+      120.0,
     );
 
     return Padding(

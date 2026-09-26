@@ -11,6 +11,7 @@ class MyText extends StatelessWidget {
   final double? letterSpacing;
   final double? lineHeight;
   final FontStyle fontStyle;
+  final TextAlign? textAlign;
 
   const MyText({
     super.key,
@@ -24,6 +25,7 @@ class MyText extends StatelessWidget {
     this.letterSpacing,
     this.lineHeight,
     this.fontStyle = FontStyle.normal,
+    this.textAlign,
   });
 
   @override
@@ -35,6 +37,7 @@ class MyText extends StatelessWidget {
       text,
       softWrap: (maxLines > 1) ? true : false,
       maxLines: maxLines,
+      textAlign: textAlign,
       style: TextStyle(
         fontSize: fontSize,
         // wordSpacing: 0.5,

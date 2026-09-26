@@ -21,7 +21,7 @@ class AboutMeMiddleContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 16,
         children: [
-          MyText(text: "Education"),
+          const MyText(text: "Education"),
 
           EducationCard(
             width: width,

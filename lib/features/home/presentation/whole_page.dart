@@ -6,6 +6,7 @@ import 'package:my_portfolio/core/widgets/image_marquee.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/about_me.dart';
 import 'package:my_portfolio/features/home/presentation/sections/certifications/certificate_section.dart';
+import 'package:my_portfolio/features/home/presentation/sections/footer/footer_section.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/navbar.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/above_the_fold.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/projects.dart';
@@ -209,28 +210,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
 
-                      // Footer
-                      SizedBox(
+                      // Footer/Contact Section
+                      MySectionPadding(
                         key: contactSectionKey,
+                        width: width,
                         height: widget.screenHeight.clamp(
                           minHeight,
                           double.infinity,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                Expanded(
-                                  child: Placeholder(
-                                    child: MyText(text: "Footer"),
-                                  ),
-                                ),
-                                Expanded(child: Placeholder()),
-                              ],
-                            ),
-                            Expanded(child: Placeholder()),
-                          ],
+                        topPadding: navBarHeight + 24,
+                        child: MyFooterSection(
+                          width: width,
+                          height: (widget.screenHeight - (navBarHeight + 24))
+                              .clamp(minHeight, double.infinity),
                         ),
                       ),
                     ],
