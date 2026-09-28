@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/widgets/button.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/data/repository/link_opener.dart';
 
 class MyFooterSection extends StatelessWidget {
   final double width;
@@ -35,7 +36,7 @@ class MyFooterSection extends StatelessWidget {
             Spacer(),
 
             const MyText(
-              text: "Like what you see?\nHire me!",
+              text: "Like what you see?/nHire me!",
               fontSize: kDefaultFontSize + 24,
               fontFamily: "Poppins",
               textAlign: TextAlign.center,
@@ -79,7 +80,7 @@ class MyFooterSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: 8,
                     children: [
-                      MyText(text: "Contact Me On"),
+                      MyText(text: "Contact Me On", fontFamily: "Poppins"),
                       linksLayoutChanger(
                         isLargeScreen:
                             (height > MySizeConstants.deskTopScreenMinHeight),
@@ -89,7 +90,7 @@ class MyFooterSection extends StatelessWidget {
                             text: "dhetterjan23@gmail.com",
                           ),
                           account(
-                            icon: Icon(Icons.phone_android_rounded, size: 24),
+                            icon: Icon(Icons.phone, size: 24),
                             text: "09876543210",
                           ),
                         ],
@@ -100,18 +101,28 @@ class MyFooterSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: 8,
                     children: [
-                      MyText(text: "Follow Me On"),
+                      MyText(text: "Follow Me On", fontFamily: "Poppins"),
                       linksLayoutChanger(
                         isLargeScreen:
                             (height > MySizeConstants.deskTopScreenMinHeight),
                         children: [
                           account(
-                            icon: Icon(Icons.email, size: 24),
-                            text: "dhetterjan23@gmail.com",
+                            icon: Image.asset(
+                              "assets/images/logo/github_logo.png",
+                              width: 24,
+                              // height: 24,
+                            ),
+                            text: "inogami-dev",
+                            url: "https://github.com/inogami-dev",
                           ),
                           account(
-                            icon: Icon(Icons.phone_android_rounded, size: 24),
-                            text: "09876543210",
+                            icon: Image.asset(
+                              "assets/images/logo/linked_in_logo.png",
+                              width: 24,
+                              // height: 24,
+                            ),
+                            text: "LinkedIn",
+                            url: "https://www.linkedin.com/in/lino-gamil-iii/",
                           ),
                         ],
                       ),
@@ -150,11 +161,15 @@ class MyFooterSection extends StatelessWidget {
     );
   }
 
-  Tooltip account({required Icon icon, required String text}) {
+  Tooltip account({required Widget icon, required String text, String? url}) {
     return Tooltip(
       message: (height > MySizeConstants.deskTopScreenMinHeight) ? "" : text,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () async {
+          if (url == null) return;
+
+          await openLink(url);
+        },
         child: Row(
           spacing: 8,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -167,18 +182,21 @@ class MyFooterSection extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget linksLayoutChanger({
-  required bool isLargeScreen,
-  required List<Widget> children,
-}) {
-  if (isLargeScreen) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: children,
-    );
-  } else {
-    return Row(mainAxisAlignment: MainAxisAlignment.start, children: children);
+  Widget linksLayoutChanger({
+    required bool isLargeScreen,
+    required List<Widget> children,
+  }) {
+    if (isLargeScreen) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: children,
+      );
+    } else {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: children,
+      );
+    }
   }
 }

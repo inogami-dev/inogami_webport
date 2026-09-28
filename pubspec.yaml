@@ -12,6 +12,7 @@ dependencies:
   flutter_animate: ^4.5.2
   hugeicons: ^1.1.7
   image_picker: ^1.2.3
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
