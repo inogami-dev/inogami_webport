@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/image_marquee.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/data/repository/link_opener.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/about_me.dart';
 import 'package:my_portfolio/features/home/presentation/sections/certifications/certificate_section.dart';
 import 'package:my_portfolio/features/home/presentation/sections/footer/footer_section.dart';
@@ -155,12 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         // color: Colors.green,
                         linkToExtraContent: TextButton(
                           onPressed: () {
-                            // showMyProjectDetailModal(
-                            //   context: context,
-                            //   // title: "More Projects?",
-                            //   // fullDescription: "kjandk akjdkad wajndkaw",
-                            //   isFullScreen: true,
-                            // );
+                            openLink("https://github.com/inogami-dev");
                           },
                           child: MyText(
                             text:
