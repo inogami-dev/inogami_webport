@@ -6,7 +6,7 @@ Future<void> sendEmail({
   String subject = '',
   String body = '',
 }) async {
-  // 1. Standard mailto URI
+  // Standard mailto URI
   final Uri mailtoUri = Uri(
     scheme: 'mailto',
     path: email,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/widgets/button.dart';
+import 'package:my_portfolio/core/widgets/line.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/data/repository/copy_to_clipboard.dart';
+import 'package:my_portfolio/features/home/data/repository/download_resume.dart';
 import 'package:my_portfolio/features/home/data/repository/email_to.dart';
 import 'package:my_portfolio/features/home/data/repository/link_opener.dart';
 
@@ -16,11 +18,15 @@ class MyFooterSection extends StatelessWidget {
     final myColorScheme = Theme.of(context).colorScheme;
     // final double dynamicVerticalPadding = height;
 
-    // 1. Large gaps scale with height (clamps between 16px on small screens and 48px on large screens)
+    // Usable for hiding or showing something based on the current screen size.
+    final bool isAboveMinHeight =
+        height > MySizeConstants.deskTopScreenMinHeight;
+
+    // Large gaps scale with height (clamps between 16px on small screens and 48px on large screens)
     final double largeSpacing = (height * 0.056).clamp(16.0, 56.0);
-    // 2. Medium gaps (clamps between 12px and 24px)
-    final double mediumSpacing = (height * 0.03).clamp(12.0, 24.0);
-    // 3. Small gaps (clamps between 8px and 16px)
+    // // Medium gaps (clamps between 12px and 24px)
+    // final double mediumSpacing = (height * 0.03).clamp(12.0, 24.0);
+    // Small gaps (clamps between 8px and 16px)
     final double smallSpacing = (height * 0.015).clamp(8.0, 16.0);
 
     return Container(
@@ -37,7 +43,7 @@ class MyFooterSection extends StatelessWidget {
           Spacer(),
 
           const MyText(
-            text: "Like what you see?\nHire me!",
+            text: "Let's build something great together.",
             fontSize: kDefaultFontSize + 24,
             fontFamily: "Poppins",
             textAlign: TextAlign.center,
@@ -50,9 +56,11 @@ class MyFooterSection extends StatelessWidget {
             width: width * 0.65,
             child: MyText(
               text:
-                  "Currently looking for a Mobile Developer role. kjad adbkajbwd akjbdakjbwdwa djbakdjbawkjd akjbda dkjawdbabwdkjad akdjbbakw kjbdakjbwdwa djbakdjbawkjd akjbda dkjawdbabwdkjad akdjbbakw kjbdakjbwdwa djbakdjbawkjd akjbda dkj",
-              // fontSize: kDefaultFontSize + 24,
+                  // "My greatest goal in life is to create useful apps that everyone with a smartphone can use.\nI can help you achieve your goals by helping me achieve mine.",
+                  "I am passionate about engineering mobile applications that are as reliable under the hood as they are elegant on the screen. Let's connect and turn complex ideas into seamless digital solutions.",
+              fontSize: kDefaultFontSize + 2,
               fontFamily: "Poppins",
+              lineHeight: 1.8,
               textAlign: TextAlign.center,
               maxLines: 6,
             ),
@@ -75,7 +83,8 @@ class MyFooterSection extends StatelessWidget {
             // color: Colors.grey,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 24,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: (isAboveMinHeight) ? 24 : 12,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,15 +92,15 @@ class MyFooterSection extends StatelessWidget {
                   children: [
                     MyText(text: "Contact Me On", fontFamily: "Poppins"),
                     linksLayoutChanger(
-                      isLargeScreen:
-                          (height > MySizeConstants.deskTopScreenMinHeight),
+                      isLargeScreen: (isAboveMinHeight),
                       children: [
                         account(
                           icon: Icon(Icons.email, size: 24),
-                          text: "dhetterjan23@gmail.com",
+                          // text: "linogamil2003@gmail.com",
+                          text: "dhetterjan@gmail.com",
                           onTap: () {
                             sendEmail(
-                              email: 'dhetterjan23@gmail.com',
+                              email: 'linogamil2003@gmail.com',
                               subject: 'Inquiry from Portfolio',
                               body:
                                   'Hi Inogami,\n\nI saw your portfolio and would like to connect!',
@@ -109,14 +118,21 @@ class MyFooterSection extends StatelessWidget {
                     ),
                   ],
                 ),
+
+                if (!isAboveMinHeight)
+                  MyLine(
+                    isHorizontal: false,
+                    height: height * 0.14,
+                    // color: Colors.grey,
+                  ),
+
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 8,
                   children: [
                     MyText(text: "Follow Me On", fontFamily: "Poppins"),
                     linksLayoutChanger(
-                      isLargeScreen:
-                          (height > MySizeConstants.deskTopScreenMinHeight),
+                      isLargeScreen: (isAboveMinHeight),
                       children: [
                         account(
                           icon: Image.asset(
@@ -126,6 +142,7 @@ class MyFooterSection extends StatelessWidget {
                           ),
                           text: "inogami-dev",
                           url: "https://github.com/inogami-dev",
+                          isIntededToHideOnSmallerScreen: true,
                         ),
                         account(
                           icon: Image.asset(
@@ -135,8 +152,10 @@ class MyFooterSection extends StatelessWidget {
                             width: 22,
                             // height: 24,
                           ),
-                          text: "LinkedIn",
+                          // text: "Lino G. Gamil III",
+                          text: "inogami",
                           url: "https://www.linkedin.com/in/lino-gamil-iii/",
+                          isIntededToHideOnSmallerScreen: true,
                         ),
                       ],
                     ),
@@ -156,7 +175,11 @@ class MyFooterSection extends StatelessWidget {
             buttonTextFontFamily: "Quicksand",
             widthPercentage: 0.16,
             borderWidth: 1,
-            onTap: () {},
+            onTap: () {
+              downloadResume(
+                fileName: "Lino_Gamil_III_Mobile_App_Developer_Resume.pdf",
+              );
+            },
           ),
           // const SizedBox(height: 48),
 
@@ -178,10 +201,15 @@ class MyFooterSection extends StatelessWidget {
     required Widget icon,
     required String text,
     String? url,
+    bool isIntededToHideOnSmallerScreen = false,
     VoidCallback? onTap,
   }) {
     return Tooltip(
-      message: (height > MySizeConstants.deskTopScreenMinHeight) ? "" : text,
+      message:
+          (height > MySizeConstants.deskTopScreenMinHeight ||
+              !isIntededToHideOnSmallerScreen)
+          ? ""
+          : text,
       child: TextButton(
         onPressed:
             onTap ??
@@ -195,7 +223,8 @@ class MyFooterSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             icon,
-            if (height > MySizeConstants.deskTopScreenMinHeight)
+            if (height > MySizeConstants.deskTopScreenMinHeight ||
+                !isIntededToHideOnSmallerScreen)
               MyText(text: text),
           ],
         ),

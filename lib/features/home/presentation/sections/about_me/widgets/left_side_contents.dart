@@ -57,7 +57,6 @@ class AboutMeLeftSideContent extends StatelessWidget {
           //       text: "Driven by a simple philosophy: ",
           //       style: TextStyle(fontWeight: FontWeight.w600),
           //     ),
-
           //     TextSpan(
           //       text:
           //           "intuitive functionality paired with clean, elegant UI and fluid interactions.",

@@ -312,7 +312,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _checkVisibleSection() {
     // The invisible line on the screen that triggers the change (e.g., 100px from the top)
-    const double detectionLine = 250.0;
+    const double detectionLine = 400.0;
 
     final Map<int, GlobalKey> sections = {
       0: aboveTheFoldSectionKey,
