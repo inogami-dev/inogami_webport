@@ -31,7 +31,7 @@ class AboutMeMiddleContent extends StatelessWidget {
             year: '2022-2027',
             achievements: [
               "Consistent Dean's Lister",
-              "4th/16 in Hackathon Challenge 2026",
+              "4th/14 in Hackathon Challenge 2026",
             ],
           ),
           EducationCard(
