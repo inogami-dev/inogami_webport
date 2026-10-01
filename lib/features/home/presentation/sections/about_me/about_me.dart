@@ -48,28 +48,35 @@ class MyAboutMeSection extends StatelessWidget {
           SizedBox(width: 16),
 
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 16,
-                children: [
-                  MyText(text: "Current Endeavors"),
-                  CurrentEndeavorCard(
-                    width: width,
-                    title: "Temp 1",
-                    description:
-                        "knadkn kwjdbkajd wdkjabdjk wkknadkn kwjdbkajd wdkjabdjk wkakd wdaakd wdknknadkn kwjdbkajd wdkjabdjk wkakd wdaadkn kwjdbkajd wdkjabdjk wkakd wdaknadkn kwjdbkajd wdkjabdjk wkakd wdaa",
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 16,
+              children: [
+                MyText(text: "Current Endeavors"),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      spacing: 16,
+                      children: [
+                        CurrentEndeavorCard(
+                          width: width,
+                          title: "Temp 1",
+                          description:
+                              "knadkn kwjdbkajd wdkjabdjk wkknadkn kwjdbkajd wdkjabdjk wkakd wdaakd wdknknadkn kwjdbkajd wdkjabdjk wkakd wdaadkn kwjdbkajd wdkjabdjk wkakd wdaknadkn kwjdbkajd wdkjabdjk wkakd wdaa",
+                        ),
+                        CurrentEndeavorCard(
+                          width: width,
+                          cardEntryNumber: 2,
+                          title: "Temp 2",
+                          description:
+                              "mnBDmna d man dmw nkna dkn kwjdbkajd wdkjabdjk wkakd wdakn adkn kwjdbkajd wdkjabdjk wkakd wdadwdand mnwd adn amknadkn kwjdbkajd wdkjabdjk wkakd wdad awmd amndbad",
+                        ),
+                      ],
+                    ),
                   ),
-                  CurrentEndeavorCard(
-                    width: width,
-                    cardEntryNumber: 2,
-                    title: "Temp 2",
-                    description:
-                        "mnBDmna d man dmw nkna dkn kwjdbkajd wdkjabdjk wkakd wdakn adkn kwjdbkajd wdkjabdjk wkakd wdadwdand mnwd adn amknadkn kwjdbkajd wdkjabdjk wkakd wdad awmd amndbad",
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],

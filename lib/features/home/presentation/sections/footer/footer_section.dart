@@ -7,6 +7,7 @@ import 'package:my_portfolio/features/home/data/repository/copy_to_clipboard.dar
 import 'package:my_portfolio/features/home/data/repository/download_resume.dart';
 import 'package:my_portfolio/features/home/data/repository/email_to.dart';
 import 'package:my_portfolio/features/home/data/repository/link_opener.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 
 class MyFooterSection extends StatelessWidget {
   final double width;
@@ -173,7 +174,7 @@ class MyFooterSection extends StatelessWidget {
             buttonTextFontSize: kDefaultFontSize + ((width > 1160) ? 2 : 0),
             buttonTextFontWeight: FontWeight.w600,
             buttonTextFontFamily: "Quicksand",
-            widthPercentage: 0.16,
+            widthPercentage: (context.isTablet) ? 0.24 : 0.16,
             borderWidth: 1,
             onTap: () {
               downloadResume(

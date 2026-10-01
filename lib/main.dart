@@ -37,10 +37,10 @@ class MainApp extends StatelessWidget {
                   log(
                     "The screen is TABLET size.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",
                   );
-                  return Placeholder();
-                  // return MyHomePage(
-                  //   screenHeight: constraints.maxHeight,
-                  // ); // Not yet final (Placeholder for now)
+                  // return Placeholder();
+                  return MyHomePage(
+                    screenHeight: constraints.maxHeight,
+                  ); // Not yet final (Placeholder for now)
                 } else {
                   log(
                     "The screen is PHONE SIZE, smaller than 360.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",
