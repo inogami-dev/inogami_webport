@@ -3,6 +3,7 @@ import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/animate.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/widgets/phone_mockup/mobile_phone_frame.dart';
 
 class MyHeroSection extends StatefulWidget {
@@ -51,12 +52,14 @@ class _MyHeroSectionState extends State<MyHeroSection> {
               child: ConstrainedBox(
                 constraints: BoxConstraints(minHeight: effectiveHeight),
                 child: Container(
-                  width: screenWidth * 0.6,
+                  width: screenWidth * (context.isDesktop ? 0.6 : 0.62),
                   // height: effectiveHeight,
                   alignment: Alignment.centerRight,
-                  padding: EdgeInsets.only(right: 32),
+                  padding: EdgeInsets.only(
+                    right: (context.isDesktop ? 32 : 16),
+                  ),
                   decoration: BoxDecoration(
-                    // color: Colors.green,
+                    // color: Colors.orange,
                     gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
@@ -72,6 +75,7 @@ class _MyHeroSectionState extends State<MyHeroSection> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(height: effectiveHeight * 0.05),
                       Container(
@@ -82,13 +86,14 @@ class _MyHeroSectionState extends State<MyHeroSection> {
                           vertical: 16,
                         ),
                         constraints: BoxConstraints(
-                          maxWidth: screenWidth * 0.40,
+                          maxWidth:
+                              screenWidth * (context.isDesktop ? 0.40 : 0.54),
                         ),
                         child: MyAnimatedText(
                           text: "Mobile App Developer",
                           fontWeight: FontWeight.bold,
                           fontFamily: "Poppins",
-                          fontSize: 64,
+                          fontSize: (context.isDesktop) ? 64 : 48,
                           lineHeight: 1.1,
                         ),
                       ),
@@ -100,7 +105,8 @@ class _MyHeroSectionState extends State<MyHeroSection> {
                           vertical: 16,
                         ),
                         constraints: BoxConstraints(
-                          maxWidth: screenWidth * 0.40,
+                          maxWidth:
+                              screenWidth * (context.isDesktop ? 0.40 : 0.54),
                         ),
                         child: MyText(
                           text:

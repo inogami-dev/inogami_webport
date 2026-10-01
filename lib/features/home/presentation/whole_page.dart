@@ -6,6 +6,7 @@ import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/image_marquee.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/data/repository/link_opener.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/about_me.dart';
 import 'package:my_portfolio/features/home/presentation/sections/certifications/certificate_section.dart';
 import 'package:my_portfolio/features/home/presentation/sections/footer/footer_section.dart';
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       // Hero Section
                       MyHeroSection(
                         key: aboveTheFoldSectionKey,
-                        navBarHeight: navBarHeight,
+                        navBarHeight: (!context.isMobile ? navBarHeight : 0),
                         screenHeight: widget.screenHeight.clamp(
                           minHeight,
                           double.infinity,
@@ -229,23 +230,25 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
+
           // Navbar
-          Positioned(
-            top: 8,
-            left: 16,
-            right: 16,
-            child:
-                // Header
-                RepaintBoundary(
-                  child: MyNavBar(
-                    sectionKeys: sectionKeys,
-                    width: width,
-                    navBarHeight: navBarHeight,
-                    myColorScheme: myColorScheme,
-                    activeSectionNotifier: activeSectionNotifier,
+          if (!context.isMobile)
+            Positioned(
+              top: 8,
+              left: 16,
+              right: 16,
+              child:
+                  // Header
+                  RepaintBoundary(
+                    child: MyNavBar(
+                      sectionKeys: sectionKeys,
+                      width: width,
+                      navBarHeight: navBarHeight,
+                      myColorScheme: myColorScheme,
+                      activeSectionNotifier: activeSectionNotifier,
+                    ),
                   ),
-                ),
-          ),
+            ),
         ],
       ),
     );
