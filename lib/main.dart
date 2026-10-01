@@ -54,9 +54,19 @@ class MainApp extends StatelessWidget {
                 //   );
                 // }
 
-                if (context.isDesktop) log("Is Desktop View -----------------");
-                if (context.isTablet) log("Is Tablet View -----------------");
-                if (context.isMobile) log("Is Mobile View -----------------");
+                if (context.isDesktop) {
+                  log(
+                    "Is Desktop View ${context.screenWidth.toStringAsFixed(2)} -----------------",
+                  );
+                } else if (context.isTablet) {
+                  log(
+                    "Is Tablet View ${context.screenWidth.toStringAsFixed(2)} -----------------",
+                  );
+                } else if (context.isMobile) {
+                  log(
+                    "Is Mobile View ${context.screenWidth.toStringAsFixed(2)} -----------------",
+                  );
+                }
 
                 return MyHomePage(screenHeight: constraints.maxHeight);
               },
