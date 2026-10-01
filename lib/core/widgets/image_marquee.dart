@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/hover_grayscale_image.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/string_extension.dart';
 
 /// An elegant infinite marquee custom widget built specifically for local asset images.
 class MyImageMarquee extends StatefulWidget {
@@ -134,6 +135,7 @@ class _MyImageMarqueeState extends State<MyImageMarquee>
         .split("logo.png")
         .first
         .replaceAll("_", " ")
+        .toCapitalizeFirst(true)
         .trim();
 
     return Tooltip(

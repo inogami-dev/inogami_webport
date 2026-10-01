@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/constants/size.dart';
 
 class MySectionPadding extends StatelessWidget {
   final Widget child;
@@ -42,7 +43,9 @@ class MySectionPadding extends StatelessWidget {
           Expanded(child: child),
           if (linkToExtraContent != null)
             Padding(
-              padding: EdgeInsets.only(left: 32),
+              padding: EdgeInsets.only(
+                left: MySizeConstants.genericHorizontalPadding,
+              ),
               child: linkToExtraContent,
             ),
         ],
