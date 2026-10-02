@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
-import 'package:my_portfolio/features/home/presentation/sections/navbar/widgets/buttons.dart';
+import 'package:my_portfolio/features/home/presentation/sections/navigation/drawer/drawer.dart';
+import 'package:my_portfolio/features/home/presentation/sections/navigation/navbar/widgets/buttons.dart';
 
 class MyNavBar extends StatefulWidget {
   const MyNavBar({
@@ -100,13 +101,17 @@ class _MyNavBarState extends State<MyNavBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
+              // children: [
+              //   // MyText(
+              //   //   text: "INOGAMI",
+              //   //   fontWeight: FontWeight.bold,
+              //   //   fontSize: kDefaultFontSize + 8,
+              //   //   fontFamily: "Poppins",
+              //   // ),
+              //   // forTabletAndDesktoButtons
+              //   buttons,
+              // ],
               children: [
-                // MyText(
-                //   text: "INOGAMI",
-                //   fontWeight: FontWeight.bold,
-                //   fontSize: kDefaultFontSize + 8,
-                //   fontFamily: "Poppins",
-                // ),
                 InkWell(
                   onTap: () {
                     log("ABOVE THE FOLD SECTION");
@@ -193,14 +198,7 @@ class _MyNavBarState extends State<MyNavBar> {
                   },
                 ),
                 SizedBox(width: 8),
-                // MyButton(
-                //   buttonText: "CONTACT ME",
-                //   widthPercentage: 0.11,
-                //   height: widget.navBarHeight - 10,
-                //   onTap: () {
-                //     log("CONTACT ME");
-                //   },
-                // ),
+
                 MyNavbarButton(
                   text: "CONTACT ME",
                   isUsedAsCTAButton: true,

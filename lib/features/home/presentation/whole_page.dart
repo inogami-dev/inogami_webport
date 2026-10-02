@@ -10,7 +10,9 @@ import 'package:my_portfolio/features/home/domain/my_extensions/build_context_ex
 import 'package:my_portfolio/features/home/presentation/sections/about_me/about_me.dart';
 import 'package:my_portfolio/features/home/presentation/sections/certifications/certificate_section.dart';
 import 'package:my_portfolio/features/home/presentation/sections/footer/footer_section.dart';
-import 'package:my_portfolio/features/home/presentation/sections/navbar/navbar.dart';
+import 'package:my_portfolio/features/home/presentation/sections/navigation/drawer/drawer_button.dart';
+import 'package:my_portfolio/features/home/presentation/sections/navigation/drawer/drawer.dart';
+import 'package:my_portfolio/features/home/presentation/sections/navigation/navbar/navbar.dart';
 import 'package:my_portfolio/features/home/presentation/sections/above_the_fold/above_the_fold.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/projects.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/section_padding.dart';
@@ -67,189 +69,195 @@ class _MyHomePageState extends State<MyHomePage> {
     final height = MyDimensions.height(context);
     const double minHeight = 400.0;
 
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          // Main Body
-          Positioned(
-            top: 0,
-            child: Container(
-              width: width,
-              height: height,
-              color: myColorScheme.surface,
-              child: NotificationListener<ScrollNotification>(
-                onNotification: (notification) {
-                  // Listens to real scroll movements (mouse wheel, trackpad, drag)
-                  if (notification is ScrollUpdateNotification) {
-                    // Only snap if we aren't already animating from a navbar button click
-                    if (!_isSnapping) {
-                      _onUserScrolled();
+    return Scaffold(
+      endDrawer: (context.isMobile) ? MyDrawer(sectionKeys: sectionKeys) : null,
+      body: SizedBox(
+        width: width,
+        height: height,
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            // Main Body
+            Positioned(
+              top: 0,
+              child: Container(
+                width: width,
+                height: height,
+                color: myColorScheme.surface,
+                child: NotificationListener<ScrollNotification>(
+                  onNotification: (notification) {
+                    // Listens to real scroll movements (mouse wheel, trackpad, drag)
+                    if (notification is ScrollUpdateNotification) {
+                      // Only snap if we aren't already animating from a navbar button click
+                      if (!_isSnapping) {
+                        _onUserScrolled();
+                      }
                     }
-                  }
-                  return false; // Allows the notification to continue bubbling up
-                },
-                child: SingleChildScrollView(
-                  controller: scrollController,
-                  child: Column(
-                    children: [
-                      // Hero Section
-                      MyHeroSection(
-                        key: aboveTheFoldSectionKey,
-                        navBarHeight: (!context.isMobile ? navBarHeight : 0),
-                        screenHeight: widget.screenHeight.clamp(
-                          minHeight,
-                          double.infinity,
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(top: 32, bottom: 4),
-                        // padding: EdgeInsets.zero,
-                        child: Column(
-                          spacing: 12,
-                          children: [
-                            MyText(
-                              text: "My Technology Stack".toUpperCase(),
-                              color: myColorScheme.outlineVariant,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.w600,
-                            ),
-                            MyImageMarquee(
-                              height: 70,
-                              itemWidth: 70,
-                              spacing: 56,
-                              pixelsPerSecond: 8,
-                              enableEdgeFading: true,
-                              fadeWidth: 80,
-                              pauseOnHover: true,
-                              assetPaths: const [
-                                "assets/images/logo/dart_logo.png",
-                                "assets/images/logo/flutter_logo.png",
-                                "assets/images/logo/firebase_logo.png",
-                                "assets/images/logo/android_studio_logo.png",
-                                "assets/images/logo/mapbox_logo.png",
-                                "assets/images/logo/mistral_ai_logo.png",
-                                "assets/images/logo/riverpod_logo.png",
-                                "assets/images/logo/sqlite_logo.png",
-                                "assets/images/logo/vscode_logo.png",
-                                "assets/images/placeholder_app_icon.png",
-                              ],
-                              onTap: (index, assetPath) {
-                                debugPrint('Clicked project image: $assetPath');
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      // Project Section
-                      MySectionPadding(
-                        key: projectSectionKey,
-                        width: width,
-                        height: widget.screenHeight.clamp(
-                          minHeight,
-                          double.infinity,
-                        ),
-                        topPadding: navBarHeight + 24,
-                        // color: Colors.green,
-                        linkToExtraContent: TextButton(
-                          onPressed: () {
-                            openLink("https://github.com/inogami-dev");
-                          },
-                          child: MyText(
-                            text:
-                                "Explore more of my open-source experiments and repositories on GitHub.",
-                            fontStyle: FontStyle.italic,
-                          ),
-                        ),
-                        child: MyProjectsSection(
+                    return false; // Allows the notification to continue bubbling up
+                  },
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Column(
+                      children: [
+                        // Hero Section
+                        MyHeroSection(
+                          key: aboveTheFoldSectionKey,
+                          navBarHeight: (!context.isMobile ? navBarHeight : 0),
                           screenHeight: widget.screenHeight.clamp(
                             minHeight,
                             double.infinity,
                           ),
-                          sectionTitle: "PROJECTS",
                         ),
-                      ),
 
-                      // About Me Section
-                      MySectionPadding(
-                        key: aboutMeSectionKey,
-                        width: width,
-                        height: widget.screenHeight.clamp(
-                          minHeight,
-                          double.infinity,
-                          // height - navBarHeight - 24,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 32, bottom: 4),
+                          // padding: EdgeInsets.zero,
+                          child: Column(
+                            spacing: 12,
+                            children: [
+                              MyText(
+                                text: "My Technology Stack".toUpperCase(),
+                                color: myColorScheme.outlineVariant,
+                                fontFamily: "Poppins",
+                                fontWeight: FontWeight.w600,
+                              ),
+                              MyImageMarquee(
+                                height: 70,
+                                itemWidth: 70,
+                                spacing: 56,
+                                pixelsPerSecond: 8,
+                                enableEdgeFading: true,
+                                fadeWidth: 80,
+                                pauseOnHover: true,
+                                assetPaths: const [
+                                  "assets/images/logo/dart_logo.png",
+                                  "assets/images/logo/flutter_logo.png",
+                                  "assets/images/logo/firebase_logo.png",
+                                  "assets/images/logo/android_studio_logo.png",
+                                  "assets/images/logo/mapbox_logo.png",
+                                  "assets/images/logo/mistral_ai_logo.png",
+                                  "assets/images/logo/riverpod_logo.png",
+                                  "assets/images/logo/sqlite_logo.png",
+                                  "assets/images/logo/vscode_logo.png",
+                                  "assets/images/placeholder_app_icon.png",
+                                ],
+                                onTap: (index, assetPath) {
+                                  debugPrint(
+                                    'Clicked project image: $assetPath',
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                        topPadding: navBarHeight + 24,
-                        child: MyAboutMeSection(
+
+                        // Project Section
+                        MySectionPadding(
+                          key: projectSectionKey,
                           width: width,
                           height: widget.screenHeight.clamp(
                             minHeight,
                             double.infinity,
                           ),
+                          topPadding: navBarHeight + 24,
+                          // color: Colors.green,
+                          linkToExtraContent: TextButton(
+                            onPressed: () {
+                              openLink("https://github.com/inogami-dev");
+                            },
+                            child: MyText(
+                              text:
+                                  "Explore more of my open-source experiments and repositories on GitHub.",
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          child: MyProjectsSection(
+                            screenHeight: widget.screenHeight.clamp(
+                              minHeight,
+                              double.infinity,
+                            ),
+                            sectionTitle: "PROJECTS",
+                          ),
                         ),
-                      ),
 
-                      //// Certificate Section
-                      MySectionPadding(
-                        key: certificationsSectionKey,
-                        width: width,
-                        height: widget.screenHeight.clamp(
-                          minHeight,
-                          double.infinity,
-                        ),
-                        topPadding: navBarHeight + 24,
-                        child: MyCertificateSection(
+                        // About Me Section
+                        MySectionPadding(
+                          key: aboutMeSectionKey,
                           width: width,
-                          height: (widget.screenHeight - (navBarHeight + 24))
-                              .clamp(minHeight, double.infinity),
+                          height: widget.screenHeight.clamp(
+                            minHeight,
+                            double.infinity,
+                            // height - navBarHeight - 24,
+                          ),
+                          topPadding: navBarHeight + 24,
+                          child: MyAboutMeSection(
+                            width: width,
+                            height: widget.screenHeight.clamp(
+                              minHeight,
+                              double.infinity,
+                            ),
+                          ),
                         ),
-                      ),
 
-                      // Footer/Contact Section
-                      MySectionPadding(
-                        key: contactSectionKey,
-                        width: width,
-                        height: widget.screenHeight.clamp(
-                          minHeight,
-                          double.infinity,
-                        ),
-                        topPadding: navBarHeight + 24,
-                        child: MyFooterSection(
+                        //// Certificate Section
+                        MySectionPadding(
+                          key: certificationsSectionKey,
                           width: width,
-                          height: (widget.screenHeight - (navBarHeight + 24))
-                              .clamp(minHeight, double.infinity),
+                          height: widget.screenHeight.clamp(
+                            minHeight,
+                            double.infinity,
+                          ),
+                          topPadding: navBarHeight + 24,
+                          child: MyCertificateSection(
+                            width: width,
+                            height: (widget.screenHeight - (navBarHeight + 24))
+                                .clamp(minHeight, double.infinity),
+                          ),
                         ),
-                      ),
-                    ],
+
+                        // Footer/Contact Section
+                        MySectionPadding(
+                          key: contactSectionKey,
+                          width: width,
+                          height: widget.screenHeight.clamp(
+                            minHeight,
+                            double.infinity,
+                          ),
+                          topPadding: navBarHeight + 24,
+                          child: MyFooterSection(
+                            width: width,
+                            height: (widget.screenHeight - (navBarHeight + 24))
+                                .clamp(minHeight, double.infinity),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
 
-          // Navbar
-          if (!context.isMobile)
+            // Navbar
             Positioned(
               top: 8,
               left: 16,
-              right: 16,
+              right: (context.isMobile ? null : 16),
               child:
                   // Header
                   RepaintBoundary(
-                    child: MyNavBar(
-                      sectionKeys: sectionKeys,
-                      width: width,
-                      navBarHeight: navBarHeight,
-                      myColorScheme: myColorScheme,
-                      activeSectionNotifier: activeSectionNotifier,
-                    ),
+                    child: (context.isMobile)
+                        ? MyDrawerButton()
+                        : MyNavBar(
+                            sectionKeys: sectionKeys,
+                            width: width,
+                            navBarHeight: navBarHeight,
+                            myColorScheme: myColorScheme,
+                            activeSectionNotifier: activeSectionNotifier,
+                          ),
                   ),
             ),
-        ],
+          ],
+        ),
       ),
     );
   }
