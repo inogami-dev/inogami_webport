@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navbar/widgets/buttons.dart';
 
 class MyNavBar extends StatefulWidget {
@@ -176,7 +177,7 @@ class _MyNavBarState extends State<MyNavBar> {
                   text: "CERTIFICATES",
                   section: 3,
                   activeSection: activeSectionID,
-                  widthPercentage: .108,
+                  widthPercentage: (context.isDesktop ? 0.108 : 0.14),
                   onTap: () {
                     log("CERTIFCATES");
                     GlobalKey sectionKey =
@@ -230,15 +231,17 @@ class _MyNavBarState extends State<MyNavBar> {
     required VoidCallback onTap,
     required int section,
     required activeSection,
-    double widthPercentage = 0.09,
+    double? widthPercentage,
   }) {
+    double effectiveWidth =
+        widthPercentage ?? (context.isDesktop ? 0.09 : 0.12);
     return
     // Expanded(
     //   child:
     MyNavbarButton(
       text: text,
       onTap: onTap,
-      width: widget.width * widthPercentage,
+      width: widget.width * effectiveWidth,
       // isSelected: currentSectionDeterminer(section),
       isSelected: section == activeSection,
     );

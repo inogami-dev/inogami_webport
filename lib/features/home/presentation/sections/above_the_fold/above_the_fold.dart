@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/animate.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
@@ -29,25 +30,10 @@ class _MyHeroSectionState extends State<MyHeroSection> {
     final myColorScheme = Theme.of(context).colorScheme;
 
     if (context.isMobile) {
-      return Container(
+      return SizedBox(
         width: screenWidth,
         height: widget.screenHeight,
         // color: Colors.blue,
-        decoration: BoxDecoration(
-          // color: Colors.orange,
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [
-              // myColorScheme.surface,
-              myColorScheme.surfaceContainer,
-              myColorScheme.surfaceContainerHigh,
-              myColorScheme.surfaceContainerHighest,
-              // myColorScheme.surfaceContainerHighest,
-              myColorScheme.surfaceBright,
-            ],
-          ),
-        ),
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
@@ -61,16 +47,19 @@ class _MyHeroSectionState extends State<MyHeroSection> {
               bottom: 0,
               child: Container(
                 width: screenWidth,
-                height: widget.screenHeight * 0.4,
+                height: widget.screenHeight * 0.5,
                 alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(horizontal: 32),
+                padding: EdgeInsets.symmetric(
+                  horizontal: MySizeConstants.genericHorizontalPadding,
+                ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
                       myColorScheme.surface,
-                      // myColorScheme.surface.withAlpha(127),
+                      myColorScheme.surface.withAlpha(200),
+                      myColorScheme.surface.withAlpha(127),
                       myColorScheme.surface.withAlpha(0),
                       // myColorScheme.surfaceContainerHigh,
                       // myColorScheme.surfaceContainerHighest,
@@ -95,7 +84,7 @@ class _MyHeroSectionState extends State<MyHeroSection> {
                           "Crafting purposeful, cross-platform mobile experiences with Flutter. Built on a simple principle: every app should be functionally reliable under the hood and effortlessly elegant on the screen.",
                       maxLines: 14,
                     ),
-                    SizedBox(height: widget.screenHeight * 0.04),
+                    SizedBox(height: widget.screenHeight * 0.07),
                   ],
                 ),
               ),
