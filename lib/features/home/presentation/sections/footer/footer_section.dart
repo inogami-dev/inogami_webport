@@ -12,169 +12,126 @@ import 'package:my_portfolio/features/home/domain/my_extensions/build_context_ex
 class MyFooterSection extends StatelessWidget {
   final double width;
   final double height;
+
   const MyFooterSection({super.key, required this.width, required this.height});
 
   @override
   Widget build(BuildContext context) {
     final myColorScheme = Theme.of(context).colorScheme;
-    // final double dynamicVerticalPadding = height;
+    final isMobile = context.isMobile;
+    final isTablet = context.isTablet;
 
-    // Usable for hiding or showing something based on the current screen size.
+    // -------------------------------------------------------------------------
+    // RESPONSIVE BREAKPOINTS & CONDITIONAL FLAGS
+    // -------------------------------------------------------------------------
+
+    // Whether screen height is taller than the minimum desktop threshold (420px)
     final bool isAboveMinHeight =
         height > MySizeConstants.deskTopScreenMinHeight;
 
-    // Large gaps scale with height (clamps between 16px on small screens and 48px on large screens)
-    final double largeSpacing = (height * 0.056).clamp(16.0, 56.0);
-    // // Medium gaps (clamps between 12px and 24px)
-    // final double mediumSpacing = (height * 0.03).clamp(12.0, 24.0);
-    // Small gaps (clamps between 8px and 16px)
+    // Large vertical gaps that smoothly scale with screen height (16px to 48px)
+    final double largeSpacing = (height * 0.056).clamp(16.0, 48.0);
+    // Small vertical gaps (8px to 16px)
     final double smallSpacing = (height * 0.015).clamp(8.0, 16.0);
 
+    // Reading width for subtitle text:
+    // - Mobile: 90% (needs horizontal room on small displays)
+    // - Tablet/Desktop: 65% (prevents lines from becoming too long to read)
+    final double textContentWidth = isMobile ? width * 0.90 : width * 0.65;
+
+    // Width allocated for the contacts & social section:
+    // - Mobile: 92% (gives the long email button enough width to avoid overflow)
+    // - Tablet: 85% (gives the horizontal Row enough room to fit side-by-side)
+    // - Desktop: 65% (compact and centered on wide monitors)
+    final double accountsContainerWidth = isMobile
+        ? width * 0.92
+        : (isTablet ? width * 0.85 : width * 0.65);
+
+    // Headline font size: Scaled down on mobile to avoid taking 4-5 lines
+    final double headlineFontSize = kDefaultFontSize + (isMobile ? 12 : 24);
+
+    // -------------------------------------------------------------------------
+    // ROOT LAYOUT
+    // - Desktop/Tablet: height: height with Spacers to center vertically.
+    // - Mobile: height: null with vertical padding so it takes natural height
+    //   and avoids vertical clipping when virtual keyboards or small screens exist.
+    // -------------------------------------------------------------------------
     return Container(
       width: width,
-      height: height,
-      padding: EdgeInsets.only(
-        // top: (height * 0.04).clamp(8, 56),
-        left: MySizeConstants.genericHorizontalPadding,
-        right: MySizeConstants.genericHorizontalPadding,
+      height: isMobile ? null : height,
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 16.0 : MySizeConstants.genericHorizontalPadding,
+        // vertical: isMobile ? 36.0 : 0.0,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Spacer(),
+          // Top buffer (only active on Desktop/Tablet)
+          if (!isMobile) const Spacer(),
 
-          const MyText(
+          // --- SECTION TITLE ---
+          MyText(
             text: "Let's build something great together.",
-            fontSize: kDefaultFontSize + 24,
+            fontSize: headlineFontSize,
             fontFamily: "Poppins",
+            fontWeight: FontWeight.w700,
             textAlign: TextAlign.center,
-            lineHeight: 1.1,
+            lineHeight: 1.15,
             maxLines: 4,
           ),
+          // SizedBox(height: isMobile ? 14 : largeSpacing),
           SizedBox(height: largeSpacing),
 
+          // --- SUBTITLE / STATEMENT ---
           SizedBox(
-            width: width * 0.65,
+            width: textContentWidth,
             child: MyText(
-              text:
-                  // "My greatest goal in life is to create useful apps that everyone with a smartphone can use.\nI can help you achieve your goals by helping me achieve mine.",
-                  "I am passionate about engineering mobile applications that are as reliable under the hood as they are elegant on the screen. Let's connect and turn complex ideas into seamless digital solutions.",
+              text: (height > 420)
+                  ? "I am passionate about engineering mobile applications that are as reliable under the hood as they are elegant on the screen. Let's connect and turn complex ideas into seamless digital solutions."
+                  : "I am a passionate developer, especially when it comes to UIUX.",
               fontSize: kDefaultFontSize + 2,
               fontFamily: "Poppins",
-              lineHeight: 1.8,
+              lineHeight: isMobile ? 1.35 : 1.6,
               textAlign: TextAlign.center,
               maxLines: 6,
             ),
           ),
+          // SizedBox(height: isMobile ? 22 : largeSpacing),
           SizedBox(height: largeSpacing),
 
-          // MyButton(
-          //   buttonText: "HIRE ME",
-          //   buttonTextColor: myColorScheme.onSurface,
-          //   buttonTextFontSize: kDefaultFontSize + 8,
-          //   buttonTextFontWeight: FontWeight.w600,
-          //   buttonTextFontFamily: "Quicksand",
-          //   widthPercentage: 0.12,
-          //   onTap: () {},
-          // ),
-
-          //
+          // --- CONTACTS & SOCIAL LINKS ---
           SizedBox(
-            width: width * 0.65,
-            // color: Colors.grey,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: (isAboveMinHeight) ? 24 : 12,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 8,
-                  children: [
-                    MyText(text: "Contact Me On", fontFamily: "Poppins"),
-                    linksLayoutChanger(
-                      isLargeScreen: (isAboveMinHeight),
-                      children: [
-                        account(
-                          icon: Icon(Icons.email, size: 24),
-                          // text: "linogamil2003@gmail.com",
-                          text: "dhetterjan@gmail.com",
-                          onTap: () {
-                            sendEmail(
-                              email: 'linogamil2003@gmail.com',
-                              subject: 'Inquiry from Portfolio',
-                              body:
-                                  'Hi Inogami,\n\nI saw your portfolio and would like to connect!',
-                            );
-                          },
-                        ),
-                        account(
-                          icon: Icon(Icons.phone, size: 24),
-                          text: "09703647429",
-                          onTap: () {
-                            copyToClipboard(context, "09703647429");
-                          },
-                        ),
-                      ],
+            width: accountsContainerWidth,
+            child: isMobile
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: myAccountsList(
+                      context: context,
+                      isAboveMinHeight: isAboveMinHeight,
                     ),
-                  ],
-                ),
-
-                if (!isAboveMinHeight)
-                  MyLine(
-                    isHorizontal: false,
-                    height: height * 0.14,
-                    // color: Colors.grey,
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: isAboveMinHeight ? 24 : 12,
+                    children: myAccountsList(
+                      context: context,
+                      isAboveMinHeight: isAboveMinHeight,
+                    ),
                   ),
-
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 8,
-                  children: [
-                    MyText(text: "Follow Me On", fontFamily: "Poppins"),
-                    linksLayoutChanger(
-                      isLargeScreen: (isAboveMinHeight),
-                      children: [
-                        account(
-                          icon: Image.asset(
-                            "assets/images/logo/github_logo.png",
-                            width: 24,
-                            // height: 24,
-                          ),
-                          text: "inogami-dev",
-                          url: "https://github.com/inogami-dev",
-                          isIntededToHideOnSmallerScreen: true,
-                        ),
-                        account(
-                          icon: Image.asset(
-                            (Theme.of(context).brightness == Brightness.dark)
-                                ? "assets/images/logo/linked_in_logo_dark.png"
-                                : "assets/images/logo/linked_in_logo.png",
-                            width: 22,
-                            // height: 24,
-                          ),
-                          // text: "Lino G. Gamil III",
-                          text: "inogami",
-                          url: "https://www.linkedin.com/in/lino-gamil-iii/",
-                          isIntededToHideOnSmallerScreen: true,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
           ),
-          SizedBox(height: largeSpacing),
+          // SizedBox(height: isMobile ? largeSpacing : largeSpacing),
+          if (context.screenHeight > 420) SizedBox(height: largeSpacing),
 
-          //
+          // --- DOWNLOAD RESUME BUTTON ---
           MyButton(
             buttonText: "Download Resume",
             buttonTextColor: Colors.white,
             buttonTextFontSize: kDefaultFontSize + ((width > 1160) ? 2 : 0),
             buttonTextFontWeight: FontWeight.w600,
             buttonTextFontFamily: "Quicksand",
-            widthPercentage: (context.isTablet) ? 0.24 : 0.16,
+            widthPercentage: buttonWidth(context),
             borderWidth: 1,
             onTap: () {
               downloadResume(
@@ -182,22 +139,135 @@ class MyFooterSection extends StatelessWidget {
               );
             },
           ),
-          // const SizedBox(height: 48),
 
-          Spacer(),
+          // Bottom buffer (only active on Desktop/Tablet)
+          if (!isMobile) const Spacer(),
+          if (isMobile) const SizedBox(height: 32),
 
-          //
+          // --- COPYRIGHT FOOTER ---
           MyText(
             text: "Designed and built from scratch using Flutter Web • 2026",
-            // color: myColorScheme.onSurface.withAlpha(100),
+            fontSize: isMobile ? kDefaultFontSize - 2 : kDefaultFontSize,
             color: myColorScheme.outline,
+            textAlign: TextAlign.center,
           ),
-          SizedBox(height: smallSpacing),
+          if (!isMobile) SizedBox(height: smallSpacing),
         ],
       ),
     );
   }
 
+  // ---------------------------------------------------------------------------
+  // RESPONSIVE BUTTON WIDTH
+  // - Mobile: 0.60 (~215px on a 360px phone) ensures "Download Resume" fits without truncation.
+  // - Tablet: 0.28 (~210px on a 750px tablet).
+  // - Desktop: 0.16 (compact, elegant tap target on wide monitors).
+  // ---------------------------------------------------------------------------
+  double buttonWidth(BuildContext context) {
+    if (context.isMobile) {
+      return 0.60;
+    } else if (context.isTablet) {
+      return 0.28;
+    } else {
+      return 0.16;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // ACCOUNTS LIST (CONTACTS + SOCIALS)
+  // ---------------------------------------------------------------------------
+  List<Widget> myAccountsList({
+    required BuildContext context,
+    required bool isAboveMinHeight,
+  }) {
+    final isMobile = context.isMobile;
+
+    return [
+      // GROUP A: DIRECT CONTACTS
+      Column(
+        crossAxisAlignment: isMobile
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
+        spacing: 8,
+        children: [
+          const MyText(text: "Contact Me On", fontFamily: "Poppins"),
+          accountsLinksLayoutChanger(
+            isLargeScreen: isAboveMinHeight && !isMobile,
+            children: [
+              account(
+                icon: const Icon(Icons.email, size: 24),
+                text: "dhetterjan@gmail.com",
+                onTap: () {
+                  sendEmail(
+                    email: 'linogamil2003@gmail.com',
+                    subject: 'Inquiry from Portfolio',
+                    body:
+                        'Hi Inogami,\n\nI saw your portfolio and would like to connect!',
+                  );
+                },
+              ),
+              account(
+                icon: const Icon(Icons.phone, size: 24),
+                text: "09703647429",
+                onTap: () {
+                  copyToClipboard(context, "09703647429");
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+
+      // DIVIDER:
+      // - Shorter desktop: Vertical divider line
+      // - Mobile: Horizontal spacing
+      if (!isAboveMinHeight && !isMobile)
+        MyLine(isHorizontal: false, height: height * 0.14),
+      // if (isMobile) MyLine(isHorizontal: true, height: width * 0.8),
+      const SizedBox(height: 24),
+
+      // GROUP B: SOCIAL PROFILES
+      if (context.screenHeight > 420)
+        Column(
+          crossAxisAlignment: isMobile
+              ? CrossAxisAlignment.center
+              : CrossAxisAlignment.start,
+          spacing: 8,
+          children: [
+            const MyText(text: "Follow Me On", fontFamily: "Poppins"),
+            accountsLinksLayoutChanger(
+              isLargeScreen: isAboveMinHeight && !isMobile,
+              children: [
+                account(
+                  icon: Image.asset(
+                    "assets/images/logo/github_logo.png",
+                    width: 24,
+                  ),
+                  text: "inogami-dev",
+                  url: "https://github.com/inogami-dev",
+                  isIntededToHideOnSmallerScreen: true,
+                ),
+                account(
+                  icon: Image.asset(
+                    (Theme.of(context).brightness == Brightness.dark)
+                        ? "assets/images/logo/linked_in_logo_dark.png"
+                        : "assets/images/logo/linked_in_logo.png",
+                    width: 22,
+                  ),
+                  text: "inogami",
+                  url: "https://www.linkedin.com/in/lino-gamil-iii/",
+                  isIntededToHideOnSmallerScreen: true,
+                ),
+              ],
+            ),
+          ],
+        ),
+    ];
+  }
+
+  // ---------------------------------------------------------------------------
+  // INTERACTIVE ACCOUNT BUTTON (WITH TOOLTIP FALLBACK)
+  // ---------------------------------------------------------------------------
   Tooltip account({
     required Widget icon,
     required String text,
@@ -205,46 +275,59 @@ class MyFooterSection extends StatelessWidget {
     bool isIntededToHideOnSmallerScreen = false,
     VoidCallback? onTap,
   }) {
+    // When viewport is too short, hide text labels and show tooltips instead
+    final bool shouldHideText =
+        (height <= MySizeConstants.deskTopScreenMinHeight) &&
+        isIntededToHideOnSmallerScreen;
+
     return Tooltip(
-      message:
-          (height > MySizeConstants.deskTopScreenMinHeight ||
-              !isIntededToHideOnSmallerScreen)
-          ? ""
-          : text,
+      message: shouldHideText ? text : "",
       child: TextButton(
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          minimumSize: Size.zero,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
         onPressed:
             onTap ??
             () async {
               if (url == null) return;
-
               await openLink(url);
             },
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           spacing: 8,
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             icon,
-            if (height > MySizeConstants.deskTopScreenMinHeight ||
-                !isIntededToHideOnSmallerScreen)
-              MyText(text: text),
+            if (!shouldHideText)
+              MyText(text: text, textOverFlow: TextOverflow.fade),
           ],
         ),
       ),
     );
   }
 
-  Widget linksLayoutChanger({
+  // ---------------------------------------------------------------------------
+  // LAYOUT CHANGER
+  // - Large Screen: Column (vertical stack of buttons)
+  // - Short / Mobile: Wrap (horizontal buttons that wrap if space runs out,
+  //   preventing RenderFlex overflow on small screens)
+  // ---------------------------------------------------------------------------
+  Widget accountsLinksLayoutChanger({
     required bool isLargeScreen,
     required List<Widget> children,
   }) {
     if (isLargeScreen) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 4,
         children: children,
       );
     } else {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+      return Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 8,
+        runSpacing: 4,
         children: children,
       );
     }

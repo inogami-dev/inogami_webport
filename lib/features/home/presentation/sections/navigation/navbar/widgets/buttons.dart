@@ -89,14 +89,22 @@ class MyNavbarButton extends StatefulWidget {
   final double? width;
   final bool isUsedAsCTAButton;
   final bool isSelected;
+  final Alignment alignment;
+  final double? height;
+  final double? fontSize;
+  final BorderRadius? borderRadius;
 
   const MyNavbarButton({
     super.key,
     required this.text,
     required this.onTap,
     this.width,
+    this.height,
     this.isUsedAsCTAButton = false,
     this.isSelected = false,
+    this.alignment = Alignment.center,
+    this.fontSize,
+    this.borderRadius,
   });
 
   @override
@@ -149,15 +157,16 @@ class _MyNavbarButtonState extends State<MyNavbarButton> {
           curve: Curves.easeOutBack,
           child: AnimatedContainer(
             width: widget.width,
+            height: widget.height,
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeInOut,
             margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-            // 2. FIXED PADDING: Removed vertical padding and Clip.hardEdge so text centers perfectly
+            // FIXED PADDING: Removed vertical padding and Clip.hardEdge so text centers perfectly
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            alignment: Alignment.center,
+            alignment: widget.alignment,
             decoration: BoxDecoration(
               color: bgColor,
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(50),
               border: Border(
                 bottom: BorderSide(width: 1, color: buttonHighlightColor),
               ),
@@ -166,6 +175,7 @@ class _MyNavbarButtonState extends State<MyNavbarButton> {
               child: MyText(
                 text: widget.text,
                 fontWeight: textWeight,
+                fontSize: widget.fontSize ?? kDefaultFontSize,
                 color: textColor,
               ),
             ),
