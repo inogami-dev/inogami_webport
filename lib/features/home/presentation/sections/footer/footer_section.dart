@@ -67,7 +67,8 @@ class MyFooterSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Top buffer (only active on Desktop/Tablet)
-          if (!isMobile) const Spacer(),
+          // if (!isMobile) const Spacer(),
+          const Spacer(),
 
           // --- SECTION TITLE ---
           MyText(
@@ -123,6 +124,8 @@ class MyFooterSection extends StatelessWidget {
           ),
           // SizedBox(height: isMobile ? largeSpacing : largeSpacing),
           if (context.screenHeight > 420) SizedBox(height: largeSpacing),
+          if (!isMobile && context.screenHeight < 420)
+            SizedBox(height: smallSpacing),
 
           // --- DOWNLOAD RESUME BUTTON ---
           MyButton(
@@ -141,17 +144,20 @@ class MyFooterSection extends StatelessWidget {
           ),
 
           // Bottom buffer (only active on Desktop/Tablet)
-          if (!isMobile) const Spacer(),
-          if (isMobile) const SizedBox(height: 32),
+          // if (!isMobile) const Spacer(),
+          // if (isMobile) const SizedBox(height: 32),
+          const Spacer(),
 
           // --- COPYRIGHT FOOTER ---
           MyText(
-            text: "Designed and built from scratch using Flutter Web • 2026",
+            text:
+                "Designed and built with love from scratch using Flutter Web • 2026",
             fontSize: isMobile ? kDefaultFontSize - 2 : kDefaultFontSize,
             color: myColorScheme.outline,
             textAlign: TextAlign.center,
           ),
           if (!isMobile) SizedBox(height: smallSpacing),
+          if (isMobile) SizedBox(height: 8),
         ],
       ),
     );
@@ -221,7 +227,7 @@ class MyFooterSection extends StatelessWidget {
       // DIVIDER:
       // - Shorter desktop: Vertical divider line
       // - Mobile: Horizontal spacing
-      if (!isAboveMinHeight && !isMobile)
+      if (!isAboveMinHeight && !isMobile && context.screenHeight > 420)
         MyLine(isHorizontal: false, height: height * 0.14),
       // if (isMobile) MyLine(isHorizontal: true, height: width * 0.8),
       const SizedBox(height: 24),
@@ -241,18 +247,19 @@ class MyFooterSection extends StatelessWidget {
                 account(
                   icon: Image.asset(
                     "assets/images/logo/github_logo.png",
-                    width: 24,
+                    width: 22,
                   ),
                   text: "inogami-dev",
                   url: "https://github.com/inogami-dev",
                   isIntededToHideOnSmallerScreen: true,
                 ),
+                if (!isMobile) const SizedBox(height: 1),
                 account(
                   icon: Image.asset(
                     (Theme.of(context).brightness == Brightness.dark)
                         ? "assets/images/logo/linked_in_logo_dark.png"
                         : "assets/images/logo/linked_in_logo.png",
-                    width: 22,
+                    width: 20,
                   ),
                   text: "inogami",
                   url: "https://www.linkedin.com/in/lino-gamil-iii/",
