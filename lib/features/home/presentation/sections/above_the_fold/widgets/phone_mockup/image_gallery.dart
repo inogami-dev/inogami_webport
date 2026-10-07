@@ -67,7 +67,13 @@ class _MyImageGalleryState extends State<MyImageGallery> {
                     setState(() => _currentPage = index);
                   },
                   itemBuilder: (context, index) {
-                    return Image.asset(widget.images[index], fit: BoxFit.cover);
+                    return Image.asset(
+                      widget.images[index],
+                      fit: BoxFit.cover,
+                      // alignment: context.screenWidth > 600
+                      //     ? AlignmentGeometry.center
+                      //     : AlignmentGeometry.topCenter,
+                    );
                   },
                 ),
 

@@ -67,6 +67,9 @@ class MySectionPadding extends StatelessWidget {
                 left: isMobile
                     ? 20.0
                     : MySizeConstants.genericHorizontalPadding,
+                right: isMobile
+                    ? 20.0
+                    : MySizeConstants.genericHorizontalPadding,
                 top: isMobile ? 12.0 : 0.0,
               ),
               child: linkToExtraContent,

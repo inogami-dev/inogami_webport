@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/animated_text.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
-import 'package:my_portfolio/features/home/presentation/sections/navigation/drawer/drawer.dart';
 import 'package:my_portfolio/features/home/presentation/sections/navigation/navbar/widgets/buttons.dart';
 
 class MyNavBar extends StatefulWidget {

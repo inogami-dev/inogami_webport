@@ -23,12 +23,12 @@ class CurrentEndeavorCard extends StatelessWidget {
     final myColorScheme = Theme.of(context).colorScheme;
 
     // Calculate scale: each step down scales by 10%
-    final double scale = (1.0 - (cardEntryNumber - 1) * 0.05).clamp(0.75, 1.0);
+    final double scale = (1.0 - (cardEntryNumber - 1) * 0.10).clamp(0.75, 1.0);
     final bool isLatest = cardEntryNumber == 1;
 
     return Container(
       // Proportionally shrink card width
-      width: (width * 0.3) * scale,
+      width: width * scale,
       padding: EdgeInsets.fromLTRB(
         16 * scale,
         8 * scale,

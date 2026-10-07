@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
-import 'package:my_portfolio/core/widgets/text.dart';
-import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/current_endeavor_card.dart';
-import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/left_side_contents.dart';
-import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/middle_contents.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
+import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/current_endeavors.dart';
+import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/my_bio_contents.dart';
+import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/my_education.dart';
 
 class MyAboutMeSection extends StatelessWidget {
   final double width;
@@ -16,8 +16,12 @@ class MyAboutMeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = context.isMobile;
+
     // final myColorScheme = Theme.of(context).colorScheme;
-    final double leftSideContents = width * 0.32;
+    final double bioContentsWidth = isMobile ? width : width * 0.28;
+    final double educationContentsWidth = isMobile ? width : width * 0.28;
+    final double currentEndevorsContentsWidth = isMobile ? width : width * 0.28;
 
     // --- Dynamic Optical Center Top Padding ---
     final double estimatedContentHeight = width > 1200 ? 430.0 : 470.0;
@@ -27,62 +31,34 @@ class MyAboutMeSection extends StatelessWidget {
       120.0,
     );
 
+    final List<Widget> aboutMeContents = [
+      // Left Side Contents
+      MyBioContents(width: bioContentsWidth, height: height),
+      if (!isMobile) Spacer(),
+      // if (isMobile) SizedBox(width: 24),
+
+      // Middle Contents
+      MyEducation(width: educationContentsWidth, height: height),
+      if (!isMobile) Spacer(),
+      // if (isMobile) SizedBox(width: 24),
+
+      CurrentEndeavors(width: currentEndevorsContentsWidth),
+    ];
+
     return Container(
       width: width,
-      height: height,
+      height: isMobile ? null : height,
       padding: EdgeInsets.only(
         left: MySizeConstants.genericHorizontalPadding,
         right: MySizeConstants.genericHorizontalPadding,
         top: dynamicTopPadding,
       ), // add top padding here
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Left Side Contents
-          AboutMeLeftSideContent(
-            leftSideContents: leftSideContents,
-            height: height,
-          ),
-          SizedBox(width: 16),
-
-          // Middle Contents
-          AboutMeMiddleContent(width: width, height: height),
-          SizedBox(width: 16),
-
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+      child: (isMobile)
+          ? Column(spacing: 16, children: aboutMeContents)
+          : Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 16,
-              children: [
-                MyText(text: "Current Endeavors"),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      spacing: 16,
-                      children: [
-                        CurrentEndeavorCard(
-                          width: width,
-                          title: "Temp 1",
-                          description:
-                              "knadkn kwjdbkajd wdkjabdjk wkknadkn kwjdbkajd wdkjabdjk wkakd wdaakd wdknknadkn kwjdbkajd wdkjabdjk wkakd wdaadkn kwjdbkajd wdkjabdjk wkakd wdaknadkn kwjdbkajd wdkjabdjk wkakd wdaa",
-                        ),
-                        CurrentEndeavorCard(
-                          width: width,
-                          cardEntryNumber: 2,
-                          title: "Temp 2",
-                          description:
-                              "mnBDmna d man dmw nkna dkn kwjdbkajd wdkjabdjk wkakd wdakn adkn kwjdbkajd wdkjabdjk wkakd wdadwdand mnwd adn amknadkn kwjdbkajd wdkjabdjk wkakd wdad awmd amndbad",
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+              children: aboutMeContents,
             ),
-          ),
-        ],
-      ),
     );
   }
 }

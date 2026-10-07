@@ -2,21 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/core/widgets/text_rich.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 
-class AboutMeLeftSideContent extends StatelessWidget {
-  const AboutMeLeftSideContent({
-    super.key,
-    required this.leftSideContents,
-    required this.height,
-  });
-
-  final double leftSideContents;
+class MyBioContents extends StatelessWidget {
+  final double width;
   final double height;
+
+  const MyBioContents({super.key, required this.width, required this.height});
 
   @override
   Widget build(BuildContext context) {
+    final myColorScheme = Theme.of(context).colorScheme;
+    final bool isMobile = context.isMobile;
+
+    final List<Widget> profilePictureAndName = [
+      CircleAvatar(
+        backgroundColor: myColorScheme.primary.withAlpha(128),
+        radius: 40,
+        backgroundImage: AssetImage("assets/images/me3.jpg"),
+      ),
+      // SizedBox(height: 16),
+
+      MyText(
+        text: "Inogami",
+        fontFamily: "Poppins",
+        fontSize: kDefaultFontSize + (isMobile ? 12 : 8),
+        fontWeight: FontWeight.w600,
+      ),
+    ];
+
     Widget contents = Container(
-      width: leftSideContents,
+      width: width,
+      // color: Colors.purple,
       // height: height,
       padding: EdgeInsets.only(right: 32, bottom: 16),
       child: Column(
@@ -24,25 +41,13 @@ class AboutMeLeftSideContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 16,
         children: [
-          // Center(
-          //   child: Column(
-          //     children: [
-          CircleAvatar(
-            backgroundColor: Colors.amber,
-            radius: 40,
-            backgroundImage: AssetImage("assets/images/me3.jpg"),
-          ),
-          // SizedBox(height: 16),
-
-          MyText(
-            text: "Inogami",
-            fontFamily: "Poppins",
-            fontSize: kDefaultFontSize + 8,
-            fontWeight: FontWeight.w600,
-          ),
-          //     ],
-          //   ),
-          // ),
+          if (isMobile)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              spacing: 16,
+              children: profilePictureAndName,
+            ),
+          if (!isMobile) ...profilePictureAndName,
 
           MyText(
             text:

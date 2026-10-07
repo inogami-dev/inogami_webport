@@ -62,7 +62,7 @@ class MyProjectsSection extends StatelessWidget {
       child: (context.isMobile)
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 16,
+              spacing: 8,
               children: [
                 SizedBox(height: 8),
                 MyText(

@@ -33,7 +33,7 @@ class EducationCard extends StatelessWidget {
 
     return Container(
       // Proportionally shrink card width
-      width: (width * 0.3) * scale,
+      width: width * scale,
       padding: EdgeInsets.fromLTRB(
         20 * scale,
         12 * scale,
