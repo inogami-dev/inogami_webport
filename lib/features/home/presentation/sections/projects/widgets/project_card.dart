@@ -68,7 +68,10 @@ class MyProjectCard extends StatelessWidget {
             fontSize: kDefaultFontSize + 4,
             fontWeight: FontWeight.w600,
             fontFamily: "Poppins",
-            maxLines: 3,
+            textOverFlow: (isScreenLowerThanMinHeight)
+                ? TextOverflow.fade
+                : TextOverflow.clip,
+            maxLines: (isScreenLowerThanMinHeight) ? 1 : 3,
           ),
         ),
 
