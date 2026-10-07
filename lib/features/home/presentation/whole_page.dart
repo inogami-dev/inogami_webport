@@ -169,6 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               text:
                                   "Explore more of my open-source experiments and repositories on GitHub.",
                               fontStyle: FontStyle.italic,
+                              maxLines: 2,
                             ),
                           ),
                           child: MyProjectsSection(

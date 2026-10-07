@@ -158,6 +158,7 @@ class MyFooterSection extends StatelessWidget {
             color: myColorScheme.outline,
             textAlign: TextAlign.center,
           ),
+
           if (!isMobile) SizedBox(height: smallSpacing),
           if (isMobile) SizedBox(height: 8),
         ],

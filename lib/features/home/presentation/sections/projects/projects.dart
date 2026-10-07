@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
+import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/data/model/project_model.dart';
 import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_card.dart';
@@ -52,7 +53,7 @@ class MyProjectsSection extends StatelessWidget {
     return Container(
       width: width,
       height: isMobile ? null : screenHeight,
-      color: Colors.orange,
+      // color: Colors.orange,
       padding: const EdgeInsets.only(
         left: MySizeConstants.genericHorizontalPadding,
         right: MySizeConstants.genericHorizontalPadding,
@@ -62,7 +63,16 @@ class MyProjectsSection extends StatelessWidget {
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 16,
-              children: projectIterator(),
+              children: [
+                SizedBox(height: 8),
+                MyText(
+                  text: "Projects",
+                  fontSize: kDefaultFontSize + 6,
+                  // fontFamily: "Poppins",
+                  fontWeight: FontWeight.w600,
+                ),
+                ...projectIterator(),
+              ],
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
