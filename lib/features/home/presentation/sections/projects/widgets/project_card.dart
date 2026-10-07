@@ -38,6 +38,7 @@ class MyProjectCard extends StatelessWidget {
     );
 
     final bool isMobile = context.isMobile;
+    final bool isTablet = context.isTablet;
 
     final List<Widget> cardContents = [
       Container(
@@ -49,6 +50,7 @@ class MyProjectCard extends StatelessWidget {
         alignment: Alignment.center,
         child: MyMobilePhoneFrame(
           alignment: isMobile ? Alignment.centerLeft : Alignment.center,
+          leftPadding: isTablet ? 0 : 16,
           heightPercentage: isMobile ? 1 : 0.4,
           images: project.images,
         ),
