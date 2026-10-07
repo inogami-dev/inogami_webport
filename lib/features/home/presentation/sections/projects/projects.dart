@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/features/home/data/model/project_model.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_card.dart';
 
 class MyProjectsSection extends StatelessWidget {
@@ -17,31 +18,57 @@ class MyProjectsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MyDimensions.width(context);
-    final double widthPerProject = width / 3;
+    // final double widthPerProject = width / 3;
     // final ColorScheme myColorScheme = Theme.of(context).colorScheme;
+    final bool isMobile = context.isMobile;
+
+    List<Widget> projectIterator() {
+      // final double effectiveWidth = isMobile ? width : width / 3;
+      // final double effectiveHeight = isMobile
+      //     ? screenHeight * 0.45
+      //     : screenHeight;
+
+      if (isMobile) {
+        return _myProjects.map((project) {
+          return MyProjectCard(
+            widthPerProject: width,
+            screenHeight: screenHeight * 0.45,
+            project: project,
+          );
+        }).toList();
+      } else {
+        return _myProjects.map((project) {
+          return Expanded(
+            child: MyProjectCard(
+              widthPerProject: width / 3,
+              screenHeight: screenHeight,
+              project: project,
+            ),
+          );
+        }).toList();
+      }
+    }
 
     return Container(
       width: width,
-      height: screenHeight,
-      // color: Colors.orange,
+      height: isMobile ? null : screenHeight,
+      color: Colors.orange,
       padding: const EdgeInsets.only(
         left: MySizeConstants.genericHorizontalPadding,
         right: MySizeConstants.genericHorizontalPadding,
         bottom: 16,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 16,
-        children: _myProjects.map((project) {
-          return Expanded(
-            child: MyProjectCard(
-              screenHeight: screenHeight,
-              widthPerProject: widthPerProject,
-              project: project,
+      child: (context.isMobile)
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 16,
+              children: projectIterator(),
+            )
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 16,
+              children: projectIterator(),
             ),
-          );
-        }).toList(),
-      ),
     );
   }
 

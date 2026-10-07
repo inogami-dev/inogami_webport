@@ -27,7 +27,9 @@ class MyAboutMeSection extends StatelessWidget {
       120.0,
     );
 
-    return Padding(
+    return Container(
+      width: width,
+      height: height,
       padding: EdgeInsets.only(
         left: MySizeConstants.genericHorizontalPadding,
         right: MySizeConstants.genericHorizontalPadding,

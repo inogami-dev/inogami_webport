@@ -68,7 +68,8 @@ class MyFooterSection extends StatelessWidget {
         children: [
           // Top buffer (only active on Desktop/Tablet)
           // if (!isMobile) const Spacer(),
-          const Spacer(),
+          if (!isMobile) const Spacer(),
+          if (isMobile) SizedBox(height: largeSpacing),
 
           // --- SECTION TITLE ---
           MyText(
@@ -146,7 +147,8 @@ class MyFooterSection extends StatelessWidget {
           // Bottom buffer (only active on Desktop/Tablet)
           // if (!isMobile) const Spacer(),
           // if (isMobile) const SizedBox(height: 32),
-          const Spacer(),
+          if (!isMobile) const Spacer(),
+          if (isMobile) SizedBox(height: largeSpacing),
 
           // --- COPYRIGHT FOOTER ---
           MyText(
