@@ -2,24 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/line.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/data/model/project_model.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 
 class MyProjectContentSide extends StatelessWidget {
   final double height;
   final MyProjectModel project;
+  final Widget? mobileViewWidget;
 
   const MyProjectContentSide({
     super.key,
     required this.height,
     required this.project,
+    this.mobileViewWidget,
   });
 
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = context.isMobile;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.only(bottom: 24, right: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // This is the Mobile Phone widget that only appears on mobile view.
+          if (isMobile && mobileViewWidget != null)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24),
+              child: SizedBox(height: height * 0.7, child: mobileViewWidget!),
+            ),
+
           // Title Header
           Padding(
             padding: const EdgeInsets.only(bottom: 8),

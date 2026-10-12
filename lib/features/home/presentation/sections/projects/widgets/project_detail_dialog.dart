@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utilities/dimension.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
 import 'package:my_portfolio/features/home/data/model/project_model.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/projects/widgets/project_content_side.dart';
 
 void showMyProjectDetailModal({
@@ -35,6 +36,97 @@ void showMyProjectDetailModal({
         minimumDialogHeight,
       );
 
+      final bool isMobile = context.isMobile;
+
+      // // Header with Title & Close Button
+      // final Widget titleBar = Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //   children: [
+      //     Expanded(
+      //       child: MyText(
+      //         text: project.title,
+      //         fontSize: kDefaultFontSize + 8,
+      //         fontFamily: "Poppins",
+      //         fontWeight: FontWeight.w600,
+      //         textOverFlow: TextOverflow.ellipsis,
+      //       ),
+      //     ),
+      //     IconButton(
+      //       onPressed: () => Navigator.of(context).pop(),
+      //       icon: const Icon(Icons.close_rounded),
+      //       tooltip: 'Close',
+      //     ),
+      //   ],
+      // );
+
+      final List<Widget> dialogContents = [
+        // This Mobile Phone Widget only appears in mobile view, and is placed above the titleBar in the dialogContents list.
+        if (contentWidget != null) ...[if (!isMobile) contentWidget],
+
+        // Scrollable Content Area (Descriptions, Previews, Mockups)
+        Expanded(
+          child: Column(
+            children: [
+              // Header with Title & Close Button for non-mobile view
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: MyText(
+                      text: project.title,
+                      fontSize: kDefaultFontSize + 8,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w600,
+                      textOverFlow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: const Icon(Icons.close_rounded),
+                    tooltip: 'Close',
+                  ),
+                ],
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Expanded(
+              //       child: MyText(
+              //         text: project.title,
+              //         fontSize: kDefaultFontSize + 8,
+              //         fontFamily: "Poppins",
+              //         fontWeight: FontWeight.w600,
+              //         textOverFlow: TextOverflow.ellipsis,
+              //       ),
+              //     ),
+              //     IconButton(
+              //       onPressed: () => Navigator.of(context).pop(),
+              //       icon: const Icon(Icons.close_rounded),
+              //       tooltip: 'Close',
+              //     ),
+              //   ],
+              // ),
+              if (!isMobile) const SizedBox(height: 16),
+              Flexible(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: MyProjectContentSide(
+                        mobileViewWidget: contentWidget,
+                        height: effectiveDialogHeight,
+                        // fullDescription: project.fullDescription,
+                        // techStackImages: project.techStackImages,
+                        project: project,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ];
+
       Dialog dialog = Dialog(
         child: ConstrainedBox(
           constraints: BoxConstraints(
@@ -63,60 +155,18 @@ void showMyProjectDetailModal({
             // padding: const EdgeInsets.all(24),
             // padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 42),
             padding: const EdgeInsets.fromLTRB(36, 28, 32, 32),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // The Phone
-                if (contentWidget != null) ...[
-                  contentWidget,
-                  const SizedBox(width: 32),
-                ],
-
-                // Scrollable Content Area (Descriptions, Previews, Mockups)
-                Expanded(
-                  child: Column(
-                    children: [
-                      // Header with Title & Close Button
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: MyText(
-                              text: project.title,
-                              fontSize: kDefaultFontSize + 8,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.w600,
-                              textOverFlow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            icon: const Icon(Icons.close_rounded),
-                            tooltip: 'Close',
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Flexible(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: MyProjectContentSide(
-                                height: effectiveDialogHeight,
-                                // fullDescription: project.fullDescription,
-                                // techStackImages: project.techStackImages,
-                                project: project,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+            child: (isMobile)
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: dialogContents,
+                  )
+                : Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 24,
+                    children: dialogContents,
                   ),
-                ),
-              ],
-            ),
           ),
         ),
       );

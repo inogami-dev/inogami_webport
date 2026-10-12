@@ -12,7 +12,7 @@ class CurrentEndeavors extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isMobile = context.isMobile;
 
-    return Container(
+    return SizedBox(
       // width: width,
       // color: Colors.amber,
       child: Column(
@@ -20,7 +20,9 @@ class CurrentEndeavors extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 16,
         children: [
+          if (isMobile) SizedBox(height: 4),
           MyText(text: "Current Endeavors"),
+
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 16,
