@@ -9,11 +9,13 @@ import 'package:my_portfolio/features/home/presentation/sections/certifications/
 class MyCertificateSection extends StatefulWidget {
   final double width;
   final double height;
+  final bool isCertificateSectionVisible;
 
   const MyCertificateSection({
     super.key,
     required this.width,
     required this.height,
+    this.isCertificateSectionVisible = true,
   });
 
   @override
@@ -167,12 +169,13 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
           const SizedBox(height: 12),
 
           // Header showing range: e.g. "Showing 1-6 of 24"
-          MyText(
-            text:
-                "Certificates ( $startItemNumber-$endItemNumber of ${_allCertificates.length} )",
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          if (widget.isCertificateSectionVisible)
+            MyText(
+              text:
+                  "Certificates ( $startItemNumber-$endItemNumber of ${_allCertificates.length} )",
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
           const SizedBox(height: 12),
 
           // Grid showing only the 6 items for this page

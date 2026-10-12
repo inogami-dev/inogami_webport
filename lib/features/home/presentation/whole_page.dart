@@ -104,12 +104,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                       children: [
                         // Hero Section
-                        MyHeroSection(
-                          key: aboveTheFoldSectionKey,
-                          navBarHeight: (!context.isMobile ? navBarHeight : 0),
-                          screenHeight: widget.screenHeight.clamp(
-                            minHeight,
-                            double.infinity,
+                        fadeAnimation(
+                          activeSectionNotifier: activeSectionNotifier,
+                          sectionKey: aboveTheFoldSectionKey,
+                          child: MyHeroSection(
+                            key: aboveTheFoldSectionKey,
+                            navBarHeight: (!context.isMobile
+                                ? navBarHeight
+                                : 0),
+                            screenHeight: widget.screenHeight.clamp(
+                              minHeight,
+                              double.infinity,
+                            ),
                           ),
                         ),
 
@@ -176,12 +182,16 @@ class _MyHomePageState extends State<MyHomePage> {
                               maxLines: 2,
                             ),
                           ),
-                          child: MyProjectsSection(
-                            screenHeight: widget.screenHeight.clamp(
-                              minHeight,
-                              double.infinity,
+                          child: fadeAnimation(
+                            activeSectionNotifier: activeSectionNotifier,
+                            sectionKey: projectSectionKey,
+                            child: MyProjectsSection(
+                              screenHeight: widget.screenHeight.clamp(
+                                minHeight,
+                                double.infinity,
+                              ),
+                              sectionTitle: "PROJECTS",
                             ),
-                            sectionTitle: "PROJECTS",
                           ),
                         ),
 
@@ -198,11 +208,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                           topPadding: navBarHeight + 24,
                           // color: Colors.grey,
-                          child: MyAboutMeSection(
-                            width: width,
-                            height: aboutMeSectionSpecialHeight.clamp(
-                              minHeight,
-                              double.infinity,
+                          child: fadeAnimation(
+                            activeSectionNotifier: activeSectionNotifier,
+                            sectionKey: aboutMeSectionKey,
+                            child: MyAboutMeSection(
+                              width: width,
+                              height: aboutMeSectionSpecialHeight.clamp(
+                                minHeight,
+                                double.infinity,
+                              ),
                             ),
                           ),
                         ),
@@ -216,10 +230,21 @@ class _MyHomePageState extends State<MyHomePage> {
                             double.infinity,
                           ),
                           topPadding: navBarHeight + 24,
-                          child: MyCertificateSection(
-                            width: width,
-                            height: (widget.screenHeight - (navBarHeight + 24))
-                                .clamp(minHeight, double.infinity),
+                          child: fadeAnimation(
+                            activeSectionNotifier: activeSectionNotifier,
+                            sectionKey: certificationsSectionKey,
+                            child: MyCertificateSection(
+                              width: width,
+                              height: widget.screenHeight.clamp(
+                                minHeight,
+                                double.infinity,
+                              ),
+                              isCertificateSectionVisible:
+                                  (activeSectionNotifier.value ==
+                                  sectionKeys.indexOf(
+                                    certificationsSectionKey,
+                                  )),
+                            ),
                           ),
                         ),
 
@@ -232,10 +257,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             double.infinity,
                           ),
                           topPadding: navBarHeight + 24,
-                          child: MyFooterSection(
-                            width: width,
-                            height: (widget.screenHeight - (navBarHeight + 24))
-                                .clamp(minHeight, double.infinity),
+                          child: fadeAnimation(
+                            activeSectionNotifier: activeSectionNotifier,
+                            sectionKey: contactSectionKey,
+                            child: MyFooterSection(
+                              width: width,
+                              height:
+                                  (widget.screenHeight - (navBarHeight + 24))
+                                      .clamp(minHeight, double.infinity),
+                            ),
                           ),
                         ),
                       ],
@@ -267,6 +297,24 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+    );
+  }
+
+  ValueListenableBuilder<int> fadeAnimation({
+    required ValueNotifier<int> activeSectionNotifier,
+    required GlobalKey sectionKey,
+    required Widget child,
+  }) {
+    return ValueListenableBuilder(
+      valueListenable: activeSectionNotifier,
+      builder: (context, value, activeSectionIndex) {
+        return AnimatedOpacity(
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeInOut,
+          opacity: (value == sectionKeys.indexOf(sectionKey)) ? 1.0 : 0.35,
+          child: child,
+        );
+      },
     );
   }
 
