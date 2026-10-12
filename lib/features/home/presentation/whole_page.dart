@@ -71,6 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // final bool isMobile = context.isMobile;
     final bool isTablet = context.isTablet;
 
+    final double aboutMeSectionSpecialHeight = widget.screenHeight * 0.85;
+
     return Scaffold(
       endDrawer: (context.isMobile) ? MyDrawer(sectionKeys: sectionKeys) : null,
       body: SizedBox(
@@ -189,16 +191,16 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: width,
                           height: isTablet
                               ? null
-                              : widget.screenHeight.clamp(
+                              : aboutMeSectionSpecialHeight.clamp(
                                   minHeight,
                                   double.infinity,
                                   // height - navBarHeight - 24,
                                 ),
-                          // topPadding: navBarHeight + 24,
+                          topPadding: navBarHeight + 24,
                           // color: Colors.grey,
                           child: MyAboutMeSection(
                             width: width,
-                            height: widget.screenHeight.clamp(
+                            height: aboutMeSectionSpecialHeight.clamp(
                               minHeight,
                               double.infinity,
                             ),

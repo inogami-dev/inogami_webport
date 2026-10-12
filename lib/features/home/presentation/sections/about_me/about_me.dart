@@ -42,14 +42,15 @@ class MyAboutMeSection extends StatelessWidget {
       // Left Side Contents
       MyBioContents(width: bioContentsWidth, height: height),
       if (isDesktop) Spacer(),
-      // if (isMobile) SizedBox(width: 24),
+
       MyLine(isHorizontal: !isDesktop),
+
       // Middle Contents
       MyEducation(width: educationContentsWidth, height: height),
       if (isDesktop) Spacer() else if (isTablet) SizedBox(height: 8),
-      // if (isMobile) SizedBox(width: 24),
 
       MyLine(isHorizontal: !isDesktop),
+
       CurrentEndeavors(width: currentEndevorsContentsWidth),
     ];
 
