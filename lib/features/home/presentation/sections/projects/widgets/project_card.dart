@@ -36,6 +36,7 @@ class MyProjectCard extends StatelessWidget {
     log(
       "Project Card heigh: $screenHeight, isScreenLowerThanMinHeight: $isScreenLowerThanMinHeight",
     );
+    bool isScreenWidthShrinked = widthPerProject < 880;
 
     final bool isMobile = context.isMobile;
     final bool isTablet = context.isTablet;
@@ -71,7 +72,9 @@ class MyProjectCard extends StatelessWidget {
             textOverFlow: (isScreenLowerThanMinHeight)
                 ? TextOverflow.fade
                 : TextOverflow.clip,
-            maxLines: (isScreenLowerThanMinHeight) ? 1 : 3,
+            maxLines: (isScreenLowerThanMinHeight && isScreenWidthShrinked)
+                ? 1
+                : 3,
           ),
         ),
 
