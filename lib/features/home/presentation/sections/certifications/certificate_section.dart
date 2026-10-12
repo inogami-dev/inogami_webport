@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
 import 'package:my_portfolio/core/widgets/hero.dart';
 import 'package:my_portfolio/core/widgets/text.dart';
+import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/certifications/widgets/certificate_corner_decoration.dart';
 import 'package:my_portfolio/features/home/presentation/sections/certifications/widgets/certificate_dialog.dart';
 
@@ -99,9 +100,64 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
     final int startItemNumber = (_currentPage * _itemsPerPage) + 1;
     final int endItemNumber = (startItemNumber + currentItems.length - 1);
 
+    final bool isMobile = context.isMobile;
+
+    final Widget gridContent = Center(
+      child: GridView.builder(
+        shrinkWrap: true,
+        itemCount: currentItems.length,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: isMobile ? 2 : 3,
+          mainAxisExtent:
+              widget.height * 0.33, // Exact height of each card in pixels
+          mainAxisSpacing: 16,
+          crossAxisSpacing: 16,
+        ),
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              showMyCertificateModal(
+                context: context,
+                certificateImage: currentItems[index],
+              );
+            },
+            child: MyHero(
+              tag: currentItems[index],
+              child: Container(
+                decoration: BoxDecoration(
+                  color: myColorScheme.surfaceContainerHigh,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: myColorScheme.outlineVariant.withValues(alpha: 0.3),
+                  ),
+                ),
+                padding: const EdgeInsets.all(16),
+                child: Center(
+                  child: MyCertificateCornerDecoration(
+                    cornerSize: 24,
+                    cornerColor: myColorScheme.primary,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: Image.asset(
+                        currentItems[index],
+                        // Ensures image touches the corners
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+
     return Container(
       width: widget.width,
-      height: widget.height,
+      height: isMobile ? null : widget.height,
+      // height: widget.height,
       // color: Colors.amber,
       padding: const EdgeInsets.symmetric(
         horizontal: MySizeConstants.genericHorizontalPadding,
@@ -120,62 +176,7 @@ class _MyCertificateSectionState extends State<MyCertificateSection> {
           const SizedBox(height: 12),
 
           // Grid showing only the 6 items for this page
-          Expanded(
-            child: Center(
-              child: GridView.builder(
-                shrinkWrap: true,
-                itemCount: currentItems.length,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, // 3 columns
-                  mainAxisExtent:
-                      widget.height *
-                      0.33, // Exact height of each card in pixels
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                ),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      showMyCertificateModal(
-                        context: context,
-                        certificateImage: currentItems[index],
-                      );
-                    },
-                    child: MyHero(
-                      tag: currentItems[index],
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: myColorScheme.surfaceContainerHigh,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: myColorScheme.outlineVariant.withValues(
-                              alpha: 0.3,
-                            ),
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(16),
-                        child: Center(
-                          child: MyCertificateCornerDecoration(
-                            cornerSize: 24,
-                            cornerColor: myColorScheme.primary,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: Image.asset(
-                                currentItems[index],
-                                // Ensures image touches the corners
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
+          if (isMobile) gridContent else Expanded(child: gridContent),
 
           const SizedBox(height: 8),
 
