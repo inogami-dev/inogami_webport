@@ -68,6 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
     final height = MyDimensions.height(context);
     const double minHeight = 400.0;
 
+    // final bool isMobile = context.isMobile;
+    final bool isTablet = context.isTablet;
+
     return Scaffold(
       endDrawer: (context.isMobile) ? MyDrawer(sectionKeys: sectionKeys) : null,
       body: SizedBox(
@@ -184,12 +187,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         MySectionPadding(
                           key: aboutMeSectionKey,
                           width: width,
-                          height: widget.screenHeight.clamp(
-                            minHeight,
-                            double.infinity,
-                            // height - navBarHeight - 24,
-                          ),
-                          topPadding: navBarHeight + 24,
+                          height: isTablet
+                              ? null
+                              : widget.screenHeight.clamp(
+                                  minHeight,
+                                  double.infinity,
+                                  // height - navBarHeight - 24,
+                                ),
+                          // topPadding: navBarHeight + 24,
+                          // color: Colors.grey,
                           child: MyAboutMeSection(
                             width: width,
                             height: widget.screenHeight.clamp(

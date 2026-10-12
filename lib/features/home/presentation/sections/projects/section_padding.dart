@@ -41,6 +41,8 @@ class MySectionPadding extends StatelessWidget {
     // - On Mobile: Sets height to null so the section hugs its children naturally.
     // ---------------------------------------------------------------------------
     final double? effectiveHeight = isMobile ? null : height;
+    // This flag is used to determine whether to wrap the child in an Expanded widget or not. Usable for tablet viewss that does not have the same layout as desktop.
+    final bool shouldExpand = effectiveHeight != null;
 
     return Container(
       width: width,
@@ -58,7 +60,7 @@ class MySectionPadding extends StatelessWidget {
         children: [
           // On mobile: Child takes its natural content size (NO Expanded!)
           // On desktop: Expanded forces child to fill the full section height
-          if (isMobile) child else Expanded(child: child),
+          if (shouldExpand) Expanded(child: child) else child,
 
           // Optional link at the bottom (e.g. GitHub link)
           if (linkToExtraContent != null)

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/constants/size.dart';
+import 'package:my_portfolio/core/widgets/line.dart';
 import 'package:my_portfolio/features/home/domain/my_extensions/build_context_extension.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/current_endeavors.dart';
 import 'package:my_portfolio/features/home/presentation/sections/about_me/widgets/my_bio_contents.dart';
@@ -17,11 +18,17 @@ class MyAboutMeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isMobile = context.isMobile;
+    final bool isTablet = context.isTablet;
+    final bool isDesktop = context.isDesktop;
 
     // final myColorScheme = Theme.of(context).colorScheme;
-    final double bioContentsWidth = isMobile ? width : width * 0.28;
-    final double educationContentsWidth = isMobile ? width : width * 0.28;
-    final double currentEndevorsContentsWidth = isMobile ? width : width * 0.28;
+    final double bioContentsWidth = isMobile || isTablet ? width : width * 0.28;
+    final double educationContentsWidth = isMobile || isTablet
+        ? width
+        : width * 0.28;
+    final double currentEndevorsContentsWidth = isMobile || isTablet
+        ? width
+        : width * 0.28;
 
     // --- Dynamic Optical Center Top Padding ---
     final double estimatedContentHeight = width > 1200 ? 430.0 : 470.0;
@@ -34,26 +41,27 @@ class MyAboutMeSection extends StatelessWidget {
     final List<Widget> aboutMeContents = [
       // Left Side Contents
       MyBioContents(width: bioContentsWidth, height: height),
-      if (!isMobile) Spacer(),
+      if (isDesktop) Spacer(),
       // if (isMobile) SizedBox(width: 24),
-
+      MyLine(isHorizontal: !isDesktop),
       // Middle Contents
       MyEducation(width: educationContentsWidth, height: height),
-      if (!isMobile) Spacer(),
+      if (isDesktop) Spacer() else if (isTablet) SizedBox(height: 8),
       // if (isMobile) SizedBox(width: 24),
 
+      MyLine(isHorizontal: !isDesktop),
       CurrentEndeavors(width: currentEndevorsContentsWidth),
     ];
 
     return Container(
       width: width,
-      height: isMobile ? null : height,
+      height: (isMobile || isTablet) ? null : height,
       padding: EdgeInsets.only(
         left: MySizeConstants.genericHorizontalPadding,
         right: MySizeConstants.genericHorizontalPadding,
         top: dynamicTopPadding,
       ), // add top padding here
-      child: (isMobile)
+      child: (isMobile || isTablet)
           ? Column(spacing: 16, children: aboutMeContents)
           : Row(
               crossAxisAlignment: CrossAxisAlignment.start,
