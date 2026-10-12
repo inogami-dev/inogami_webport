@@ -145,11 +145,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                   "assets/images/logo/firebase_logo.png",
                                   "assets/images/logo/android_studio_logo.png",
                                   "assets/images/logo/mapbox_logo.png",
-                                  "assets/images/logo/mistral_ai_logo.png",
+                                  "assets/images/logo/mistral_AI_logo.png",
                                   "assets/images/logo/riverpod_logo.png",
                                   "assets/images/logo/sqlite_logo.png",
                                   "assets/images/logo/vscode_logo.png",
-                                  "assets/images/placeholder_app_icon.png",
+                                  // "assets/images/placeholder_app_icon.png",
+                                  "assets/images/logo/antigravity_IDE_logo.png",
+                                  "assets/images/logo/gemini_logo.png",
                                 ],
                                 onTap: (index, assetPath) {
                                   debugPrint(
@@ -239,11 +241,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 minHeight,
                                 double.infinity,
                               ),
-                              isCertificateSectionVisible:
-                                  (activeSectionNotifier.value ==
-                                  sectionKeys.indexOf(
-                                    certificationsSectionKey,
-                                  )),
                             ),
                           ),
                         ),
@@ -300,21 +297,23 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  ValueListenableBuilder<int> fadeAnimation({
+  Widget fadeAnimation({
     required ValueNotifier<int> activeSectionNotifier,
     required GlobalKey sectionKey,
     required Widget child,
   }) {
-    return ValueListenableBuilder(
-      valueListenable: activeSectionNotifier,
-      builder: (context, value, activeSectionIndex) {
-        return AnimatedOpacity(
-          duration: const Duration(milliseconds: 400),
-          curve: Curves.easeInOut,
-          opacity: (value == sectionKeys.indexOf(sectionKey)) ? 1.0 : 0.35,
-          child: child,
-        );
-      },
+    return RepaintBoundary(
+      child: ValueListenableBuilder(
+        valueListenable: activeSectionNotifier,
+        builder: (context, value, activeSectionIndex) {
+          return AnimatedOpacity(
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
+            opacity: (value == sectionKeys.indexOf(sectionKey)) ? 1.0 : 0.35,
+            child: child,
+          );
+        },
+      ),
     );
   }
 

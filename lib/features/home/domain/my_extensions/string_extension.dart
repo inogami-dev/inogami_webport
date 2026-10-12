@@ -8,7 +8,8 @@ extension MyStringExtension on String {
       return _capitalizedCharactersAfterSpace();
     }
 
-    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+    // return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+    return "${this[0].toUpperCase()}${substring(1)}";
   }
 
   String _capitalizedCharactersAfterSpace() {
