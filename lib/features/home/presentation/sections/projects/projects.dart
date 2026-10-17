@@ -94,7 +94,7 @@ class MyProjectsSection extends StatelessWidget {
         "Real-time Alerts",
         "Location Filter",
         "Patient/Staff Finder",
-        "Notification",
+        "Real-time Notification",
         "Geofence Configuration",
         "Role Based Authorization",
         "Currently Supports 4 Roles: Admin, Social Service, Medical Services, Home Life",

@@ -13,8 +13,8 @@ void main() {
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
-  final int standardDesktopWidth = 1024;
-  final int standardTabletWidth = 600;
+  // final int standardDesktopWidth = 1024;
+  // final int standardTabletWidth = 600;
 
   @override
   Widget build(BuildContext context) {
@@ -27,43 +27,17 @@ class MainApp extends StatelessWidget {
         builder: (context) {
           return LayoutBuilder(
             builder: (context, constraints) {
-              // if (constraints.maxWidth >= standardDesktopWidth) {
-              //   log(
-              //     "The screen is DESKTOP size.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",
-              //   );
-              //   // return Placeholder();
-              //   return MyHomePage(screenHeight: constraints.maxHeight);
-              // } else if (constraints.maxWidth >= standardTabletWidth) {
-              //   log(
-              //     "The screen is TABLET size.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",
-              //   );
-              //   // return Placeholder();
-              //   return MyHomePage(
-              //     screenHeight: constraints.maxHeight,
-              //   ); // Not yet final (Placeholder for now)
-              // } else {
-              //   log(
-              //     "The screen is PHONE SIZE, smaller than 360.  width: ${constraints.maxWidth}  height: ${constraints.maxHeight}",
-              //   );
-              //   return Placeholder(
-              //     child: Container(
-              //       width: constraints.maxWidth,
-              //       color: Colors.green,
-              //     ),
-              //   );
-              // }
-
               if (context.isDesktop) {
                 log(
-                  "Is Desktop View ${context.screenWidth.toStringAsFixed(2)} -----------------",
+                  "Is Desktop View width: ${context.screenWidth.toStringAsFixed(2)} -----------------",
                 );
               } else if (context.isTablet) {
                 log(
-                  "Is Tablet View ${context.screenWidth.toStringAsFixed(2)} -----------------",
+                  "Is Tablet View width: ${context.screenWidth.toStringAsFixed(2)} -----------------",
                 );
               } else if (context.isMobile) {
                 log(
-                  "Is Mobile View ${context.screenWidth.toStringAsFixed(2)} -----------------",
+                  "Is Mobile View width: ${context.screenWidth.toStringAsFixed(2)} -----------------",
                 );
               }
 
